@@ -153,14 +153,17 @@ main{max-width:1120px;margin:0 auto;}
 .cal-date-num{font-family:"Playfair Display",serif;font-size:16px;font-weight:800;color:var(--ink);line-height:1;margin-bottom:6px;}
 .cal-td.today-cell .cal-date-num{color:var(--red);font-weight:900;}
 .cal-td.other-month .cal-date-num{color:var(--ink5);}
-.cal-type-indicator{margin-bottom:4px;}
-.cal-type-badge{display:inline-block;font-family:"Barlow Condensed",sans-serif;font-size:11px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;padding:2px 6px;border-radius:2px;color:#fff;line-height:1.3;}
-.cal-td.today-cell .cal-type-badge{opacity:0.9;}
+.cal-type-indicator{display:flex;align-items:center;gap:5px;margin-bottom:3px;}
+.cal-type-dot-sm{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.cal-type-text{font-family:"Barlow Condensed",sans-serif;font-size:11px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink3);}
+.cal-td.today-cell .cal-type-text{color:var(--ink3);}
 .cal-logged-check{font-family:"DM Mono",monospace;font-size:9px;color:var(--green);margin-top:4px;font-weight:500;}
 .cal-td.today-cell .cal-logged-check{color:#7BCFA0;}
 .cal-flag{font-family:"Barlow Condensed",sans-serif;font-size:9px;font-weight:700;color:var(--red);margin-top:3px;letter-spacing:0.04em;}
 .cal-td.today-cell .cal-flag{color:#FF8080;}
-.strip-type-badge{display:inline-block;font-family:"Barlow Condensed",sans-serif;font-size:10px;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;padding:2px 7px;border-radius:2px;color:#fff;margin-top:2px;}
+.strip-type-dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:4px;vertical-align:middle;}
+.strip-type-text{font-family:"Barlow Condensed",sans-serif;font-size:10px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink3);}
+.strip-day.today .strip-type-text{color:var(--ink3);}
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(26,26,26,0.65);z-index:200;align-items:center;justify-content:center;padding:20px;}
 .modal-overlay.open{display:flex;}
 .modal-box{background:var(--cream);border:2px solid var(--ink);max-width:620px;width:100%;max-height:82vh;overflow-y:auto;animation:slideUp 0.2s ease;}
@@ -332,12 +335,136 @@ main{max-width:1120px;margin:0 auto;}
 ::-webkit-scrollbar-thumb{background:var(--rule2);border-radius:3px;}
 ::-webkit-scrollbar-thumb:hover{background:var(--ink4);}
 @media(max-width:768px){
-  .mast-title{font-size:40px;}
+  /* ── MASTHEAD ── */
+  .mast-title{font-size:34px;letter-spacing:0.04em;}
+  .mast-tagline{font-size:10px;}
+  .mast-top{padding:4px 12px;font-size:9px;}
+  .mast-center{padding:7px 12px 6px;}
+  .mast-sponsors{padding:4px 8px;}
+  .sponsor-name{font-size:9px;padding:0 6px;letter-spacing:0.1em;}
+  .nav-links{flex-wrap:wrap;}
+  .nav-link{font-size:9px;padding:6px 8px;letter-spacing:0.06em;flex:1 1 30%;text-align:center;min-width:0;border-bottom:1px solid rgba(255,255,255,0.08);}
+
+  /* ── LAYOUT ── */
   .home-layout{grid-template-columns:1fr;}
   .side-col{display:none;}
-  .checkin-grid,.sim-sliders{grid-template-columns:1fr 1fr;}
-  .fit-metrics{grid-template-columns:repeat(2,1fr);}
-  .race-splits,.pace-tables,.strength-grid,.vo2-grid,.target-splits{grid-template-columns:repeat(2,1fr);}
+  .main-col{padding:12px 14px;}
+  .sched-page,.log-page,.ri-page,.rec-page,.supp-page{padding:12px 14px;}
+
+  /* ── WEEK BANNER ── */
+  .week-banner{padding:8px 12px;margin-bottom:12px;flex-direction:column;gap:2px;}
+  .week-name{font-size:17px;}
+  .week-num,.week-phase{font-size:9px;}
+
+  /* ── SECTION HEADS ── */
+  .sec-head{font-size:10px;letter-spacing:0.14em;}
+  .page-title{font-size:20px;}
+
+  /* ── CHECK-IN ── */
+  .checkin-grid{grid-template-columns:1fr 1fr 1fr;gap:6px;}
+  .ci-input{font-size:22px;padding:8px 4px;}
+  .ci-label{font-size:8px;}
+
+  /* ── FITNESS CARD ── */
+  .fit-card{padding:12px 12px;}
+  .fit-metrics{grid-template-columns:repeat(3,1fr);}
+  .fit-met{padding:0 8px;}
+  .fit-met-val{font-size:15px;}
+  .fit-met-lab{font-size:8px;}
+  .fit-proj-row{gap:10px;flex-wrap:wrap;}
+  .fit-proj-val{font-size:13px;}
+  .fit-proj-lab{font-size:8px;}
+  .fit-card::after{font-size:50px;}
+
+  /* ── TODAY WORKOUT ── */
+  .workout-title{font-size:17px;}
+  .workout-tag{font-size:9px;}
+  .segment{grid-template-columns:22px 1fr auto;gap:8px;padding:8px 0;}
+  .seg-name{font-size:12px;}
+  .seg-detail{font-size:9px;}
+  .seg-pace{font-size:13px;}
+  .seg-hr{font-size:9px;}
+  .workout-note{font-size:11px;padding:8px 12px;}
+
+  /* ── EDITION ── */
+  .edition-headline{font-size:15px;}
+  .edition-body{font-size:11px;}
+
+  /* ── WEEK STRIP ── */
+  .week-strip{gap:0;}
+  .strip-day{padding:7px 4px;min-height:72px;}
+  .strip-ddate{font-size:16px;margin-bottom:4px;}
+  .strip-dname{font-size:8px;margin-bottom:3px;}
+  .strip-type-text{font-size:9px;}
+  .strip-logged{font-size:7px;}
+
+  /* ── CALENDAR ── */
+  .cal-month-lbl{font-size:20px;}
+  .cal-th{font-size:9px;padding:6px 2px;letter-spacing:0.08em;}
+  .cal-td{padding:4px;min-height:58px;}
+  .cal-date-num{font-size:13px;margin-bottom:3px;}
+  .cal-type-text{font-size:9px;}
+  .cal-logged-check{font-size:7px;}
+  .cal-nav-btn{font-size:11px;padding:5px 12px;}
+
+  /* ── MODAL ── */
+  .modal-box{max-height:90vh;}
+  .modal-title-str{font-size:17px;}
+  .modal-body{padding:14px;}
+
+  /* ── LOG ── */
+  .form-grid{grid-template-columns:1fr;}
+  .log-tab-btn{font-size:11px;padding:7px 12px;}
+
+  /* ── RACE INTELLIGENCE ── */
+  .race-total{font-size:38px;}
+  .race-splits{grid-template-columns:repeat(2,1fr);gap:8px;}
+  .rs-time{font-size:18px;}
+  .sim-sliders{grid-template-columns:1fr;}
+  .sim-results{grid-template-columns:repeat(3,1fr);}
+  .sim-cell:nth-child(4),.sim-cell:nth-child(5){display:none;}
+  .sim-val{font-size:18px;}
+  .pace-tables{grid-template-columns:1fr;}
+  .pace-table{border-right:none;border-bottom:1px solid var(--rule2);}
+  .pace-table:last-child{border-bottom:none;}
+
+  /* ── RECORDS ── */
+  .pr-th{font-size:9px;padding:5px 6px;letter-spacing:0.1em;}
+  .pr-td{padding:7px 6px;}
+  .pr-val{font-size:15px;}
+  .pr-val.garmin{font-size:12px;}
+  .pr-val.proj{font-size:12px;}
+  .strength-grid,.vo2-grid{grid-template-columns:repeat(3,1fr);}
+  .str-val{font-size:22px;}
+  .target-splits{grid-template-columns:repeat(2,1fr);}
+  .split-val{font-size:16px;}
+  .new-pr-row{flex-direction:column;gap:8px;}
+  .pr-inp{width:100%;}
+  .ftp-hist-row{gap:8px;}
+  .ftp-hist-val{font-size:16px;}
+
+  /* ── SUPPLEMENTS ── */
+  .supp-check-name{font-size:12px;}
+  .supp-card-name{font-size:13px;}
+  .supp-purpose{font-size:11px;}
+  .rec-supp-why{font-size:11px;}
+
+  /* ── PICKER ── */
+  .picker-box{max-width:100%;margin:0;}
+  .picker-option{padding:10px 12px;}
+  .picker-option-name{font-size:13px;}
+  .picker-option-detail{font-size:9px;}
+}
+
+@media(max-width:400px){
+  .mast-title{font-size:28px;}
+  .nav-link{font-size:8px;padding:5px 6px;}
+  .fit-metrics{grid-template-columns:repeat(3,1fr);}
+  .fit-met-val{font-size:13px;}
+  .checkin-grid{grid-template-columns:1fr 1fr 1fr;}
+  .ci-input{font-size:18px;}
+  .race-splits{grid-template-columns:1fr 1fr;}
+  .strength-grid,.vo2-grid{grid-template-columns:repeat(3,1fr);}
 }
 </style>
 </head>
@@ -350,7 +477,7 @@ main{max-width:1120px;margin:0 auto;}
     <span id="mast-issue" style="font-family:'DM Mono',monospace;"></span>
   </div>
   <div class="mast-center">
-    <div class="mast-title">THE <span>RETURN</span></div>
+    <div class="mast-title" onclick="showPage('home',document.querySelector('.nav-link'))" style="cursor:pointer;">THE <span>RETURN</span></div>
     <div class="mast-tagline">A chronicle of watts, miles, and will &nbsp;&middot;&nbsp; Est. May 2026</div>
   </div>
   <div class="mast-sponsors">
@@ -1387,7 +1514,7 @@ function renderWeekStrip() {
     const cell=document.createElement('div'); cell.className=`strip-day${isToday?' today':''}`;
     cell.onclick=()=>openModal(d);
     let typeHtml='';
-    if(w){const c=TAG_COLORS[w.tag]||'#4A4A4A';const lbl=TAG_LABELS[w.tag]||'Session';typeHtml=`<div style="margin-top:4px;"><span class="strip-type-badge" style="background:${c};">${lbl}</span></div>`;}
+    if(w){const c=TAG_COLORS[w.tag]||'#4A4A4A';const lbl=TAG_LABELS[w.tag]||'Session';typeHtml=`<div style="margin-top:5px;"><span class="strip-type-dot" style="background:${c};"></span><span class="strip-type-text">${lbl}</span></div>`;}
     const dayLogsStrip=workoutLog.filter(e=>e.date===dateStr);
     if(dayLogsStrip.length>0) cell.classList.add('logged-strip');
     cell.innerHTML=`<div class="strip-dname">${dl}</div><div class="strip-ddate">${d.getDate()}</div>${typeHtml}${dayLogsStrip.length>0?`<div class="strip-logged">${dayLogsStrip.length>1?dayLogsStrip.length+'x done':'✓ done'}</div>`:''}`;
@@ -1421,7 +1548,7 @@ function renderCalendar() {
       td.className=`cal-td${isToday?' today-cell':''}${other?' other-month':''}${logged?' logged-cell':''}`;
       td.onclick=()=>openModal(date);
       let pills='';
-      if(w){const c=TAG_COLORS[w.tag]||'#4A4A4A';const lbl=TAG_LABELS[w.tag]||'Session';pills+=`<div class="cal-type-indicator"><span class="cal-type-badge" style="background:${c};">${lbl}</span></div>`;}
+      if(w){const c=TAG_COLORS[w.tag]||'#4A4A4A';const lbl=TAG_LABELS[w.tag]||'Session';pills+=`<div class="cal-type-indicator"><span class="cal-type-dot-sm" style="background:${c};"></span><span class="cal-type-text">${lbl}</span></div>`;}
       const dayLogs=workoutLog.filter(e=>e.date===dateStr);
       if(dayLogs.length>0){const r=dayLogs[0].rating;pills+=`<div class="cal-logged-check">${dayLogs.length>1?dayLogs.length+'x logged':r?'★'.repeat(r)+' done':'✓ logged'}</div>`;}
       if(isRetest) pills+=`<div class="cal-flag">⚡ FTP Retest</div>`;
