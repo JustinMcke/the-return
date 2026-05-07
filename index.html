@@ -285,6 +285,54 @@ main{max-width:1120px;margin:0 auto;}
 .split-lbl{font-size:11px;color:var(--ink3);font-family:"DM Mono",monospace;}
 .split-sub{font-size:10px;color:var(--ink5);margin-top:3px;}
 .supp-check-list{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.gym-section-head{font-family:"Barlow Condensed",sans-serif;font-size:10px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink4);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:4px 0;margin:12px 0 8px;background:var(--cream2);padding-left:6px;}
+.session-block-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid var(--ink);}
+.session-block-label{font-family:"Barlow Condensed",sans-serif;font-size:10px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink3);}
+.session-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
+.action-btn{font-family:"Barlow Condensed",sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:7px 16px;border:none;cursor:pointer;transition:all 0.15s;}
+.action-done{background:var(--green);color:var(--cream);}
+.action-done:hover{background:#1F5C38;}
+.action-skip{background:transparent;color:var(--ink4);border:1px solid var(--rule2);}
+.action-skip:hover{border-color:var(--ink);color:var(--ink);}
+.action-done-already{background:var(--green-dim);color:var(--green);border:1px solid var(--green-border);cursor:default;font-size:10px;}
+.action-skipped-already{background:var(--cream2);color:var(--ink4);border:1px solid var(--rule);cursor:default;font-size:10px;}
+.collapsible-section{margin-bottom:8px;}
+.collapsible-trigger{display:flex;align-items:center;gap:8px;padding:7px 10px;background:var(--cream2);border:1px solid var(--rule);cursor:pointer;transition:background 0.15s;font-family:"Barlow Condensed",sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);}
+.collapsible-trigger:hover{background:var(--cream3);}
+.collapsible-arrow{font-size:10px;transition:transform 0.2s;}
+.collapsible-arrow.open{transform:rotate(90deg);}
+.collapsible-content{display:none;border:1px solid var(--rule);border-top:none;padding:8px 0;}
+.collapsible-content.open{display:block;}
+.rest-day-card{background:var(--cream2);border:1px solid var(--rule);border-left:4px solid var(--green);padding:16px 18px;margin-bottom:12px;}
+.rest-day-title{font-family:"Playfair Display",serif;font-size:20px;font-weight:800;color:var(--green);margin-bottom:8px;}
+.rest-day-note{font-size:12px;color:var(--ink3);line-height:1.7;}
+.missed-item{padding:12px 14px;background:var(--amber-dim,rgba(193,123,42,0.08));border-left:4px solid var(--amber);}
+.missed-info{margin-bottom:8px;}
+.missed-label{font-family:"DM Mono",monospace;font-size:9px;color:var(--amber);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:2px;}
+.missed-session{font-family:"Barlow Condensed",sans-serif;font-size:14px;font-weight:700;color:var(--ink);}
+.missed-actions{display:flex;gap:6px;flex-wrap:wrap;}
+.missed-btn{font-family:"Barlow Condensed",sans-serif;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:6px 14px;border:none;cursor:pointer;transition:all 0.15s;}
+.missed-do{background:var(--ink);color:var(--cream);}
+.missed-do:hover{background:var(--red);}
+.missed-shift{background:var(--amber);color:var(--cream);}
+.missed-shift:hover{background:#A06522;}
+.missed-skip{background:transparent;color:var(--ink4);border:1px solid var(--rule2);}
+.missed-skip:hover{border-color:var(--ink3);color:var(--ink3);}
+.missed-divider{height:1px;background:var(--rule2);margin:0;}
+#missed-banner{border:2px solid var(--amber);margin-bottom:14px;background:var(--cream);}
+.generating-note{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink4);font-style:italic;padding:10px 0;animation:pulse 1.5s infinite;}
+.gym-exercise{display:grid;grid-template-columns:1fr auto;gap:8px;padding:10px 0;border-bottom:1px solid var(--rule);transition:all 0.1s;}
+.gym-exercise:hover{background:var(--cream2);padding-left:6px;}
+.gym-ex-name{font-weight:700;font-size:13px;color:var(--ink);margin-bottom:3px;}
+.gym-ex-detail{font-size:11px;color:var(--ink4);line-height:1.5;}
+.gym-ex-tri{font-family:"DM Mono",monospace;font-size:9px;color:var(--blue);margin-top:4px;font-style:italic;}
+.gym-ex-sets{font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:800;color:var(--ink);text-align:right;white-space:nowrap;}
+.gym-ex-flag{font-family:"DM Mono",monospace;font-size:9px;text-align:right;margin-top:3px;white-space:nowrap;}
+.flag-mandatory{color:var(--red);}
+.flag-shoulder{color:var(--amber);}
+.flag-safe{color:var(--green);}
+.flag-swim{color:var(--blue);}
+.gym-warmup-note{background:var(--cream2);border-left:3px solid var(--amber);padding:8px 12px;font-size:11px;color:var(--ink3);line-height:1.5;margin-bottom:12px;}
 .supp-check-item{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--cream2);border:1px solid var(--rule);cursor:pointer;transition:all 0.15s;}
 .supp-check-item.checked{background:rgba(45,122,79,0.08);border-color:rgba(45,122,79,0.2);}
 .supp-check-box{width:18px;height:18px;border:2px solid var(--rule2);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;transition:all 0.15s;}
@@ -507,6 +555,8 @@ main{max-width:1120px;margin:0 auto;}
     </div>
     <div class="main-col">
 
+      <div id="missed-banner" style="display:none;"></div>
+
       <div class="week-banner">
         <div>
           <div class="week-num" id="week-num-label">Week 1 &middot; Phase 1</div>
@@ -515,13 +565,38 @@ main{max-width:1120px;margin:0 auto;}
         <div class="week-phase" id="week-phase-label">Engine Building</div>
       </div>
 
-      <div class="sec-head">Today's Session</div>
-      <div class="workout-head">
-        <div class="workout-title" id="today-title">Loading...</div>
-        <div id="today-tag"></div>
+      <div class="sec-head">Today's Sessions</div>
+
+      <!-- GYM SESSION -->
+      <div id="gym-session-block">
+        <div class="session-block-head">
+          <div class="session-block-label" id="gym-block-label">GYM</div>
+          <div id="gym-block-status"></div>
+        </div>
+        <div class="workout-head" style="margin-bottom:6px;">
+          <div class="workout-title" id="gym-title" style="font-size:20px;">Loading...</div>
+          <div id="gym-tag"></div>
+        </div>
+        <div id="gym-segs"></div>
+        <div class="workout-note" id="gym-note" style="display:none;"></div>
+        <div id="gym-picker-btn-wrap"></div>
+        <div class="session-actions" id="gym-actions"></div>
       </div>
-      <div id="today-segs"></div>
-      <div class="workout-note" id="today-note" style="display:none;"></div>
+
+      <!-- CARDIO SESSION -->
+      <div id="cardio-session-block" style="margin-top:18px;">
+        <div class="session-block-head">
+          <div class="session-block-label" id="cardio-block-label">CARDIO</div>
+          <div id="cardio-block-status"></div>
+        </div>
+        <div class="workout-head" style="margin-bottom:6px;">
+          <div class="workout-title" id="today-title" style="font-size:20px;">Loading...</div>
+          <div id="today-tag"></div>
+        </div>
+        <div id="today-segs"></div>
+        <div class="workout-note" id="today-note" style="display:none;"></div>
+        <div class="session-actions" id="cardio-actions"></div>
+      </div>
 
       <div class="sec-head" style="margin-top:18px;">Current Fitness</div>
       <div class="fit-card">
@@ -598,6 +673,8 @@ main{max-width:1120px;margin:0 auto;}
         <div class="edition-badge" id="edition-badge">Daily Edition</div>
         <div id="edition-container"><div class="edition-empty">Composing today's edition...</div></div>
       </div>
+
+
 </div>
   </div>
 </div>
@@ -831,7 +908,7 @@ main{max-width:1120px;margin:0 auto;}
       </div>
       <button class="modal-close" onclick="closeModal()">&times;</button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body" id="modal-body">
       <div id="modal-status"></div>
       <div id="modal-tag-wrap" style="margin-bottom:12px;"></div>
       <div id="modal-segs"></div>
@@ -840,6 +917,43 @@ main{max-width:1120px;margin:0 auto;}
     </div>
   </div>
 </div>
+<!-- EDIT LOG MODAL -->
+<div class="modal-overlay" id="edit-log-overlay" onclick="closeEditLogOutside(event)">
+  <div class="modal-box" style="max-width:520px;">
+    <div class="modal-head">
+      <div>
+        <div class="modal-date-str">Edit Workout Log Entry</div>
+        <div class="modal-title-str" id="edit-log-title">Edit Session</div>
+      </div>
+      <button class="modal-close" onclick="closeEditLog()">&times;</button>
+    </div>
+    <div class="modal-body" style="padding:20px;">
+      <input type="hidden" id="edit-log-id">
+      <div class="form-grid" style="margin-bottom:10px;">
+        <div><label class="inp-label">Type</label><select class="form-input" id="edit-type"><option>Run</option><option>Bike</option><option>Brick</option><option>Gym</option><option>Swim</option></select></div>
+        <div><label class="inp-label">Date</label><input type="date" class="form-input date-input" id="edit-date"></div>
+        <div><label class="inp-label">Distance</label><input type="text" class="form-input" id="edit-dist" placeholder="5.2 mi"></div>
+        <div><label class="inp-label">Duration</label><input type="text" class="form-input" id="edit-dur" placeholder="45:30"></div>
+        <div><label class="inp-label">Pace / Power</label><input type="text" class="form-input" id="edit-pace" placeholder="9:24/mi or 155w"></div>
+        <div><label class="inp-label">Avg HR</label><input type="text" class="form-input" id="edit-hr" placeholder="142 bpm"></div>
+      </div>
+      <div style="margin-bottom:10px;"><label class="inp-label">Notes</label><input type="text" class="form-input" id="edit-notes" placeholder="How did it feel?"></div>
+      <div class="rating-row" style="margin-bottom:16px;">
+        <span class="rating-lbl">Session Rating:</span>
+        <button class="rating-star" id="er1" onclick="setEditRating(1)">&#9733;</button>
+        <button class="rating-star" id="er2" onclick="setEditRating(2)">&#9733;</button>
+        <button class="rating-star" id="er3" onclick="setEditRating(3)">&#9733;</button>
+        <button class="rating-star" id="er4" onclick="setEditRating(4)">&#9733;</button>
+        <button class="rating-star" id="er5" onclick="setEditRating(5)">&#9733;</button>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button class="btn btn-ink" onclick="saveEditLog()" style="flex:1;">Save Changes</button>
+        <button class="btn btn-out" onclick="closeEditLog()" style="flex:1;">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- WORKOUT PICKER -->
 <div class="picker-overlay" id="picker-overlay" onclick="closePickerOutside(event)">
   <div class="picker-box">
@@ -898,6 +1012,436 @@ function getPhase(wk) {
   return 'Race Specific';
 }
 
+
+// ═══════════════════════════════════════════════════════════
+// ELITE GYM EXERCISE LIBRARY
+// ═══════════════════════════════════════════════════════════
+
+const GYM_SPLITS = {
+
+  chest_tri: {
+    title: 'CHEST + TRICEPS',
+    tag: 'gym',
+    tagColor: '#4A1D8A',
+    note: 'Push day. Chest first — takes advantage of fresh pressing strength before shoulder fatigue sets in. Triceps last — they are already pre-fatigued from chest work so isolation hits harder. Your shoulder requires all barbell pressing to be replaced with dumbbells — independent arm movement protects the joint. Band external rotations are mandatory before every pressing movement.',
+    warmup: [
+      {name:'Band External Rotations', sets:'2x20', detail:'Shoulder health — non-negotiable warmup. Light band, slow controlled rotation outward.', flag:'shoulder'},
+      {name:'Rotator Cuff Warmup', sets:'2x15', detail:'Internal/external rotation with light cable or band. Both directions. Never skip this.', flag:'shoulder'},
+      {name:'Push-Up Warmup', sets:'2x10', detail:'Slow controlled push-ups — wake up the pecs, shoulders and triceps before loading.'}
+    ],
+    exercises: [
+      // CHEST
+      {name:'Flat Dumbbell Press', sets:'4x8-10', muscle:'Chest', detail:'Controlled 2-second descent. Full stretch at bottom — elbows slightly below bench level. Drive dumbbells together at top. Shoulder-safe alternative to barbell.', triNote:'Pec strength improves swim pull and cycling sprint power.', flag:'shoulder_safe'},
+      {name:'Incline Dumbbell Press', sets:'3x10-12', muscle:'Chest', detail:'30-45 degree incline. Upper chest emphasis. Keep elbows at 45 degrees — not flared out. Full range of motion.', triNote:'Upper chest and anterior delt strength supports swim catch position.'},
+      {name:'Cable Chest Fly (Low to High)', sets:'3x12-15', muscle:'Chest', detail:'Cables set at lowest position. Arc from hip level to eye level. Zero shoulder impingement. Squeeze hard at top. Pure pec isolation.', triNote:'Shoulder-safe isolation. No joint stress.', flag:'shoulder_safe'},
+      {name:'Dumbbell Hex Press', sets:'3x12', muscle:'Chest', detail:'Lie flat, press dumbbells together throughout entire movement. Massive inner chest contraction. Do not separate the dumbbells at any point.', triNote:'Inner chest development with zero shoulder risk.', flag:'shoulder_safe'},
+      // TRICEPS
+      {name:'Cable Tricep Pushdown — Rope', sets:'4x12-15', muscle:'Triceps', detail:'Elbows pinned to sides throughout. At bottom — split rope apart and twist outward for full contraction. Slow controlled negative. Safest tricep movement.', triNote:'Tricep strength directly drives swim push phase efficiency.'},
+      {name:'Overhead Dumbbell Extension', sets:'3x12', muscle:'Triceps', detail:'Long head emphasis — the largest head of triceps. Keep elbows pointing forward, not flaring out. Lower dumbbell behind head slowly. Full stretch is the key.', triNote:'Long head is critical for powerful swim stroke finish.'},
+      {name:'Skull Crushers — EZ Bar', sets:'3x10-12', muscle:'Triceps', detail:'Lower bar to forehead on a slight angle back behind head — reduces elbow stress. Full extension at top. One of the best mass builders for triceps.'},
+      {name:'Close-Grip Push-Up', sets:'3xFailure', muscle:'Triceps', detail:'Hands shoulder-width or slightly narrower. Elbows track back along body. Bodyweight finisher — go to real failure. Add weight vest when bodyweight is easy.', triNote:'Functional pressing strength with zero equipment.'}
+    ],
+    mandatory: [
+      {name:'Face Pulls', sets:'4x20', detail:'Cable set at forehead height. Rope attachment. Pull to face — hands finish beside ears. External rotation of shoulder at end of movement. Every single session without exception.', flag:'mandatory'},
+      {name:'Band External Rotation', sets:'3x20', detail:'Elbow pinned to side. Rotate outward against band resistance. Slow and controlled. Your shoulder rehab — non-negotiable.', flag:'mandatory'},
+      {name:'Dead Bug', sets:'3x10', detail:'Lower back pressed into floor throughout. Opposite arm and leg extend slowly. Core stability for aero cycling position.', flag:'mandatory'}
+    ]
+  },
+
+  back_bi: {
+    title: 'BACK + BICEPS',
+    tag: 'gym',
+    tagColor: '#1B4F8A',
+    note: 'Pull day. The most important session for your triathlon performance. Lat strength is the primary driver of swim speed — a weak lat is a slow swimmer. Mid-back thickness keeps you in aero position on the bike for hours without breaking down. Back first, biceps last — biceps are secondary movers in all rowing and pulling movements so they are pre-fatigued before isolation work.',
+    warmup: [
+      {name:'Band Pull-Aparts', sets:'3x20', detail:'Arms straight in front, pull band apart to chest. Activates rear delts and mid-back before loading.'},
+      {name:'Cat-Cow Thoracic Mobility', sets:'2x10', detail:'Spinal warmup. Opens thoracic spine for full range of motion in rows and pull-downs.'},
+      {name:'Dead Hang', sets:'2x30sec', detail:'Passive hang from pull-up bar. Decompresses spine, activates lat and grip strength.'}
+    ],
+    exercises: [
+      // BACK
+      {name:'Lat Pulldown — Wide Grip', sets:'4x10-12', muscle:'Back', detail:'Full stretch at top — shoulder blades rise. Pull to upper chest, not behind neck. Lean back slightly. Squeeze lats hard at bottom. Primary swim muscle.', triNote:'Lat pulldown is the most swim-specific exercise in the gym. Every 1% improvement in lat strength translates directly to faster swim times.'},
+      {name:'Seated Cable Row — Close Grip', sets:'4x10-12', muscle:'Back', detail:'Pull handle to lower sternum. Drive elbows back and squeeze shoulder blades together hard. 2-second hold at contraction. Control the negative.', triNote:'Mid-back thickness. Holds aero cycling position for 2-3 hours without breakdown.'},
+      {name:'Single-Arm Dumbbell Row', sets:'3x10 each', muscle:'Back', detail:'Supported on bench. Drive elbow straight back — not out to the side. Full stretch at bottom. Pull to hip, not shoulder. Heavy — this is a mass builder.', triNote:'Unilateral rowing corrects left/right imbalances from asymmetric swim stroke.'},
+      {name:'Straight Arm Cable Pulldown', sets:'3x15', muscle:'Back', detail:'Arms straight throughout — no elbow bend. Pulls from overhead to hips. Pure lat isolation. The exact movement pattern of the swim catch and pull.', triNote:'Most swim-specific exercise in existence. Mimics exact lat engagement of freestyle stroke.', flag:'swim_specific'},
+      {name:'Hyperextensions', sets:'3x15', muscle:'Back', detail:'Lower back and glute focus. Controlled movement — do not hyperextend at top. Add weight plate to chest when bodyweight is easy.', triNote:'Lower back endurance is critical for maintaining aero position through hour 2 and 3 of the bike.'},
+      {name:'Face Pulls', sets:'4x20', muscle:'Back', detail:'Cable at forehead height. Rope attachment. Pull to face with external rotation. Rear delt and rotator cuff. Non-negotiable every session.', flag:'mandatory'},
+      // BICEPS
+      {name:'Barbell Curl', sets:'4x10-12', muscle:'Biceps', detail:'Full range of motion. No swinging. Squeeze hard at top. Slow 3-second negative. The fundamental bicep mass builder.', triNote:'Bicep strength improves swim pull power and cycling handlebar grip endurance.'},
+      {name:'Hammer Curl', sets:'3x12', muscle:'Biceps', detail:'Neutral grip — thumbs pointing up. Targets brachialis underneath bicep. Makes the arm look thicker from the side. Also builds forearm strength.', triNote:'Brachialis development improves aero bar grip strength during long bike legs.'},
+      {name:'Incline Dumbbell Curl', sets:'3x12', muscle:'Biceps', detail:'Seated on incline bench. Arms hang behind body — maximum long head stretch. Slow curl upward. Best exercise for bicep peak development.'},
+      {name:'Cable Curl', sets:'3x15', muscle:'Biceps', detail:'Constant tension throughout — unlike free weights. Finishing movement. Keep elbows pinned to sides. Squeeze at top.'}
+    ],
+    mandatory: [
+      {name:'Face Pulls', sets:'4x20', detail:'Already in main session — confirm done. Rear delt and rotator cuff health. Your shoulder specifically.', flag:'mandatory'},
+      {name:'Dead Bug', sets:'3x10', detail:'Core stability. Lower back pressed into floor the entire time. Opposite arm and leg extend slowly and controlled.', flag:'mandatory'},
+      {name:'Copenhagen Plank', sets:'3x30sec each', detail:'Side plank with top leg on bench. Hip adductor strength. Running injury prevention — protects IT band and groin.', flag:'mandatory'}
+    ]
+  },
+
+  legs: {
+    title: 'LEGS',
+    tag: 'gym',
+    tagColor: '#2D5A1B',
+    note: 'The most important session for cycling and running power. Squats build the engine. Single-leg work builds the stability and symmetry that endurance sports demand. Given your concurrent training load — legs are being worked on the bike and run every week — so gym leg sessions prioritize quality over maximum volume. The Nordic hamstring curl is the single most evidence-backed injury prevention exercise for runners. It is not optional.',
+    warmup: [
+      {name:'Glute Bridge', sets:'2x15', detail:'Activate glutes before loading. Drive hips up and squeeze hard at top. Hold 2 seconds. Dormant glute syndrome is the most common running injury cause.'},
+      {name:'Leg Swing Warmup', sets:'2x10 each direction', detail:'Forward/back and lateral leg swings. Hip mobility. Opens hip flexors before squatting.'},
+      {name:'Goblet Squat — Light', sets:'2x10', detail:'Warmup squat pattern with light dumbbell or kettlebell. Full depth. Elbows track inside knees at bottom.'}
+    ],
+    exercises: [
+      // COMPOUND
+      {name:'Back Squat', sets:'4x6-8', muscle:'Quads / Glutes', detail:'Controlled descent — 3 seconds down. Hit parallel or below. Drive knees out. Brace core hard. Given concurrent training load — work at 75-80% of max. Quality over ego.', triNote:'Back squat is the single best predictor of cycling power output. Every 10% improvement in squat strength correlates with measurable FTP gains.'},
+      {name:'Romanian Deadlift', sets:'4x8-10', muscle:'Hamstrings / Glutes', detail:'Hip hinge — not a squat. Push hips back. Slight knee bend throughout. Bar stays close to legs. Feel hamstring stretch at bottom. Drive hips forward to stand.', triNote:'Posterior chain strength prevents the quad-dominant cycling pattern that causes knee pain on long rides.'},
+      {name:'Bulgarian Split Squat', sets:'3x10 each', muscle:'Quads / Glutes', detail:'Rear foot elevated on bench. Front foot far enough forward that knee stays behind toes at bottom. This will be humbling — use less weight than you think. Single best exercise for cycling power asymmetry correction.', triNote:'Single-leg power is what actually drives the pedal stroke. Most cyclists have significant left/right imbalance — this fixes it.'},
+      {name:'Leg Press', sets:'3x12-15', muscle:'Quads', detail:'Feet shoulder-width, mid-platform. Full range of motion — do not lock out at top. High volume without spinal load. Use on heavy training weeks when squats take too much out of you.', triNote:'High rep leg press builds quad endurance that directly transfers to late-race cycling.'},
+      {name:'Step-Ups — Weighted', sets:'3x12 each', muscle:'Glutes / Quads', detail:'18 inch box minimum. Drive through heel of front foot. Do not push off back foot. Add dumbbells for load. Running-specific single-leg power.', triNote:'Running economy exercise. Builds the exact glute activation pattern needed for efficient running stride.'},
+      // SINGLE LEG AND STABILITY
+      {name:'Single-Leg Romanian Deadlift', sets:'3x10 each', muscle:'Hamstrings', detail:'Standing on one leg. Hinge at hip. Reach dumbbell toward floor. Back leg extends behind for balance. Slow and controlled. This will challenge your balance significantly at first.', triNote:'The most running-specific posterior chain exercise. Builds hamstring stability that prevents hamstring strains on long runs.'},
+      {name:'Nordic Hamstring Curl', sets:'3x8', muscle:'Hamstrings', detail:'Kneel on pad — partner holds ankles or hook under rack. Lower body toward floor as slowly as possible — use hamstrings to control descent. Pull yourself back up using hamstrings. One of the hardest exercises you will ever do.', triNote:'The most evidence-backed hamstring injury prevention exercise in endurance sports. Mandatory for any runner doing serious volume.', flag:'injury_prevention'},
+      {name:'Copenhagen Plank', sets:'3x30sec each', muscle:'Hip Adductors', detail:'Side plank with top leg on bench. Bottom leg can float or touch bench for support. Lateral hip and adductor strength.', triNote:'Prevents IT band syndrome and groin strains — the two most common running injuries at higher mileage.', flag:'mandatory'},
+      {name:'Single-Leg Calf Raise — Weighted', sets:'4x15 each', muscle:'Calves', detail:'Stand on edge of step. Full range — heel below step level to toes fully extended. Add weight via dumbbell when bodyweight is easy. Slow and controlled.', triNote:'Calf and Achilles resilience is critical at 20+ miles per week. Calf raises are the primary prevention tool for Achilles tendinopathy.'}
+    ],
+    mandatory: [
+      {name:'Face Pulls', sets:'3x20', detail:'Even on legs day. Shoulder health maintenance. 5 minutes at the end — no excuses.', flag:'mandatory'},
+      {name:'Copenhagen Plank', sets:'3x30sec each', detail:'Already in main session. Confirm done. Hip adductor strength. Running injury prevention.', flag:'mandatory'},
+      {name:'Dead Bug', sets:'3x10', detail:'Core stability. The aero position on the bike requires serious core endurance — this builds it.', flag:'mandatory'}
+    ]
+  }
+};
+
+// ── GYM DAY WORKOUT GENERATOR ──
+function getGymWorkout(isHeavy, dow, wk, _dateStr) {
+  const pickerKey = 'gym_split_' + (_dateStr || TODAY.toISOString().split('T')[0]);
+  const savedSplit = localStorage.getItem(pickerKey) || null;
+
+  // Suggest rotation based on previous sessions
+  function getSuggestedSplit() {
+    // Look back through recent days to find last gym split used
+    const splits = ['chest_tri','back_bi','legs'];
+    for (let daysBack = 1; daysBack <= 14; daysBack++) {
+      const d = new Date(TODAY);
+      d.setDate(d.getDate() - daysBack);
+      const dk = 'gym_split_' + d.toISOString().split('T')[0];
+      const last = localStorage.getItem(dk);
+      if (last && splits.includes(last)) {
+        const idx = splits.indexOf(last);
+        return splits[(idx + 1) % splits.length];
+      }
+    }
+    return 'chest_tri'; // default
+  }
+
+  const splitKey = savedSplit || getSuggestedSplit();
+  const split = GYM_SPLITS[splitKey];
+  const intensity = isHeavy ? 'Full intensity' : 'Reduced intensity — 15-20% less volume, 2-3 reps in reserve';
+
+  const allSplits = [
+    {key:'chest_tri', label:'Chest + Triceps', color:'#4A1D8A'},
+    {key:'back_bi', label:'Back + Biceps', color:'#1B4F8A'},
+    {key:'legs', label:'Legs', color:'#2D5A1B'}
+  ];
+
+  return {
+    title: `GYM — ${split.title}`,
+    tag: 'gym',
+    _pickerOptions: allSplits.map(s => ({
+      title: `GYM — ${GYM_SPLITS[s.key].title}`,
+      tag: 'gym',
+      _splitKey: s.key,
+      note: GYM_SPLITS[s.key].note,
+      segs: buildGymSegs(s.key, isHeavy)
+    })),
+    _pickerKey: pickerKey,
+    _pickerCurrent: allSplits.findIndex(s => s.key === splitKey),
+    _splitKey: splitKey,
+    _isGym: true,
+    note: split.note + (isHeavy ? '' : '\n\nToday is a lighter session — 15-20% less volume across the board. 2-3 reps in reserve on every set. Quality over fatigue accumulation.'),
+    segs: buildGymSegs(splitKey, isHeavy)
+  };
+}
+
+function buildGymSegsFromAI(aiResult, isHeavy) {
+  const split = GYM_SPLITS[aiResult.splitKey];
+  const segs = [];
+  let n = 1;
+
+  // Warmup (collapsible — flagged)
+  segs.push({n: 0, name: '___WARMUP___', detail: '', pace: '', hr: ''});
+  split.warmup.forEach(w => {
+    segs.push({n: n++, name: w.name, detail: `WARMUP — ${w.sets} — ${w.detail}`, pace: w.sets, hr: w.flag === 'shoulder' ? '⚠️ Shoulder' : 'Warmup'});
+  });
+
+  // AI-selected primary exercises
+  segs.push({n: 0, name: '___PRIMARY___', detail: '', pace: '', hr: ''});
+  aiResult.primary.forEach(ex => {
+    const flag = ex.flag === 'shoulder_safe' ? '✓ Shoulder Safe' : ex.flag === 'swim_specific' ? '🏊 Swim' : ex.flag === 'triathlon_key' ? '⚡ Triathlon' : '';
+    segs.push({n: n++, name: ex.name, detail: ex.detail, pace: '', hr: flag});
+  });
+
+  // AI-selected accessory exercises
+  segs.push({n: 0, name: '___ACCESSORY___', detail: '', pace: '', hr: ''});
+  aiResult.accessory.forEach(ex => {
+    const flag = ex.flag === 'mandatory' ? '🔴 Mandatory' : ex.flag === 'shoulder_safe' ? '✓ Shoulder Safe' : '';
+    segs.push({n: n++, name: ex.name, detail: ex.detail, pace: '', hr: flag});
+  });
+
+  // Mandatory (collapsible — flagged)
+  segs.push({n: 0, name: '___MANDATORY___', detail: '', pace: '', hr: ''});
+  split.mandatory.forEach(m => {
+    segs.push({n: n++, name: m.name, detail: m.detail, pace: m.sets, hr: '🔴 Always'});
+  });
+
+  return segs;
+}
+
+function buildGymSegs(splitKey, isHeavy) {
+  // Legacy fallback — uses static exercises
+  const {primary, accessory} = selectExercises(splitKey);
+  return buildGymSegsFromAI({splitKey, primary, accessory}, isHeavy);
+}
+
+
+// ── GYM ROTATION SYSTEM ──
+const GYM_ROTATION_START = new Date('2026-05-07'); // May 7 = Back/Bi = Day 0
+const GYM_ROTATION = ['back_bi', 'legs', 'rest', 'chest_tri']; // 4-day cycle, rest after legs
+
+function getGymRotationDay(date) {
+  const d = new Date(date); d.setHours(0,0,0,0);
+  const diff = Math.floor((d - GYM_ROTATION_START) / (24*3600*1000));
+  if (diff < 0) return null;
+  const idx = ((diff % GYM_ROTATION.length) + GYM_ROTATION.length) % GYM_ROTATION.length;
+  return GYM_ROTATION[idx]; // 'back_bi', 'legs', 'rest', or 'chest_tri'
+}
+
+function isGymRestDay(date) { return getGymRotationDay(date) === 'rest'; }
+
+// ── AI WORKOUT GENERATION ──
+const GYM_EXERCISE_POOLS = {
+  chest: {
+    primary: [
+      {name:'Flat Dumbbell Press', detail:'4x12-15 · Controlled 2-sec descent. Full stretch at bottom — elbows slightly below bench. Drive dumbbells together at top. Shoulder-safe alternative to barbell.', flag:'shoulder_safe'},
+      {name:'Incline Dumbbell Press', detail:'4x12-15 · 30-45 degree incline. Upper chest emphasis — the head CBum is famous for. Keep elbows at 45 degrees, not flared out. Full ROM.', flag:'shoulder_safe'},
+      {name:'Cable Fly — Low to High', detail:'4x12-15 · Cables at lowest setting. Arc from hip level to eye level. Zero shoulder impingement. Squeeze hard at top. Pure pec isolation.', flag:'shoulder_safe'},
+      {name:'Dumbbell Hex Press', detail:'3x12-15 · Dumbbells pressed together throughout entire movement. Inner chest contraction — the detail Arnold built his chest with. Never separate the dumbbells.', flag:'shoulder_safe'},
+      {name:'Incline Cable Fly', detail:'4x12-15 · Cables set low, bench at 30-45 degrees. Crossing motion emphasizes upper chest insertion. CBum staple for upper chest fullness.', flag:'shoulder_safe'},
+      {name:'Decline Dumbbell Press', detail:'4x12-15 · Lower chest emphasis. Slight decline. Elbows at 45 degrees. Full range of motion. Gives the chest that complete bottom-to-top development.', flag:'shoulder_safe'},
+      {name:'Pec Deck / Machine Fly', detail:'4x12-15 · Full stretch position — hold 1 second. Squeeze hard at contraction. Machine keeps constant tension unlike dumbbell fly. Great for finishing pump.'},
+      {name:'Push-Up — Weighted', detail:'3xFailure · Hands shoulder-width. Elbows track back along body at 45 degrees. Add weight plate or vest. Go to real failure on final set.', flag:'shoulder_safe'},
+    ],
+    accessory: [
+      {name:'Cable Tricep Pushdown — Rope', detail:'4x12-15 · Elbows pinned to sides. Split rope apart at bottom and twist outward for full contraction. Safest tricep movement — zero shoulder involvement.'},
+      {name:'Overhead Dumbbell Extension', detail:'3x12-15 · Long head emphasis — the largest tricep head. Keep elbows forward, not flaring. Lower slowly. Full stretch is the key to long head growth.'},
+      {name:'Skull Crushers — EZ Bar', detail:'3x12-15 · Lower bar slightly behind head — reduces elbow stress. Full extension at top. One of the best tricep mass builders. CBum includes these every push day.'},
+      {name:'Dips — Tricep Focus', detail:'3x12-15 · Upright torso — do not lean forward. Elbow flare kept minimal. Bodyweight first, add weight when easy.'},
+      {name:'Close-Grip Push-Up', detail:'3xFailure · Hands shoulder-width or narrower. Elbows track back. Bodyweight finisher. Go to real failure.'},
+    ]
+  },
+  back: {
+    primary: [
+      {name:'Lat Pulldown — Wide Grip', detail:'4x12-15 · Full stretch at top — let shoulder blades rise. Pull to upper chest. Lean back slightly. Squeeze lats hard at bottom. Primary swim muscle.', flag:'swim_specific'},
+      {name:'Seated Cable Row — Close Grip', detail:'4x12-15 · Pull to lower sternum. Drive elbows back hard. 2-second hold at full contraction. Control the negative — 3 seconds. Mid-back thickness.'},
+      {name:'Single-Arm Dumbbell Row', detail:'4x12-15 each · Supported on bench. Drive elbow straight back — not out to side. Full stretch at bottom. Pull to hip. Heavy. Ronnie Coleman made this iconic.'},
+      {name:'Straight Arm Cable Pulldown', detail:'4x12-15 · Arms straight throughout. Pull from overhead to hips. Pure lat isolation. The exact movement pattern of the freestyle swim stroke.', flag:'swim_specific'},
+      {name:'T-Bar Row', detail:'4x12-15 · Chest supported or standing. Drive elbows back. Squeeze shoulder blades. Mid and upper back thickness — the Arnold staple.'},
+      {name:'Chest-Supported DB Row', detail:'4x12-15 · Face down on incline bench. Both arms row simultaneously. Zero lower back involvement. Pure back isolation. Great for maintaining form under fatigue.'},
+      {name:'Cable Row — High Pulley', detail:'4x12-15 · Cable at head height. Pull to chest. Hits upper back and rear delts differently than low row. CBum uses this for upper back detail.'},
+      {name:'Dumbbell Pullover', detail:'3x15 · Lie across bench. Arc dumbbell from over chest to behind head. Stretches the lats under load. Arnold swore by this for chest-to-back sweep development.'},
+    ],
+    accessory: [
+      {name:'Barbell Curl', detail:'4x12-15 · Full range of motion. No swinging. Squeeze hard at top. Slow 3-sec negative. The fundamental bicep mass builder.'},
+      {name:'Hammer Curl', detail:'3x12-15 · Neutral grip — thumbs pointing up. Brachialis development makes the arm look thicker. Also builds forearm and cycling grip strength.'},
+      {name:'Incline Dumbbell Curl', detail:'3x12-15 · Arms hang behind body on incline — maximum long head stretch. Slow curl upward. Best exercise for bicep peak. CBum staple for arm development.'},
+      {name:'Cable Curl', detail:'3x15 · Constant tension throughout. Elbows pinned to sides. Squeeze at top. Finishing movement — the pump is the point here.'},
+      {name:'Concentration Curl', detail:'3x12 each · Elbow braced on inner thigh. Full isolation. No body english possible. Arnold\'s favorite for peak development.'},
+    ]
+  },
+  legs: {
+    primary: [
+      {name:'Back Squat', detail:'4x12-15 · Controlled 3-sec descent. Hit parallel or below. Drive knees out. Brace core. The king of leg development — CBum squats every leg day.', flag:'triathlon_key'},
+      {name:'Romanian Deadlift', detail:'4x12-15 · Hip hinge — not a squat. Push hips back. Bar close to legs. Feel hamstring stretch at bottom. Drives hips forward explosively to stand.', flag:'triathlon_key'},
+      {name:'Bulgarian Split Squat', detail:'4x12-15 each · Rear foot elevated on bench. Front foot far forward — knee stays behind toes. Humbling but the single best single-leg power builder.', flag:'triathlon_key'},
+      {name:'Leg Press', detail:'4x12-15 · Feet shoulder-width, mid-platform. Full ROM — do not lock knees. High volume without spinal load. Great when fatigue limits squatting.'},
+      {name:'Hack Squat', detail:'4x12-15 · Feet shoulder-width on platform. Full depth. Quad dominant. CBum uses this for that dramatic quad sweep.'},
+      {name:'Walking Lunges', detail:'4x12-15 each · Controlled step. Knee to just above floor. Drive through front heel. Continuous tension on glutes and quads. Running-specific movement pattern.'},
+      {name:'Step-Ups — Weighted', detail:'4x12-15 each · 18 inch box. Drive through heel of front foot. Do not push off back foot. Add dumbbells. Most running-specific leg exercise.', flag:'triathlon_key'},
+      {name:'Goblet Squat', detail:'4x15 · Dumbbell or kettlebell at chest. Full depth. Elbows inside knees at bottom. Great for quad development and squat pattern reinforcement.'},
+    ],
+    accessory: [
+      {name:'Nordic Hamstring Curl', detail:'3x8 · Kneel — partner holds ankles. Lower body toward floor as slowly as possible using hamstrings. Most evidence-backed hamstring injury prevention for runners.', flag:'mandatory'},
+      {name:'Copenhagen Plank', detail:'3x30sec each · Side plank with top leg on bench. Hip adductor strength. Prevents IT band syndrome and groin strains at higher mileage.', flag:'mandatory'},
+      {name:'Single-Leg Romanian Deadlift', detail:'3x12 each · Standing on one leg. Hinge at hip. Reach dumbbell toward floor. Builds hamstring stability that prevents strains on long runs.'},
+      {name:'Single-Leg Calf Raise', detail:'4x15 each · Edge of step. Full range — heel below step to toes extended. Critical for Achilles resilience at 20+ miles per week.', flag:'mandatory'},
+      {name:'Leg Curl — Machine', detail:'3x15 · Full stretch at top. Curl to full contraction. 2-sec hold. Hamstring isolation. Good paired with quad-dominant day.'},
+    ]
+  }
+};
+
+// Shuffle array helper
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// Select exercises ensuring all muscle heads covered
+function selectExercises(splitKey) {
+  const pool = GYM_EXERCISE_POOLS[splitKey === 'chest_tri' ? 'chest' : splitKey === 'back_bi' ? 'back' : 'legs'];
+
+  // Shuffle and pick 4 primary + 2 accessory
+  const primary = shuffleArray(pool.primary).slice(0, 4);
+  const accessory = shuffleArray(pool.accessory).slice(0, 2);
+
+  // For legs, always include Nordic curl and Copenhagen plank in accessories
+  if (splitKey === 'legs') {
+    const mandatory_acc = pool.accessory.filter(e => e.flag === 'mandatory');
+    const optional_acc = pool.accessory.filter(e => e.flag !== 'mandatory');
+    const picked_mandatory = mandatory_acc.slice(0, 2);
+    const picked_optional = shuffleArray(optional_acc).slice(0, 1);
+    return {primary, accessory: [...picked_mandatory, ...picked_optional]};
+  }
+
+  return {primary, accessory};
+}
+
+async function generateAIWorkout(splitKey, dateStr) {
+  const cacheKey = 'ai_workout_' + dateStr + '_' + splitKey;
+  const cached = localStorage.getItem(cacheKey);
+  if (cached) return JSON.parse(cached);
+
+  // Select exercises from pool
+  const {primary, accessory} = selectExercises(splitKey);
+
+  const splitNames = {chest_tri: 'Chest & Triceps', back_bi: 'Back & Biceps', legs: 'Legs'};
+  const influences = {
+    chest_tri: 'Chris Bumstead (CBum) — upper chest fullness, full pec development from upper to lower, Arnold Schwarzenegger — inner chest detail and sweep',
+    back_bi: 'Ronnie Coleman — back thickness and width, Dorian Yates — high intensity rowing, Arnold Schwarzenegger — lat sweep and bicep peak',
+    legs: 'Tom Platz — quad sweep and depth, Chris Bumstead — balanced leg development, Jay Cutler — hamstring and glute tie-in'
+  };
+
+  const primaryNames = primary.map(e => e.name).join(', ');
+  const accessoryNames = accessory.map(e => e.name).join(', ');
+
+  const prompt = `You are an elite bodybuilding coach writing a workout briefing for a serious hybrid athlete training for a 70.3 Half Ironman triathlon. The athlete has 6-8 years of bodybuilding experience. They have a right shoulder injury so avoid overhead pressing.
+
+Write a SHORT, punchy, motivating briefing (3-4 sentences max) for today's ${splitNames[splitKey]} session. Mention the specific exercises: ${primaryNames}. Reference the training philosophy of: ${influences[splitKey]}. Make it feel elite, specific, and motivating. No fluff. End with one key coaching cue for today.`;
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({model:'claude-sonnet-4-20250514', max_tokens:120, messages:[{role:'user',content:prompt}]})
+    });
+    if (resp.ok) {
+      const data = await resp.json();
+      const note = data.content?.[0]?.text || GYM_SPLITS[splitKey].note;
+      const result = {primary, accessory, note, splitKey};
+      localStorage.setItem(cacheKey, JSON.stringify(result));
+      return result;
+    }
+  } catch(e) {}
+
+  // Fallback — use static note with selected exercises
+  const result = {primary, accessory, note: GYM_SPLITS[splitKey].note, splitKey};
+  localStorage.setItem(cacheKey, JSON.stringify(result));
+  return result;
+}
+
+// ── MISSED SESSION TRACKING ──
+function getSessionStatus(dateStr) {
+  return JSON.parse(localStorage.getItem('tr_session_status') || '{}');
+}
+
+function setSessionStatus(dateStr, type, status) {
+  // type: 'gym' or 'cardio', status: 'done'|'skipped'|'shifted'
+  const all = getSessionStatus();
+  if (!all[dateStr]) all[dateStr] = {};
+  all[dateStr][type] = status;
+  localStorage.setItem('tr_session_status', JSON.stringify(all));
+}
+
+function checkMissedSessions() {
+  const banner = G('missed-banner');
+  if (!banner) return;
+  const statuses = getSessionStatus();
+  const missed = [];
+
+  // Only check from program start date — no missed sessions before Day 1
+  const programStartStr = GYM_ROTATION_START.toISOString().split('T')[0];
+
+  // Only check from program start — no missed sessions flagged before Day 1
+
+  // Check last 3 days
+  for (let i = 1; i <= 3; i++) {
+    const d = new Date(TODAY);
+    d.setDate(d.getDate() - i);
+    const ds = d.toISOString().split('T')[0];
+    // Skip days before program start
+    if (ds < programStartStr) continue;
+    const st = statuses[ds] || {};
+    const dayLabel = i === 1 ? 'Yesterday' : i === 2 ? '2 days ago' : '3 days ago';
+
+    // Check gym
+    const gymSplit = getGymRotationDay(d);
+    if (gymSplit && gymSplit !== 'rest') {
+      const gymLogged = workoutLog.find(e => e.date === ds && e.type === 'Gym');
+      const gymStatus = st.gym;
+      if (!gymLogged && !gymStatus) {
+        missed.push({dateStr: ds, label: dayLabel, type: 'gym', session: GYM_SPLITS[gymSplit]?.title || gymSplit.replace('_',' ').toUpperCase()});
+      }
+    }
+
+    // Check cardio
+    const wk = getWeekNumForDate(d);
+    const w = wk > 0 ? getWorkout(d.getDay(), wk, ds) : null;
+    if (w && w.tag !== 'gym' && w.tag !== 'rest') {
+      const cardioLogged = workoutLog.find(e => e.date === ds && e.type !== 'Gym');
+      const cardioStatus = st.cardio;
+      if (!cardioLogged && !cardioStatus) {
+        missed.push({dateStr: ds, label: dayLabel, type: 'cardio', session: w.title});
+      }
+    }
+  }
+
+  if (!missed.length) { banner.style.display = 'none'; return; }
+
+  banner.style.display = 'block';
+  banner.innerHTML = missed.map(m => `
+    <div class="missed-item">
+      <div class="missed-info">
+        <div class="missed-label">${m.label}</div>
+        <div class="missed-session">${m.type === 'gym' ? '🏋️' : '🏃'} ${m.session}</div>
+      </div>
+      <div class="missed-actions">
+        <button class="missed-btn missed-do" onclick="resolveMissed('${m.dateStr}','${m.type}','today')">Do Today</button>
+        <button class="missed-btn missed-shift" onclick="resolveMissed('${m.dateStr}','${m.type}','shift')">Shift +1</button>
+        <button class="missed-btn missed-skip" onclick="resolveMissed('${m.dateStr}','${m.type}','skip')">Skip</button>
+      </div>
+    </div>
+  `).join('<div class="missed-divider"></div>');
+}
+
+function resolveMissed(dateStr, type, action) {
+  if (action === 'skip') {
+    setSessionStatus(dateStr, type, 'skipped');
+  } else if (action === 'today') {
+    setSessionStatus(dateStr, type, 'done_today');
+    // Could swap today's session — for now just mark and let user log it
+    alert(`Noted! Log your ${type === 'gym' ? 'gym' : 'cardio'} session in the Log tab after completing it.`);
+  } else if (action === 'shift') {
+    setSessionStatus(dateStr, type, 'shifted');
+    // Store a shift offset in localStorage
+    const shifts = JSON.parse(localStorage.getItem('tr_schedule_shifts') || '{}');
+    shifts[type] = (shifts[type] || 0) + 1;
+    localStorage.setItem('tr_schedule_shifts', JSON.stringify(shifts));
+  }
+  checkMissedSessions();
+  initHome();
+}
+
 // ── WORKOUT LIBRARY ──
 function getWorkout(dow, wk, _dateStr) {
   const rec = isRecovery(wk);
@@ -909,11 +1453,10 @@ function getWorkout(dow, wk, _dateStr) {
     return {title:`LONG RUN - ${dist} MILES`, tag:'long', note: rec ? 'Recovery week long run - shorter and slower. No ego. Adaptation happens during rest.' : `Zone 2 the entire way. HR cap non-negotiable. Walk on hills before hitting 140 bpm. This session builds your aerobic engine more than any quality session.`,
       segs:[{n:1,name:`Zone 2 Run - ${dist} Miles`,detail:'HR cap non-negotiable throughout',pace:'10:30-11:30/mi',hr:'HARD CAP 140'},{n:2,name:'HR Discipline',detail:'If HR hits 140 - slow immediately. Walk if needed.',pace:'Whatever HR requires',hr:'Under 140'}]};
   }
-  if (dow === 1) { // Monday - Gym
-    return {title:'GYM + CARDIO REST', tag:'gym', note:'Monday follows Sunday long run. No cardio - this is recovery not laziness. Gym session: next in rotation (Chest-Tri / Back-Bi / Legs). Reduce leg intensity 20% - they ran yesterday.',
-      segs:[{n:1,name:'Gym - Next Rotation',detail:'Chest/Tri -> Back/Bi -> Legs (reduced intensity)',pace:'',hr:'Monitor RPE'},{n:2,name:'Face Pulls',detail:'3 x 20 reps - every session without exception',pace:'',hr:'Shoulder health'},{n:3,name:'Copenhagen Planks',detail:'3 x 30 sec each side - hip adductor injury prevention',pace:'',hr:'Running strength'},{n:4,name:'No Cardio',detail:'Mandatory rest from bike and run',pace:'',hr:'Full recovery'}]};
+  if (dow === 1) { // Monday - cardio rest (gym handled by rotation)
+    return {title:'CARDIO REST', tag:'rest', note:'Monday follows Sunday long run. No structured cardio today. Gym session handled separately above.', segs:[]};
   }
-  if (dow === 2) { // Tuesday - Quality Run
+    if (dow === 2) { // Tuesday - Quality Run
     if (rec) return {title:'EASY RECOVERY RUN', tag:'easy', note:'Recovery week - no quality. Just easy movement. Resist the urge to go harder.',
       segs:[{n:1,name:'Easy Zone 2 Run',detail:'4 miles - HR cap 132',pace:'10:30-11:30/mi',hr:'Under 132'}]};
 
@@ -981,11 +1524,10 @@ function getWorkout(dow, wk, _dateStr) {
     ];
     return {tag:'bike', ...adv[(wk-1) % 2]};
   }
-  if (dow === 4) { // Thursday - Gym lighter
-    return {title:'GYM - LIGHTER', tag:'gym', note:'Thursday is deliberately lighter. 15-20% less volume. No maximal efforts. No cardio today - protects work nights and Saturday quality.',
-      segs:[{n:1,name:'Gym - Reduced Volume',detail:'15-20% less - 2-3 reps in reserve on all sets',pace:'',hr:'Monitor'},{n:2,name:'Face Pulls',detail:'3 x 20 mandatory',pace:'',hr:'Shoulder health'},{n:3,name:'Single-Leg RDLs',detail:'3 x 12 each leg - running-specific posterior chain',pace:'',hr:'Stability'},{n:4,name:'No Cardio',detail:'Work night buffer - protect the schedule',pace:'',hr:'Recovery'}]};
+  if (dow === 4) { // Thursday - cardio rest (gym handled by rotation)
+    return {title:'CARDIO REST', tag:'rest', note:'Thursday is a lighter day. No structured cardio. Gym session handled separately above.', segs:[]};
   }
-  if (dow === 5) { // Friday - Zone 2 Run
+    if (dow === 5) { // Friday - Zone 2 Run
     return {title: rec ? 'EASY RUN - SHORT' : 'ZONE 2 RUN - 5 MILES', tag:'easy',
       note: rec ? 'Recovery week - short and easy. Active recovery not training.' : 'Friday Zone 2 run is aerobic maintenance and Saturday prep. The pace feels embarrassingly slow. That is correct.',
       segs:[{n:1,name: rec ? 'Easy Run - 3 Miles' : 'Zone 2 Run - 5 Miles',detail:'HR cap non-negotiable',pace:'10:30-11:30/mi',hr: rec ? 'Under 132' : 'HARD CAP 135'}]};
@@ -1062,7 +1604,7 @@ function updateAllProjections() {
   const last = ftpHistory[ftpHistory.length-1];
   if (last && G('snap-retest')) {
     const d = new Date(last.date); d.setDate(d.getDate()+42);
-    G('snap-retest').textContent = d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+    G('snap-retest').textContent = d.toLocaleDateString("en-US",{month:"short",day:"numeric"});
   }
   if(G('proj-total')) G('proj-total').textContent = secsToHMS(totalSecs);
   if(G('proj-bike')) G('proj-bike').textContent = secsToHMS(bikeSecs);
@@ -1190,13 +1732,133 @@ function renderTag(tag, container) {
   container.innerHTML=`<span class="workout-tag" style="background:${c};color:#F5F0E8;">${l}</span>`;
 }
 
-function renderSegs(segs, container) {
+function renderSegs(segs, container, isGym) {
   if(!container) return;
   container.innerHTML='';
+  if (isGym) {
+    renderGymSegs(segs, container);
+    return;
+  }
   segs.forEach(s=>{
     const d=document.createElement('div'); d.className='segment';
     d.innerHTML=`<div class="seg-num">${s.n}</div><div><div class="seg-name">${s.name}</div><div class="seg-detail">${s.detail}</div></div><div><div class="seg-pace">${s.pace||''}</div><div class="seg-hr">${s.hr||''}</div></div>`;
     container.appendChild(d);
+  });
+}
+
+function renderGymSegs(segs, container) {
+  let currentCollapsible = null;
+  let currentCollapsibleContent = null;
+
+  segs.forEach(s => {
+    // Handle section markers
+    if (s.name === '___WARMUP___') {
+      const wrap = document.createElement('div');
+      wrap.className = 'collapsible-section';
+      const trigger = document.createElement('div');
+      trigger.className = 'collapsible-trigger';
+      trigger.innerHTML = '<span class="collapsible-arrow">&#9658;</span> Warmup Protocol';
+      const cContent = document.createElement('div');
+      cContent.className = 'collapsible-content';
+      trigger.onclick = () => {
+        const open = cContent.classList.toggle('open');
+        trigger.querySelector('.collapsible-arrow').classList.toggle('open', open);
+      };
+      wrap.appendChild(trigger);
+      wrap.appendChild(cContent);
+      container.appendChild(wrap);
+      currentCollapsible = wrap;
+      currentCollapsibleContent = cContent;
+      return;
+    }
+    if (s.name === '___MANDATORY___') {
+      const wrap = document.createElement('div');
+      wrap.className = 'collapsible-section';
+      const trigger = document.createElement('div');
+      trigger.className = 'collapsible-trigger';
+      trigger.innerHTML = '<span class="collapsible-arrow">&#9658;</span> Mandatory Accessories — Every Session';
+      const cContent = document.createElement('div');
+      cContent.className = 'collapsible-content';
+      trigger.onclick = () => {
+        const open = cContent.classList.toggle('open');
+        trigger.querySelector('.collapsible-arrow').classList.toggle('open', open);
+      };
+      wrap.appendChild(trigger);
+      wrap.appendChild(cContent);
+      container.appendChild(wrap);
+      currentCollapsible = wrap;
+      currentCollapsibleContent = cContent;
+      return;
+    }
+    if (s.name === '___PRIMARY___') {
+      currentCollapsibleContent = null;
+      const head = document.createElement('div');
+      head.className = 'gym-section-head';
+      head.textContent = 'Main Exercises';
+      container.appendChild(head);
+      return;
+    }
+    if (s.name === '___ACCESSORY___') {
+      currentCollapsibleContent = null;
+      const head = document.createElement('div');
+      head.className = 'gym-section-head';
+      head.textContent = 'Accessory Work';
+      container.appendChild(head);
+      return;
+    }
+    if (s.name.startsWith('───')) {
+      currentCollapsibleContent = null;
+      const div = document.createElement('div');
+      div.className = 'gym-section-head';
+      div.textContent = s.name.replace(/─/g,'').trim();
+      container.appendChild(div);
+      return;
+    }
+    // Detect warmup vs main vs mandatory
+    const isWarmup = s.hr === 'Warmup' || s.hr === '⚠️ Shoulder' || (s.detail && s.detail.startsWith('WARMUP'));
+    const isMandatory = s.hr === '🔴 Always';
+    const isSafe = s.hr && s.hr.includes('Shoulder Safe');
+    const isSwim = s.hr && s.hr.includes('🏊');
+    const isPrev = s.hr && s.hr.includes('🛡');
+
+    const div = document.createElement('div');
+    div.className = 'gym-exercise';
+
+    // Parse triNote from detail
+    let mainDetail = s.detail || '';
+    let triNote = '';
+    if (mainDetail.includes('// TRIATHLON:')) {
+      const parts = mainDetail.split('// TRIATHLON:');
+      mainDetail = parts[0].replace('WARMUP — ','').trim();
+      triNote = parts[1].trim();
+    } else if (mainDetail.startsWith('WARMUP — ')) {
+      mainDetail = mainDetail.replace('WARMUP — ','');
+    }
+
+    // Flag display
+    let flagHtml = '';
+    if (isMandatory) flagHtml = '<div class="gym-ex-flag flag-mandatory">🔴 Mandatory</div>';
+    else if (isSafe) flagHtml = '<div class="gym-ex-flag flag-safe">✓ Shoulder Safe</div>';
+    else if (isSwim) flagHtml = '<div class="gym-ex-flag flag-swim">🏊 Swim-Specific</div>';
+    else if (isPrev) flagHtml = '<div class="gym-ex-flag flag-shoulder">🛡 Injury Prevention</div>';
+    else if (isWarmup) flagHtml = '<div class="gym-ex-flag flag-shoulder">Warmup</div>';
+
+    div.innerHTML = `
+      <div>
+        <div class="gym-ex-name">${s.name}</div>
+        <div class="gym-ex-detail">${mainDetail}</div>
+        ${triNote ? `<div class="gym-ex-tri">↳ ${triNote}</div>` : ''}
+      </div>
+      <div>
+        <div class="gym-ex-sets">${s.pace||''}</div>
+        ${flagHtml}
+      </div>`;
+    // Append to collapsible content if active, else to main container
+    if (currentCollapsibleContent) {
+      currentCollapsibleContent.appendChild(div);
+    } else {
+      container.appendChild(div);
+    }
   });
 }
 
@@ -1206,12 +1868,149 @@ function initHome() {
   if(G('week-num-label')) G('week-num-label').textContent=`Week ${wk} - ${getPhase(wk)}`;
   if(G('week-name-label')) G('week-name-label').textContent=getWeekName(wk);
   if(G('week-phase-label')) G('week-phase-label').textContent=getPhase(wk);
-  initHomeWithPicker();
-  renderTrendBars();
+  renderTodaySessions();
   updateAllProjections();
   renderOrGenerateEdition();
   updateSuppIndicator();
+  checkMissedSessions();
 }
+
+async function renderTodaySessions() {
+  const todayStr = TODAY.toISOString().split('T')[0];
+  const statuses = getSessionStatus();
+  const todayStatus = statuses[todayStr] || {};
+  const wk = getWeekNum();
+
+  // ── GYM SESSION ──
+  const gymBlock = G('gym-session-block');
+  const gymSplit = getGymRotationDay(TODAY);
+
+  if (gymSplit === 'rest') {
+    // Gym rest day — hide gym block
+    if (gymBlock) gymBlock.style.display = 'none';
+  } else if (gymSplit) {
+    if (gymBlock) gymBlock.style.display = 'block';
+    if (G('gym-title')) G('gym-title').textContent = 'Loading workout...';
+    if (G('gym-segs')) G('gym-segs').innerHTML = '<div class="generating-note">Generating your session...</div>';
+
+    // Generate AI workout
+    const isHeavy = true; // Monday is always full — Thursday lighter handled by rotation
+    const aiResult = await generateAIWorkout(gymSplit, todayStr);
+
+    const splitLabels = {chest_tri:'Chest + Triceps', back_bi:'Back + Biceps', legs:'Legs'};
+    if (G('gym-title')) G('gym-title').textContent = `GYM — ${splitLabels[gymSplit] || gymSplit}`;
+    renderTag('gym', G('gym-tag'));
+
+    // gym-note hidden — coaching note lives in Daily Edition instead
+    if (G('gym-note')) G('gym-note').style.display = 'none';
+
+    const gymSegs = buildGymSegsFromAI(aiResult, isHeavy);
+    renderSegs(gymSegs, G('gym-segs'), true);
+
+    // Gym picker button
+    const btnWrap = G('gym-picker-btn-wrap');
+    if (btnWrap) {
+      btnWrap.innerHTML = '';
+      const btn = document.createElement('button');
+      btn.className = 'btn btn-out';
+      btn.style.cssText = 'margin-top:10px;font-size:11px;padding:7px 16px;';
+      btn.textContent = 'Switch Split (3 options)';
+      btn.onclick = () => {
+        const opts = ['chest_tri','back_bi','legs'].map(k => ({
+          title: `GYM — ${splitLabels[k]}`, tag:'gym', _splitKey:k,
+          note: GYM_SPLITS[k].note,
+          segs: []
+        }));
+        const cur = ['chest_tri','back_bi','legs'].indexOf(gymSplit);
+        const pickerKey = 'gym_override_' + todayStr;
+        openPicker(opts, pickerKey, cur >= 0 ? cur : 0);
+      };
+      btnWrap.appendChild(btn);
+    }
+
+    // Gym action buttons
+    const gymActions = G('gym-actions');
+    if (gymActions) {
+      if (todayStatus.gym === 'done') {
+        gymActions.innerHTML = '<span class="action-btn action-done-already">✓ Gym Logged</span>';
+      } else if (todayStatus.gym === 'skipped') {
+        gymActions.innerHTML = '<span class="action-btn action-skipped-already">Skipped</span>';
+      } else {
+        gymActions.innerHTML = `
+          <button class="action-btn action-skip" onclick="quickSkip('${todayStr}','gym')">Skip Today</button>`;
+      }
+    }
+  } else {
+    if (gymBlock) gymBlock.style.display = 'none';
+  }
+
+  // ── CARDIO SESSION ──
+  const cardioBlock = G('cardio-session-block');
+  const w = getWorkoutForDate(TODAY);
+
+  if (!w || w.tag === 'rest') {
+    // Full rest day
+    if (cardioBlock) {
+      if (!gymSplit || gymSplit === 'rest') {
+        // Both rest — show recovery card
+        cardioBlock.style.display = 'block';
+        if (G('today-title')) G('today-title').textContent = 'RECOVERY DAY';
+        renderTag('rest', G('today-tag'));
+        if (G('today-segs')) G('today-segs').innerHTML = '';
+        if (G('today-note')) {
+          G('today-note').textContent = "Full recovery today. Prioritize sleep, hydration, and nutrition. Optional: 20-30 min easy walk (Zone 1 only — HR under 115), light stretching, foam rolling, contrast shower. Your body is rebuilding right now — do not interfere with that process. Hashimoto's note: rest days are when your immune system resets. Protect them.";
+          G('today-note').style.display = 'block';
+        }
+        if (G('cardio-block-label')) G('cardio-block-label').textContent = 'RECOVERY';
+        if (G('cardio-actions')) G('cardio-actions').innerHTML = '';
+      } else {
+        cardioBlock.style.display = 'none';
+      }
+    }
+  } else {
+    if (cardioBlock) cardioBlock.style.display = 'block';
+    if (G('today-title')) G('today-title').textContent = w.title;
+    renderTag(w.tag, G('today-tag'));
+    renderSegs(w.segs, G('today-segs'), false);
+    if (G('today-note')) { G('today-note').textContent = w.note; G('today-note').style.display = 'block'; }
+    if (G('cardio-block-label')) G('cardio-block-label').textContent = 'CARDIO';
+
+    // Cardio picker button for Tuesday quality runs
+    if (w._pickerOptions && w._pickerOptions.length > 1) {
+      const existing = G('cardio-picker-btn');
+      if (!existing) {
+        const btn = document.createElement('button');
+        btn.id = 'cardio-picker-btn';
+        btn.className = 'btn btn-out';
+        btn.style.cssText = 'margin-top:10px;font-size:11px;padding:7px 16px;';
+        btn.innerHTML = '&#9654; Choose Run Session (' + w._pickerOptions.length + ' options)';
+        btn.onclick = () => openPicker(w._pickerOptions, w._pickerKey, w._pickerCurrent);
+        const note = G('today-note');
+        if (note && note.parentNode) note.parentNode.insertBefore(btn, note.nextSibling);
+      }
+    }
+
+    // Cardio action buttons
+    const cardioActions = G('cardio-actions');
+    if (cardioActions) {
+      if (todayStatus.cardio === 'done') {
+        cardioActions.innerHTML = '<span class="action-btn action-done-already">✓ Cardio Logged</span>';
+      } else if (todayStatus.cardio === 'skipped') {
+        cardioActions.innerHTML = '<span class="action-btn action-skipped-already">Skipped</span>';
+      } else {
+        cardioActions.innerHTML = `
+          <button class="action-btn action-skip" onclick="quickSkip('${todayStr}','cardio')">Skip Today</button>`;
+      }
+    }
+  }
+}
+
+function quickSkip(dateStr, type) {
+  setSessionStatus(dateStr, type, 'skipped');
+  renderTodaySessions();
+}
+
+function initHomeWithPicker() { renderTodaySessions(); }
 
 // ── DAILY EDITION ──
 async function renderOrGenerateEdition() {
@@ -1448,7 +2247,7 @@ function renderLogEntries() {
       if(e.hr) stats+=`<div><div class="log-stat-val">${e.hr}</div><div class="log-stat-lab">HR</div></div>`;
     }
     const div=document.createElement('div'); div.className='log-entry'; div.style.borderLeftColor=color;
-    div.innerHTML=`<div class="log-entry-head"><div class="log-entry-type" style="color:${color};">${e.type}</div><div class="log-entry-meta"><div class="log-entry-date">${e.date}</div>${stars?`<div class="log-stars">${stars}</div>`:''}<button class="log-del-btn" onclick="deleteLog(${e.id})">x</button></div></div>${stats?`<div class="log-entry-stats">${stats}</div>`:''}${e.rawData?`<div class="log-entry-note" style="font-family:DM Mono,monospace;font-size:11px;white-space:pre-wrap;">${e.rawData.substring(0,300)}${e.rawData.length>300?'...':''}</div>`:''}${e.notes?`<div class="log-entry-note">${e.notes}</div>`:''}`;
+    div.innerHTML=`<div class="log-entry-head"><div class="log-entry-type" style="color:${color};">${e.type}</div><div class="log-entry-meta"><div class="log-entry-date">${e.date}</div>${stars?`<div class="log-stars">${stars}</div>`:''}<button class="log-del-btn" style="font-size:11px;color:var(--ink4);background:none;border:none;cursor:pointer;padding:2px 6px;" onclick="openEditLog(${e.id})">Edit</button><button class="log-del-btn" onclick="deleteLog(${e.id})">x</button></div></div>${stats?`<div class="log-entry-stats">${stats}</div>`:''}${e.rawData?`<div class="log-entry-note" style="font-family:DM Mono,monospace;font-size:11px;white-space:pre-wrap;">${e.rawData.substring(0,300)}${e.rawData.length>300?'...':''}</div>`:''}${e.notes?`<div class="log-entry-note">${e.notes}</div>`:''}`;
     c.appendChild(div);
   });
 }
@@ -1514,7 +2313,12 @@ function renderWeekStrip() {
     const cell=document.createElement('div'); cell.className=`strip-day${isToday?' today':''}`;
     cell.onclick=()=>openModal(d);
     let typeHtml='';
-    if(w){const c=TAG_COLORS[w.tag]||'#4A4A4A';const lbl=TAG_LABELS[w.tag]||'Session';typeHtml=`<div style="margin-top:5px;"><span class="strip-type-dot" style="background:${c};"></span><span class="strip-type-text">${lbl}</span></div>`;}
+    const gymDayStrip=getGymRotationDay(d);
+    const gymColors={chest_tri:'#4A1D8A',back_bi:'#1B4F8A',legs:'#2D5A1B'};
+    const gymLabels={chest_tri:'Chest/Tri',back_bi:'Back/Bi',legs:'Legs'};
+    if(gymDayStrip&&gymDayStrip!=='rest'){typeHtml+=`<div style="margin-top:3px;"><span class="strip-type-dot" style="background:${gymColors[gymDayStrip]||'#4A4A4A'};"></span><span class="strip-type-text">${gymLabels[gymDayStrip]||'Gym'}</span></div>`;}
+    if(w&&w.tag!=='rest'&&w.tag!=='gym'){const c=TAG_COLORS[w.tag]||'#4A4A4A';const lbl=TAG_LABELS[w.tag]||'Cardio';typeHtml+=`<div style="margin-top:2px;"><span class="strip-type-dot" style="background:${c};"></span><span class="strip-type-text">${lbl}</span></div>`;}
+    if(gymDayStrip==='rest'&&(!w||w.tag==='rest')){typeHtml+=`<div style="margin-top:3px;"><span class="strip-type-dot" style="background:var(--green);"></span><span class="strip-type-text">Recovery</span></div>`;}
     const dayLogsStrip=workoutLog.filter(e=>e.date===dateStr);
     if(dayLogsStrip.length>0) cell.classList.add('logged-strip');
     cell.innerHTML=`<div class="strip-dname">${dl}</div><div class="strip-ddate">${d.getDate()}</div>${typeHtml}${dayLogsStrip.length>0?`<div class="strip-logged">${dayLogsStrip.length>1?dayLogsStrip.length+'x done':'✓ done'}</div>`:''}`;
@@ -1548,7 +2352,12 @@ function renderCalendar() {
       td.className=`cal-td${isToday?' today-cell':''}${other?' other-month':''}${logged?' logged-cell':''}`;
       td.onclick=()=>openModal(date);
       let pills='';
-      if(w){const c=TAG_COLORS[w.tag]||'#4A4A4A';const lbl=TAG_LABELS[w.tag]||'Session';pills+=`<div class="cal-type-indicator"><span class="cal-type-dot-sm" style="background:${c};"></span><span class="cal-type-text">${lbl}</span></div>`;}
+      // Show gym rotation
+      const gymDay=getGymRotationDay(date);
+      if(gymDay&&gymDay!=='rest'){const gymColors={chest_tri:'#4A1D8A',back_bi:'#1B4F8A',legs:'#2D5A1B'};const gymLabels={chest_tri:'Chest/Tri',back_bi:'Back/Bi',legs:'Legs'};pills+=`<div class="cal-type-indicator"><span class="cal-type-dot-sm" style="background:${gymColors[gymDay]||'#4A4A4A'};"></span><span class="cal-type-text">${gymLabels[gymDay]||'Gym'}</span></div>`;}
+      if(gymDay==='rest'&&(!w||w.tag==='rest')){pills+=`<div class="cal-type-indicator"><span class="cal-type-dot-sm" style="background:var(--green);"></span><span class="cal-type-text">Recovery</span></div>`;}
+      // Show cardio session
+      if(w&&w.tag!=='rest'&&w.tag!=='gym'){const c=TAG_COLORS[w.tag]||'#4A4A4A';const lbl=TAG_LABELS[w.tag]||'Cardio';pills+=`<div class="cal-type-indicator"><span class="cal-type-dot-sm" style="background:${c};"></span><span class="cal-type-text">${lbl}</span></div>`;}
       const dayLogs=workoutLog.filter(e=>e.date===dateStr);
       if(dayLogs.length>0){const r=dayLogs[0].rating;pills+=`<div class="cal-logged-check">${dayLogs.length>1?dayLogs.length+'x logged':r?'★'.repeat(r)+' done':'✓ logged'}</div>`;}
       if(isRetest) pills+=`<div class="cal-flag">⚡ FTP Retest</div>`;
@@ -1567,41 +2376,186 @@ function openModal(date) {
   const dateStr=d.toISOString().split('T')[0];
   const wk=getWeekNumForDate(d);
   const w=wk>0?getWorkout(d.getDay(),wk,dateStr):null;
-  const logged=workoutLog.find(e=>e.date===dateStr);
   const isPast=d<TODAY;
+  const gymSplit=getGymRotationDay(d);
+  const splitLabels={chest_tri:'Chest + Triceps',back_bi:'Back + Biceps',legs:'Legs'};
+
+  // Date and week in header
   G('modal-date-str').textContent=`${DAYS[d.getDay()]} - ${MONTHS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()} - ${wk>0?'Week '+wk+' — '+getWeekName(wk):''}`;
-  G('modal-title-str').textContent=w?w.title:'Rest Day';
-  const tagWrap=G('modal-tag-wrap'); if(w) renderTag(w.tag,tagWrap); else tagWrap.innerHTML='';
-  // If workout has picker options, add choose button inside modal
-  const existingPickerBtn=document.getElementById('modal-picker-btn');
-  if(existingPickerBtn) existingPickerBtn.remove();
-  if(w && w._pickerOptions && w._pickerOptions.length > 1){
-    const btn=document.createElement('button');
-    btn.id='modal-picker-btn';
-    btn.className='btn btn-out';
-    btn.style.cssText='margin-bottom:14px;font-size:11px;padding:7px 16px;display:flex;align-items:center;gap:6px;width:100%;justify-content:center;';
-    const saved=parseInt(localStorage.getItem(w._pickerKey)||'-1');
-    const curName=saved>=0&&saved<w._pickerOptions.length?w._pickerOptions[saved].title:w.title;
-    btn.innerHTML=`&#9654; Change Session &nbsp;<span style="font-family:DM Mono,monospace;font-size:9px;opacity:0.6;">${w._pickerOptions.length} options available</span>`;
-    btn.onclick=()=>{closeModal();openPicker(w._pickerOptions,w._pickerKey,w._pickerCurrent);};
-    tagWrap.parentNode.insertBefore(btn,tagWrap.nextSibling);
-  }
-  const status=G('modal-status');
-  if(logged) status.innerHTML='<div class="modal-logged-ok">✓ Session Logged'+(logged.rating?' - '+'★'.repeat(logged.rating):'')+'</div>';
-  else if(isPast&&d.getTime()!==TODAY.getTime()) status.innerHTML='<div class="modal-not-logged">✗ Not Logged - Go to Log tab to add this session</div>';
-  else status.innerHTML='';
-  if(w){renderSegs(w.segs,G('modal-segs'));const mn=G('modal-note');mn.textContent=w.note;mn.style.display='block';}
-  else{G('modal-segs').innerHTML='';const mn=G('modal-note');mn.style.display='none';}
-  const ld=G('modal-logged-data');
+
+  // Build modal body with both sessions
+  const body = G('modal-body');
+  body.innerHTML = '';
+
+  // ── LOGGED STATUS ──
   const dayLogs=workoutLog.filter(e=>e.date===dateStr);
-  if(dayLogs.length>0){
-    let html=`<div style="margin-top:14px;border-top:1px solid var(--rule);padding-top:12px;"><div style="font-family:Barlow Condensed,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink4);margin-bottom:10px;">Logged Sessions (${dayLogs.length})</div>`;
-    dayLogs.forEach((e,i)=>{
+  const statuses=getSessionStatus();
+  const daySt=statuses[dateStr]||{};
+
+  // ── GYM SESSION ──
+  if (gymSplit && gymSplit !== 'rest') {
+    const gymSection = document.createElement('div');
+    gymSection.style.cssText = 'margin-bottom:18px;padding-bottom:18px;border-bottom:2px solid var(--ink);';
+
+    // Gym header
+    const gymHeader = document.createElement('div');
+    gymHeader.style.cssText = 'display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px;';
+    gymHeader.innerHTML = `<div style="font-family:Barlow Condensed,sans-serif;font-size:10px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink4);">GYM SESSION</div><span class="workout-tag" style="background:#4A1D8A;color:#F5F0E8;font-size:9px;">${splitLabels[gymSplit]||gymSplit}</span>`;
+    gymSection.appendChild(gymHeader);
+
+    // Gym logged status
+    const gymLogged = dayLogs.find(e=>e.type==='Gym');
+    if (gymLogged) {
+      const ok = document.createElement('div');
+      ok.className = 'modal-logged-ok';
+      ok.textContent = '✓ Gym Logged' + (gymLogged.rating?' — '+'★'.repeat(gymLogged.rating):'');
+      gymSection.appendChild(ok);
+    } else if (daySt.gym === 'skipped') {
+      const sk = document.createElement('div');
+      sk.className = 'modal-not-logged';
+      sk.textContent = 'Gym — Marked as Skipped';
+      gymSection.appendChild(sk);
+    } else if (isPast && d.getTime()!==TODAY.getTime()) {
+      const nl = document.createElement('div');
+      nl.className = 'modal-not-logged';
+      nl.textContent = 'Gym — Not Logged';
+      gymSection.appendChild(nl);
+    }
+
+    // Switch split button
+    const switchBtn = document.createElement('button');
+    switchBtn.className = 'btn btn-out';
+    switchBtn.style.cssText = 'font-size:11px;padding:6px 14px;margin-bottom:12px;';
+    switchBtn.innerHTML = '&#9654; Change Gym Split <span style="font-family:DM Mono,monospace;font-size:9px;opacity:0.6;">(3 options)</span>';
+    switchBtn.onclick = () => {
+      const opts = ['chest_tri','back_bi','legs'].map(k=>({
+        title:`GYM — ${splitLabels[k]}`, tag:'gym', _splitKey:k,
+        note:GYM_SPLITS[k].note, segs:[]
+      }));
+      const cur = ['chest_tri','back_bi','legs'].indexOf(gymSplit);
+      closeModal();
+      openPicker(opts, 'gym_override_'+dateStr, cur>=0?cur:0);
+    };
+    gymSection.appendChild(switchBtn);
+
+    // Gym exercises preview (compact)
+    // Get or generate workout for this date
+    const cacheKey = 'ai_workout_'+dateStr+'_'+gymSplit;
+    const cached = localStorage.getItem(cacheKey);
+    let modalAiResult = null;
+    if (cached) {
+      try { modalAiResult = JSON.parse(cached); } catch(e) {}
+    }
+    // If not cached, generate a consistent selection using date as seed
+    if (!modalAiResult) {
+      // Use date string as deterministic seed for exercise selection
+      const seed = dateStr.replace(/-/g,'');
+      const seedNum = parseInt(seed) % 1000;
+      function seededShuffle(arr, s) {
+        const a = [...arr];
+        for (let i = a.length-1; i > 0; i--) {
+          const j = (s + i * 7) % (i + 1);
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+      const pool = GYM_EXERCISE_POOLS[gymSplit==='chest_tri'?'chest':gymSplit==='back_bi'?'back':'legs'];
+      const primary = seededShuffle(pool.primary, seedNum).slice(0,4);
+      const accessory = gymSplit==='legs'
+        ? [...pool.accessory.filter(e=>e.flag==='mandatory').slice(0,2), ...seededShuffle(pool.accessory.filter(e=>e.flag!=='mandatory'),seedNum).slice(0,1)]
+        : seededShuffle(pool.accessory, seedNum).slice(0,2);
+      modalAiResult = {primary, accessory, note: GYM_SPLITS[gymSplit].note, splitKey: gymSplit};
+    }
+    // Render full workout
+    const gymSegsEl = document.createElement('div');
+    const gymSegsData = buildGymSegsFromAI(modalAiResult, true);
+    renderSegs(gymSegsData, gymSegsEl, true);
+    gymSection.appendChild(gymSegsEl);
+    body.appendChild(gymSection);
+  } else if (gymSplit === 'rest') {
+    const restDiv = document.createElement('div');
+    restDiv.style.cssText = 'margin-bottom:18px;padding-bottom:18px;border-bottom:2px solid var(--ink);';
+    restDiv.innerHTML = '<div style="font-family:Barlow Condensed,sans-serif;font-size:10px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);margin-bottom:6px;">GYM — REST DAY</div><div style="font-size:12px;color:var(--ink4);">Recovery day from lifting. Muscles rebuilding.</div>';
+    body.appendChild(restDiv);
+  }
+
+  // ── CARDIO SESSION ──
+  const cardioSection = document.createElement('div');
+  if (w && w.tag !== 'rest' && w.tag !== 'gym') {
+    const cardioHeader = document.createElement('div');
+    cardioHeader.style.cssText = 'display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px;';
+    const tagEl = document.createElement('span');
+    tagEl.className = 'workout-tag';
+    tagEl.style.cssText = `background:${TAG_COLORS[w.tag]||'#4A4A4A'};color:#F5F0E8;font-size:9px;`;
+    tagEl.textContent = TAG_LABELS[w.tag]||'Cardio';
+    cardioHeader.innerHTML = '<div style="font-family:Barlow Condensed,sans-serif;font-size:10px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink4);">CARDIO SESSION</div>';
+    cardioHeader.appendChild(tagEl);
+    cardioSection.appendChild(cardioHeader);
+
+    // Cardio logged status
+    const cardioLogged = dayLogs.find(e=>e.type!=='Gym');
+    if (cardioLogged) {
+      const ok = document.createElement('div');
+      ok.className = 'modal-logged-ok';
+      ok.textContent = '✓ Cardio Logged' + (cardioLogged.rating?' — '+'★'.repeat(cardioLogged.rating):'');
+      cardioSection.appendChild(ok);
+    } else if (daySt.cardio === 'skipped') {
+      const sk = document.createElement('div');
+      sk.className = 'modal-not-logged';
+      sk.textContent = 'Cardio — Marked as Skipped';
+      cardioSection.appendChild(sk);
+    } else if (isPast && d.getTime()!==TODAY.getTime()) {
+      const nl = document.createElement('div');
+      nl.className = 'modal-not-logged';
+      nl.textContent = 'Cardio — Not Logged';
+      cardioSection.appendChild(nl);
+    }
+
+    // Session title
+    const titleEl = document.createElement('div');
+    titleEl.style.cssText = 'font-family:Playfair Display,serif;font-size:18px;font-weight:800;color:var(--ink);margin-bottom:10px;';
+    titleEl.textContent = w.title;
+    cardioSection.appendChild(titleEl);
+
+    // Quality run picker
+    if (w._pickerOptions && w._pickerOptions.length > 1) {
+      const btn = document.createElement('button');
+      btn.className = 'btn btn-out';
+      btn.style.cssText = 'font-size:11px;padding:6px 14px;margin-bottom:12px;';
+      btn.innerHTML = `&#9654; Change Run Session <span style="font-family:DM Mono,monospace;font-size:9px;opacity:0.6;">(${w._pickerOptions.length} options)</span>`;
+      btn.onclick = () => { closeModal(); openPicker(w._pickerOptions, w._pickerKey, w._pickerCurrent); };
+      cardioSection.appendChild(btn);
+    }
+
+    // Segments
+    const segsEl = document.createElement('div');
+    renderSegs(w.segs, segsEl, false);
+    cardioSection.appendChild(segsEl);
+
+    // Note
+    if (w.note) {
+      const noteEl = document.createElement('div');
+      noteEl.className = 'workout-note';
+      noteEl.style.marginTop = '10px';
+      noteEl.textContent = w.note;
+      cardioSection.appendChild(noteEl);
+    }
+  } else {
+    cardioSection.innerHTML = '<div style="font-family:Barlow Condensed,sans-serif;font-size:10px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);margin-bottom:6px;">CARDIO — REST DAY</div><div style="font-size:12px;color:var(--ink4);">No structured cardio. Easy walk or full rest.</div>';
+  }
+  body.appendChild(cardioSection);
+
+  // ── LOGGED SESSIONS ──
+  if (dayLogs.length > 0) {
+    const logSection = document.createElement('div');
+    logSection.style.cssText = 'margin-top:16px;border-top:1px solid var(--rule);padding-top:12px;';
+    let html = `<div style="font-family:Barlow Condensed,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink4);margin-bottom:10px;">Logged Sessions (${dayLogs.length})</div>`;
+    dayLogs.forEach(e=>{
       const tc={Run:'#2D7A4F',Bike:'#C17B2A',Brick:'#5C2D0A',Gym:'#4A1D8A',Swim:'#1B4F8A'};
       const color=tc[e.type]||'#4A4A4A';
       const stars=e.rating?'★'.repeat(e.rating)+'☆'.repeat(5-e.rating):'';
       html+=`<div style="border-left:3px solid ${color};padding:10px 12px;margin-bottom:8px;background:var(--cream2);">`;
-      html+=`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;"><span style="font-family:Barlow Condensed,sans-serif;font-size:14px;font-weight:800;color:${color};">${e.type}</span>${stars?`<span style="font-size:11px;color:var(--red);">${stars}</span>`:''}</div>`;
+      html+=`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;"><span style="font-family:Barlow Condensed,sans-serif;font-size:14px;font-weight:800;color:${color};">${e.type}</span>${stars?`<span style="font-size:11px;color:var(--red);">${stars}</span>`:''}</div>`;
       if(e.source==='manual'){
         html+='<div style="display:flex;gap:14px;flex-wrap:wrap;">';
         if(e.distance) html+=`<div><div class="log-stat-val">${e.distance}</div><div class="log-stat-lab">Distance</div></div>`;
@@ -1613,12 +2567,78 @@ function openModal(date) {
       if(e.notes) html+=`<div style="margin-top:6px;font-size:11px;color:var(--ink4);font-style:italic;">${e.notes}</div>`;
       html+='</div>';
     });
-    html+='</div>';
-    ld.innerHTML=html;
-  } else ld.innerHTML='';
+    logSection.innerHTML = html;
+    body.appendChild(logSection);
+  }
+
+  // Update modal title
+  G('modal-title-str').textContent = gymSplit && gymSplit !== 'rest'
+    ? `${splitLabels[gymSplit]||'Gym'} + ${w && w.tag !== 'rest' ? (TAG_LABELS[w.tag]||'Cardio') : 'Rest'}`
+    : (w && w.tag !== 'rest' ? w.title : 'Recovery Day');
+
+  // Clear old tag wrap and segs (no longer used directly)
+  if(G('modal-tag-wrap')) G('modal-tag-wrap').innerHTML='';
+  if(G('modal-segs')) G('modal-segs').innerHTML='';
+  if(G('modal-note')) G('modal-note').style.display='none';
+  if(G('modal-status')) G('modal-status').innerHTML='';
+  if(G('modal-logged-data')) G('modal-logged-data').innerHTML='';
+
   G('modal-overlay').classList.add('open');
 }
 function closeModal(){G('modal-overlay').classList.remove('open');}
+
+// ── EDIT LOG ──
+let editRating = 0;
+
+function openEditLog(id) {
+  const entry = workoutLog.find(e => e.id === id);
+  if (!entry) return;
+  G('edit-log-id').value = id;
+  G('edit-log-title').textContent = `Edit — ${entry.type} · ${entry.date}`;
+  G('edit-type').value = entry.type || 'Run';
+  G('edit-date').value = entry.date || '';
+  G('edit-dist').value = entry.distance || '';
+  G('edit-dur').value = entry.duration || '';
+  G('edit-pace').value = entry.pace || '';
+  G('edit-hr').value = entry.hr || '';
+  G('edit-notes').value = entry.notes || '';
+  editRating = entry.rating || 0;
+  setEditRating(editRating);
+  G('edit-log-overlay').classList.add('open');
+}
+
+function setEditRating(n) {
+  editRating = n;
+  [1,2,3,4,5].forEach(i => {
+    const s = G('er'+i);
+    if(s) s.classList.toggle('active', i <= n);
+  });
+}
+
+function saveEditLog() {
+  const id = parseInt(G('edit-log-id').value);
+  const idx = workoutLog.findIndex(e => e.id === id);
+  if (idx === -1) return;
+  workoutLog[idx] = {
+    ...workoutLog[idx],
+    type: G('edit-type').value,
+    date: G('edit-date').value,
+    distance: G('edit-dist').value,
+    duration: G('edit-dur').value,
+    pace: G('edit-pace').value,
+    hr: G('edit-hr').value,
+    notes: G('edit-notes').value,
+    rating: editRating,
+    source: 'manual'
+  };
+  localStorage.setItem('tr_log', JSON.stringify(workoutLog));
+  closeEditLog();
+  renderLogEntries();
+  renderCalendar();
+}
+
+function closeEditLog() { G('edit-log-overlay').classList.remove('open'); }
+function closeEditLogOutside(e) { if(e.target===G('edit-log-overlay')) closeEditLog(); }
 function closeModalOutside(e){if(e.target===G('modal-overlay')) closeModal();}
 
 // ── MASTHEAD ──
@@ -1670,7 +2690,10 @@ function openPicker(options, key, currentIdx) {
     const div = document.createElement('div');
     div.className = `picker-option${i===sel?' selected':''}`;
     div.onclick = () => selectPickerOption(i);
-    div.innerHTML = `<div class="picker-option-num">${i+1}</div><div><div class="picker-option-name">${opt.title}</div><div class="picker-option-detail">${opt.note ? opt.note.substring(0,100)+'...' : opt.segs.map(s=>s.name).join(' → ')}</div></div>`;
+    const previewText = opt._splitKey
+      ? GYM_SPLITS[opt._splitKey].exercises.slice(0,4).map(e=>e.name).join(' · ')
+      : (opt.note ? opt.note.substring(0,100)+'...' : opt.segs.map(s=>s.name).slice(0,4).join(' → '));
+    div.innerHTML = `<div class="picker-option-num">${i+1}</div><div><div class="picker-option-name">${opt.title}</div><div class="picker-option-detail">${previewText}</div></div>`;
     container.appendChild(div);
   });
   G('picker-overlay').classList.add('open');
@@ -1682,10 +2705,15 @@ function selectPickerOption(i) {
 }
 
 function confirmPicker() {
-  localStorage.setItem(pickerKey, pickerCurrentIdx);
+  const opt = pickerOptions[pickerCurrentIdx];
+  // If this is a gym split picker, save the split key specifically
+  if (opt && opt._splitKey) {
+    localStorage.setItem(pickerKey, opt._splitKey);
+  } else {
+    localStorage.setItem(pickerKey, pickerCurrentIdx);
+  }
   closePicker();
   initHome();
-  // Refresh calendar if visible
   const schedPage=G('page-schedule');
   if(schedPage&&schedPage.classList.contains('active')){renderWeekStrip();renderCalendar();}
 }
@@ -1700,7 +2728,7 @@ function initHomeWithPicker() {
   if (w && G('today-title')) {
     G('today-title').textContent = w.title;
     renderTag(w.tag, G('today-tag'));
-    renderSegs(w.segs, G('today-segs'));
+    renderSegs(w.segs, G('today-segs'), w._isGym);
     const note = G('today-note');
     if(note){note.textContent=w.note;note.style.display='block';}
     // If this workout has picker options - add the choose button
