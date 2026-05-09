@@ -514,6 +514,169 @@ main{max-width:1120px;margin:0 auto;}
   .race-splits{grid-template-columns:1fr 1fr;}
   .strength-grid,.vo2-grid{grid-template-columns:repeat(3,1fr);}
 }
+
+/* ── RACE COUNTDOWN ── */
+.race-countdown-banner{background:var(--ink);color:var(--cream);padding:10px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:0;border-bottom:2px solid var(--red);}
+.rcd-left{display:flex;flex-direction:column;}
+.rcd-race-name{font-family:"Barlow Condensed",sans-serif;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(245,240,232,0.45);}
+.rcd-race-date{font-family:"Libre Baskerville",serif;font-size:13px;font-style:italic;color:rgba(245,240,232,0.7);margin-top:1px;}
+.rcd-nums{display:flex;gap:14px;align-items:flex-end;}
+.rcd-unit{display:flex;flex-direction:column;align-items:center;}
+.rcd-val{font-family:"Playfair Display",serif;font-size:28px;font-weight:900;color:var(--cream);line-height:1;}
+.rcd-unit-lbl{font-family:"DM Mono",monospace;font-size:8px;color:rgba(245,240,232,0.35);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;}
+.rcd-phase-badge{font-family:"Barlow Condensed",sans-serif;font-size:11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;background:var(--red);color:var(--cream);}
+/* ── ONBOARDING ── */
+.ob-overlay{position:fixed;inset:0;z-index:500;display:flex;flex-direction:column;overflow:hidden;background:var(--cream);}
+.ob-overlay.hidden{display:none;}
+
+/* Animated background */
+.ob-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+.ob-bg-line{position:absolute;left:0;right:0;height:1px;background:var(--rule);opacity:0;animation:obLineReveal 1.2s ease forwards;}
+.ob-bg-line:nth-child(1){top:15%;animation-delay:0.1s;}
+.ob-bg-line:nth-child(2){top:35%;animation-delay:0.25s;}
+.ob-bg-line:nth-child(3){top:60%;animation-delay:0.4s;}
+.ob-bg-line:nth-child(4){top:82%;animation-delay:0.55s;}
+@keyframes obLineReveal{from{opacity:0;transform:scaleX(0);}to{opacity:1;transform:scaleX(1);}}
+
+/* Progress bar */
+.ob-progress{height:2px;background:var(--rule2);position:absolute;top:0;left:0;right:0;z-index:10;}
+.ob-progress-fill{height:100%;background:var(--red);transition:width 0.5s cubic-bezier(0.4,0,0.2,1);}
+
+/* Screen container */
+.ob-screens{position:relative;flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.ob-screen{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:40px 32px;text-align:center;pointer-events:none;opacity:0;transform:translateX(60px);}
+.ob-screen.active{pointer-events:all;opacity:1;transform:translateX(0);transition:opacity 0.4s ease, transform 0.4s cubic-bezier(0.4,0,0.2,1);}
+.ob-screen.exit-left{opacity:0;transform:translateX(-60px);transition:opacity 0.3s ease, transform 0.3s cubic-bezier(0.4,0,0.2,1);}
+
+/* Welcome screen special */
+.ob-welcome-logo{font-family:"Playfair Display",serif;font-size:52px;font-weight:900;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);line-height:1;margin-bottom:4px;opacity:0;animation:obFadeUp 0.8s ease 0.3s forwards;}
+.ob-welcome-logo span{color:var(--red);}
+.ob-welcome-rule{width:60px;height:3px;background:var(--red);margin:12px auto;opacity:0;animation:obFadeUp 0.6s ease 0.7s forwards;}
+.ob-welcome-tag{font-family:"Libre Baskerville",serif;font-size:13px;font-style:italic;color:var(--ink4);letter-spacing:0.04em;margin-bottom:48px;opacity:0;animation:obFadeUp 0.6s ease 0.9s forwards;}
+.ob-welcome-headline{font-family:"Playfair Display",serif;font-size:24px;font-weight:800;color:var(--ink);line-height:1.3;max-width:440px;margin-bottom:10px;opacity:0;animation:obFadeUp 0.6s ease 1.1s forwards;}
+.ob-welcome-sub{font-family:"Libre Baskerville",serif;font-size:13px;font-style:italic;color:var(--ink4);margin-bottom:48px;opacity:0;animation:obFadeUp 0.6s ease 1.3s forwards;}
+.ob-welcome-btn{opacity:0;animation:obFadeUp 0.5s ease 1.5s forwards;}
+@keyframes obFadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+/* Question typography */
+.ob-question{font-family:"Playfair Display",serif;font-size:28px;font-weight:800;color:var(--ink);line-height:1.2;margin-bottom:8px;max-width:500px;}
+.ob-sub{font-family:"Libre Baskerville",serif;font-size:13px;font-style:italic;color:var(--ink4);margin-bottom:36px;max-width:400px;}
+
+/* Name input — hero style */
+.ob-name-wrap{position:relative;width:100%;max-width:380px;margin-bottom:8px;}
+.ob-input-big{font-family:"Playfair Display",serif;font-size:40px;font-weight:700;color:var(--red);background:transparent;border:none;border-bottom:3px solid var(--ink);padding:8px 0;text-align:center;width:100%;outline:none;transition:border-color 0.2s;}
+.ob-input-big::placeholder{color:var(--rule2);}
+.ob-input-big:focus{border-bottom-color:var(--red);}
+.ob-input-cursor{position:absolute;bottom:0;left:50%;width:2px;height:44px;background:var(--red);animation:obBlink 1s infinite;transform:translateX(-50%);}
+@keyframes obBlink{0%,50%{opacity:1;}51%,100%{opacity:0;}}
+
+/* Stats inputs */
+.ob-input-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;width:100%;max-width:480px;}
+.ob-stat-field{display:flex;flex-direction:column;align-items:center;}
+.ob-input-label{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;}
+.ob-input-sm{font-family:"Playfair Display",serif;font-size:28px;font-weight:700;color:var(--red);background:var(--cream2);border:1px solid var(--rule);border-bottom:3px solid var(--ink);padding:10px 8px;text-align:center;width:100px;outline:none;transition:border-color 0.2s;}
+.ob-input-sm:focus{border-bottom-color:var(--red);}
+
+/* Sport cards — animated */
+.ob-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:500px;}
+.ob-card{background:var(--cream2);border:2px solid var(--rule);padding:18px 14px;cursor:pointer;text-align:left;transition:all 0.2s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;}
+.ob-card::before{content:"";position:absolute;inset:0;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform 0.3s ease;z-index:0;}
+.ob-card:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.08);}
+.ob-card.selected{border-color:var(--red);}
+.ob-card.selected::before{transform:scaleX(1);}
+.ob-card-inner{position:relative;z-index:1;}
+.ob-card-icon{font-size:22px;margin-bottom:8px;display:block;transition:transform 0.2s;}
+.ob-card.selected .ob-card-icon{transform:scale(1.15);}
+.ob-card-title{font-family:"Barlow Condensed",sans-serif;font-size:15px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink);margin-bottom:4px;transition:color 0.2s;}
+.ob-card.selected .ob-card-title{color:var(--cream);}
+.ob-card-desc{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink4);line-height:1.4;transition:color 0.2s;}
+.ob-card.selected .ob-card-desc{color:rgba(245,240,232,0.7);}
+
+/* Check options */
+.ob-checks{display:flex;flex-direction:column;gap:8px;width:100%;max-width:420px;}
+.ob-check{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--cream2);border:2px solid var(--rule);cursor:pointer;transition:all 0.2s;}
+.ob-check:hover{border-color:var(--ink3);transform:translateX(4px);}
+.ob-check.selected{border-color:var(--red);background:var(--red-dim);}
+.ob-check-box{width:20px;height:20px;border:2px solid var(--rule2);border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;transition:all 0.15s;}
+.ob-check.selected .ob-check-box{background:var(--red);border-color:var(--red);color:var(--cream);}
+.ob-check-text{font-family:"Barlow Condensed",sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink);transition:color 0.15s;}
+.ob-check.selected .ob-check-text{color:var(--red);}
+.ob-check-sub{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink4);margin-top:2px;}
+
+/* Sliders */
+.ob-slider-block{width:100%;max-width:400px;margin-bottom:20px;}
+.ob-slider-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
+.ob-slider-label{font-family:"Barlow Condensed",sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);}
+.ob-slider-val{font-family:"Playfair Display",serif;font-size:28px;font-weight:800;color:var(--red);line-height:1;}
+.ob-slider-unit{font-family:"DM Mono",monospace;font-size:10px;color:var(--ink4);margin-left:4px;}
+.ob-slider{width:100%;-webkit-appearance:none;height:3px;background:var(--rule2);outline:none;border-radius:2px;cursor:pointer;}
+.ob-slider::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid var(--cream);box-shadow:0 0 0 2px var(--ink);transition:transform 0.15s;}
+.ob-slider::-webkit-slider-thumb:hover{transform:scale(1.2);}
+.ob-slider-range{display:flex;justify-content:space-between;margin-top:6px;font-family:"DM Mono",monospace;font-size:9px;color:var(--ink5);}
+
+/* CTA buttons */
+.ob-btn{font-family:"Barlow Condensed",sans-serif;font-size:13px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;padding:14px 40px;background:var(--ink);color:var(--cream);border:none;cursor:pointer;margin-top:28px;position:relative;overflow:hidden;transition:all 0.2s;}
+.ob-btn::after{content:"";position:absolute;inset:0;background:var(--red);transform:translateX(-100%);transition:transform 0.3s ease;}
+.ob-btn:hover::after{transform:translateX(0);}
+.ob-btn span{position:relative;z-index:1;}
+.ob-btn-out{background:transparent;color:var(--ink4);border:none;font-family:"DM Mono",monospace;font-size:11px;cursor:pointer;margin-top:10px;padding:8px;letter-spacing:0.05em;text-decoration:none;display:block;transition:color 0.15s;}
+.ob-btn-out:hover{color:var(--ink);}
+.ob-back{position:absolute;top:20px;left:20px;background:none;border:none;font-family:"Barlow Condensed",sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink4);cursor:pointer;display:flex;align-items:center;gap:6px;padding:8px;transition:color 0.15s;z-index:10;}
+.ob-back:hover{color:var(--ink);}
+.ob-back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;}
+
+/* Race details */
+.ob-race-details{margin-top:16px;width:100%;max-width:380px;animation:obFadeUp 0.3s ease;}
+
+/* Fitness inputs */
+.ob-fitness-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;width:100%;max-width:480px;margin-bottom:16px;}
+
+/* Summary / finish screen */
+.ob-summary-card{background:var(--cream);border:1px solid var(--ink);max-width:480px;width:100%;text-align:left;margin-bottom:24px;position:relative;overflow:hidden;animation:obFadeUp 0.5s ease;}
+.ob-summary-card-head{background:var(--ink);padding:12px 20px;border-bottom:3px solid var(--red);display:flex;align-items:baseline;justify-content:space-between;}
+.ob-summary-card-body{padding:20px 24px;}
+.ob-sum-label{font-family:"DM Mono",monospace;font-size:9px;color:rgba(245,240,232,0.45);letter-spacing:0.18em;text-transform:uppercase;}
+.ob-sum-issue{font-family:"DM Mono",monospace;font-size:9px;color:rgba(245,240,232,0.35);letter-spacing:0.1em;}
+.ob-sum-name{font-family:"Playfair Display",serif;font-size:38px;font-weight:900;color:var(--ink);line-height:1;margin-bottom:2px;}
+.ob-sum-sport{font-family:"Barlow Condensed",sans-serif;font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--rule);}
+.ob-sum-row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--rule);}
+.ob-sum-row:last-child{border-bottom:none;}
+.ob-sum-key{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;}
+.ob-sum-val{font-family:"Barlow Condensed",sans-serif;font-size:15px;font-weight:700;color:var(--ink);}
+.ob-sum-tagline{font-family:"Libre Baskerville",serif;font-size:11px;font-style:italic;color:var(--ink4);margin-top:14px;padding-top:12px;border-top:2px solid var(--ink);}
+
+/* Confetti celebration on finish */
+.ob-confetti{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;}
+.ob-confetti-piece{position:absolute;width:8px;height:8px;opacity:0;}
+@keyframes obConfettiFall{0%{opacity:1;transform:translateY(-20px) rotate(0deg);}100%{opacity:0;transform:translateY(100vh) rotate(720deg);}}
+
+/* Nav dots */
+.ob-nav{display:flex;gap:6px;justify-content:center;padding:16px;position:absolute;bottom:0;left:0;right:0;}
+.ob-dot{width:6px;height:6px;border-radius:50%;background:var(--rule2);transition:all 0.3s;}
+.ob-dot.active{background:var(--red);width:20px;border-radius:3px;}
+
+/* ── SETTINGS PANEL ── */
+/* ── SETTINGS PANEL ── */
+.settings-gear{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;font-size:18px;cursor:pointer;color:var(--cream);opacity:0.7;transition:opacity 0.15s;z-index:10;padding:4px;}
+.settings-gear:hover{opacity:1;}
+.settings-overlay{display:none;position:fixed;inset:0;background:rgba(26,26,26,0.5);z-index:400;}
+.settings-overlay.open{display:block;}
+.settings-panel{position:fixed;right:0;top:0;bottom:0;width:360px;max-width:90vw;background:var(--cream);border-left:2px solid var(--ink);z-index:401;overflow-y:auto;transform:translateX(100%);transition:transform 0.3s ease;}
+.settings-panel.open{transform:translateX(0);}
+.settings-head{background:var(--ink);color:var(--cream);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;}
+.settings-head-title{font-family:"Playfair Display",serif;font-size:20px;font-weight:800;}
+.settings-close{background:none;border:none;color:var(--cream);font-size:22px;cursor:pointer;opacity:0.6;}
+.settings-close:hover{opacity:1;}
+.settings-section{padding:16px 20px;border-bottom:1px solid var(--rule);}
+.settings-section-title{font-family:"Barlow Condensed",sans-serif;font-size:10px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink4);margin-bottom:12px;}
+.settings-field{margin-bottom:12px;}
+.settings-label{font-family:"DM Mono",monospace;font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;display:block;}
+.settings-input{background:var(--cream2);border:1px solid var(--rule2);border-bottom:2px solid var(--ink);padding:8px 12px;font-family:"DM Mono",monospace;font-size:13px;color:var(--ink3);width:100%;}
+.settings-input:focus{outline:none;border-bottom-color:var(--red);}
+.settings-save-btn{background:var(--ink);color:var(--cream);border:none;font-family:"Barlow Condensed",sans-serif;font-size:13px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:12px 24px;cursor:pointer;width:100%;margin-top:8px;transition:background 0.15s;}
+.settings-save-btn:hover{background:var(--red);}
+.settings-danger-btn{background:transparent;color:var(--red);border:1px solid var(--red-border);font-family:"Barlow Condensed",sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:10px 20px;cursor:pointer;width:100%;margin-top:8px;transition:all 0.15s;}
+.settings-danger-btn:hover{background:var(--red);color:var(--cream);}
 </style>
 </head>
 <body>
@@ -534,7 +697,8 @@ main{max-width:1120px;margin:0 auto;}
     <span class="sponsor-name">Adidas</span><span class="sponsor-div">&middot;</span>
     <span class="sponsor-name">The Effect Athletics</span>
   </div>
-  <div class="nav-links">
+  <div class="nav-links" style="position:relative;">
+    <button class="settings-gear" onclick="openSettings()" title="Settings">&#9881;</button>
     <button class="nav-link active" onclick="showPage('home',this)">Today</button>
     <button class="nav-link" onclick="showPage('schedule',this)">Schedule</button>
     <button class="nav-link" onclick="showPage('log',this)">Log</button>
@@ -564,6 +728,8 @@ main{max-width:1120px;margin:0 auto;}
         </div>
         <div class="week-phase" id="week-phase-label">Engine Building</div>
       </div>
+
+      <div id="race-countdown-banner" style="display:none;"></div>
 
       <div class="sec-head">Today's Sessions</div>
 
@@ -626,7 +792,7 @@ main{max-width:1120px;margin:0 auto;}
             </div>
             <div>
               <div class="fit-proj-val" id="snap-run">1:52</div>
-              <div class="fit-proj-lab">Est. Half Marathon</div>
+              <div class="fit-proj-lab">Est. Run (off-bike)</div>
             </div>
             <div>
               <div class="fit-proj-val" id="snap-retest" style="font-size:13px;color:rgba(245,240,232,0.6);">Jun 17</div>
@@ -683,8 +849,6 @@ main{max-width:1120px;margin:0 auto;}
 <div id="page-schedule" class="page">
   <div class="sched-page">
     <div class="page-title">Training Schedule</div>
-    <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--ink4);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">This Week</div>
-    <div class="week-strip" id="week-strip"></div>
     <div class="cal-header">
       <div class="cal-month-lbl" id="cal-month-lbl">May 2026</div>
       <div style="display:flex;gap:8px;">
@@ -755,8 +919,12 @@ main{max-width:1120px;margin:0 auto;}
 <div id="page-race" class="page">
   <div class="ri-page">
     <div class="page-title">Race Intelligence</div>
-    <div style="padding:10px 14px;background:var(--cream2);border:1px solid var(--rule2);font-size:12px;color:var(--ink4);font-style:italic;margin-bottom:20px;">
-      Projections update automatically as you log FTP tests and PRs. Current FTP: <strong id="ri-ftp-lbl">175w</strong> &middot; HM Estimate: <strong id="ri-hm-lbl">1:52</strong>
+    <div style="padding:10px 14px;background:var(--cream2);border:1px solid var(--rule2);font-size:12px;color:var(--ink4);font-style:italic;margin-bottom:20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+      <span>Projections update automatically as you log FTP tests and PRs. Current FTP: <strong id="ri-ftp-lbl">180w</strong> &middot; HM Estimate: <strong id="ri-hm-lbl">1:52</strong></span>
+      <div style="display:flex;align-items:center;gap:8px;margin-left:auto;">
+        <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink4);">Set HM Estimate</label>
+        <input type="text" id="hm-est-input" placeholder="1:52:00" style="background:var(--cream);border:1px solid var(--rule2);border-bottom:2px solid var(--ink);padding:5px 8px;font-family:'DM Mono',monospace;font-size:12px;width:90px;color:var(--ink);" oninput="setHMEstimate(this.value)">
+      </div>
     </div>
     <div class="race-card">
       <div class="race-card-top">
@@ -982,7 +1150,7 @@ const TAG_LABELS = {quality:'Quality Run',easy:'Zone 2 Run',bike:'Cycling',long:
 
 // ── STATE ──
 let TODAY = new Date(); TODAY.setHours(0,0,0,0);
-let ftpHistory = JSON.parse(localStorage.getItem('tr_ftp')||'[{"date":"2026-05-06","watts":175}]');
+let ftpHistory = JSON.parse(localStorage.getItem('tr_ftp')||'[{"date":"2026-05-06","watts":180}]');
 let workoutLog = JSON.parse(localStorage.getItem('tr_log')||'[]');
 let newsArticles = JSON.parse(localStorage.getItem('tr_news')||'[]');
 let prHistory = JSON.parse(localStorage.getItem('tr_prs')||'{}');
@@ -1007,6 +1175,13 @@ function getWeekNumForDate(d) {
 function getWeekName(wk) { return WEEK_NAMES[Math.min(wk-1, WEEK_NAMES.length-1)] || 'Keep Going'; }
 function isRecovery(wk) { return wk % 4 === 0; }
 function getPhase(wk) {
+  const p = window.userProfile || {};
+  if (p.raceDate) {
+    const raceD = new Date(p.raceDate); raceD.setHours(0,0,0,0);
+    const diffMs = raceD - TODAY;
+    const weeksOut = Math.ceil(diffMs / (7*24*3600*1000));
+    return getRacePhaseLabel(weeksOut);
+  }
   if (wk <= 12) return 'Engine Building';
   if (wk <= 24) return 'Threshold Development';
   return 'Race Specific';
@@ -1020,62 +1195,57 @@ function getPhase(wk) {
 const GYM_SPLITS = {
 
   chest_tri: {
-    title: 'CHEST + TRICEPS',
+    title: 'PUSH — CHEST + TRICEPS',
     tag: 'gym',
     tagColor: '#4A1D8A',
-    note: 'Push day. Chest first — takes advantage of fresh pressing strength before shoulder fatigue sets in. Triceps last — they are already pre-fatigued from chest work so isolation hits harder. Your shoulder requires all barbell pressing to be replaced with dumbbells — independent arm movement protects the joint. Band external rotations are mandatory before every pressing movement.',
+    note: 'CBum\'s push day. Chest first in this exact order — flat before incline, compound before isolation, stretch before squeeze. He always starts with flat dumbbell press because it lets him go heavy without shoulder impingement. The hex press is his signature inner chest move — never separate the dumbbells. Triceps come last because they\'re already pre-fatigued from pressing. 4 sets of 12 on every working set. Full range of motion or don\'t bother.',
     warmup: [
-      {name:'Band External Rotations', sets:'2x20', detail:'Shoulder health — non-negotiable warmup. Light band, slow controlled rotation outward.', flag:'shoulder'},
-      {name:'Rotator Cuff Warmup', sets:'2x15', detail:'Internal/external rotation with light cable or band. Both directions. Never skip this.', flag:'shoulder'},
-      {name:'Push-Up Warmup', sets:'2x10', detail:'Slow controlled push-ups — wake up the pecs, shoulders and triceps before loading.'}
+      {name:'Band External Rotations', sets:'2x20', detail:'Non-negotiable. Light band, slow controlled rotation outward. Shoulder health comes first.', flag:'shoulder'},
+      {name:'Rotator Cuff Warmup', sets:'2x15', detail:'Internal/external rotation with light cable or band. Both directions.', flag:'shoulder'},
+      {name:'Push-Up Warmup', sets:'2x10', detail:'Bodyweight push-ups — wake up the pecs before loading. Full range of motion.'}
     ],
     exercises: [
-      // CHEST
-      {name:'Flat Dumbbell Press', sets:'4x8-10', muscle:'Chest', detail:'Controlled 2-second descent. Full stretch at bottom — elbows slightly below bench level. Drive dumbbells together at top. Shoulder-safe alternative to barbell.', triNote:'Pec strength improves swim pull and cycling sprint power.', flag:'shoulder_safe'},
-      {name:'Incline Dumbbell Press', sets:'3x10-12', muscle:'Chest', detail:'30-45 degree incline. Upper chest emphasis. Keep elbows at 45 degrees — not flared out. Full range of motion.', triNote:'Upper chest and anterior delt strength supports swim catch position.'},
-      {name:'Cable Chest Fly (Low to High)', sets:'3x12-15', muscle:'Chest', detail:'Cables set at lowest position. Arc from hip level to eye level. Zero shoulder impingement. Squeeze hard at top. Pure pec isolation.', triNote:'Shoulder-safe isolation. No joint stress.', flag:'shoulder_safe'},
-      {name:'Dumbbell Hex Press', sets:'3x12', muscle:'Chest', detail:'Lie flat, press dumbbells together throughout entire movement. Massive inner chest contraction. Do not separate the dumbbells at any point.', triNote:'Inner chest development with zero shoulder risk.', flag:'shoulder_safe'},
-      // TRICEPS
-      {name:'Cable Tricep Pushdown — Rope', sets:'4x12-15', muscle:'Triceps', detail:'Elbows pinned to sides throughout. At bottom — split rope apart and twist outward for full contraction. Slow controlled negative. Safest tricep movement.', triNote:'Tricep strength directly drives swim push phase efficiency.'},
-      {name:'Overhead Dumbbell Extension', sets:'3x12', muscle:'Triceps', detail:'Long head emphasis — the largest head of triceps. Keep elbows pointing forward, not flaring out. Lower dumbbell behind head slowly. Full stretch is the key.', triNote:'Long head is critical for powerful swim stroke finish.'},
-      {name:'Skull Crushers — EZ Bar', sets:'3x10-12', muscle:'Triceps', detail:'Lower bar to forehead on a slight angle back behind head — reduces elbow stress. Full extension at top. One of the best mass builders for triceps.'},
-      {name:'Close-Grip Push-Up', sets:'3xFailure', muscle:'Triceps', detail:'Hands shoulder-width or slightly narrower. Elbows track back along body. Bodyweight finisher — go to real failure. Add weight vest when bodyweight is easy.', triNote:'Functional pressing strength with zero equipment.'}
+      {name:'Flat Dumbbell Press', sets:'4x12', muscle:'Chest', detail:'CBum\'s primary chest movement. 2-second controlled descent to full stretch — elbows slightly below bench at bottom. Drive dumbbells together at top without locking out. This is his go-to over barbell bench for full stretch and shoulder safety.', flag:'shoulder_safe'},
+      {name:'Incline Dumbbell Press', sets:'4x12', muscle:'Chest', detail:'30-40 degree incline — not 45, that becomes shoulder work. Upper chest emphasis. Elbows at 45 degrees from body — not flared. CBum says the upper chest separates good physiques from great ones.', flag:'shoulder_safe'},
+      {name:'Incline Cable Fly', sets:'4x12', muscle:'Chest', detail:'Cables set at floor level, bench at 30 degrees. Arc from wide to chest height — crossing over slightly at the top for peak contraction. CBum uses this after pressing to isolate upper chest without joint stress.', flag:'shoulder_safe'},
+      {name:'Pec Deck / Machine Fly', sets:'4x12', muscle:'Chest', detail:'Full stretch position — hold 1 second at peak stretch. Squeeze hard at contraction — 1 second pause. Machine keeps constant tension the whole arc. CBum\'s finishing chest movement for the pump.'},
+      {name:'Dumbbell Hex Press', sets:'3x12', muscle:'Chest', detail:'CBum\'s signature inner chest movement. Lie flat, press dumbbells firmly together throughout the entire rep — never let them separate. The inner chest contraction you feel is what he\'s chasing. Drop the weight and do it right.', flag:'shoulder_safe'},
+      {name:'Cable Tricep Pushdown — Rope', sets:'4x12', muscle:'Triceps', detail:'Elbows pinned to sides — they do not move. At the bottom, split the rope apart and rotate wrists outward for full contraction. Slow 3-second negative back up. CBum does these every push day.'},
+      {name:'Overhead Dumbbell Extension', sets:'4x12', muscle:'Triceps', detail:'Long head emphasis — the biggest head and the one that shows from behind. Keep elbows pointing forward, not flaring out. Lower slowly until you feel a deep stretch, then drive up. CBum credits this for his horseshoe tricep development.'},
+      {name:'Skull Crushers — EZ Bar', sets:'3x12', muscle:'Triceps', detail:'Lower bar slightly back behind the head rather than to the forehead — reduces elbow stress. Full extension at top. The mass builder for triceps. CBum finishes push day with these.'},
     ],
     mandatory: [
-      {name:'Face Pulls', sets:'4x20', detail:'Cable set at forehead height. Rope attachment. Pull to face — hands finish beside ears. External rotation of shoulder at end of movement. Every single session without exception.', flag:'mandatory'},
-      {name:'Band External Rotation', sets:'3x20', detail:'Elbow pinned to side. Rotate outward against band resistance. Slow and controlled. Your shoulder rehab — non-negotiable.', flag:'mandatory'},
-      {name:'Dead Bug', sets:'3x10', detail:'Lower back pressed into floor throughout. Opposite arm and leg extend slowly. Core stability for aero cycling position.', flag:'mandatory'}
+      {name:'Face Pulls', sets:'4x20', detail:'Cable at forehead height, rope attachment. Pull to face — hands finish beside ears with external rotation. Every push session without exception. Shoulder longevity.', flag:'mandatory'},
+      {name:'Dead Bug', sets:'3x10', detail:'Lower back pressed into floor throughout. Opposite arm and leg extend slowly. Core stability.', flag:'mandatory'}
     ]
   },
 
   back_bi: {
-    title: 'BACK + BICEPS',
+    title: 'PULL — BACK + BICEPS',
     tag: 'gym',
     tagColor: '#1B4F8A',
-    note: 'Pull day. The most important session for your triathlon performance. Lat strength is the primary driver of swim speed — a weak lat is a slow swimmer. Mid-back thickness keeps you in aero position on the bike for hours without breaking down. Back first, biceps last — biceps are secondary movers in all rowing and pulling movements so they are pre-fatigued before isolation work.',
+    note: 'CBum\'s pull day. He leads with lat pulldown every single time — full stretch at top is non-negotiable. Mid-back rowing second. He\'s well known for his back width and thickness which comes from this compound-first structure. Biceps come at the end because they\'re already worked through every pulling movement. Full range of motion on everything. 4 sets of 12, controlled negatives, squeeze at the top.',
     warmup: [
-      {name:'Band Pull-Aparts', sets:'3x20', detail:'Arms straight in front, pull band apart to chest. Activates rear delts and mid-back before loading.'},
-      {name:'Cat-Cow Thoracic Mobility', sets:'2x10', detail:'Spinal warmup. Opens thoracic spine for full range of motion in rows and pull-downs.'},
-      {name:'Dead Hang', sets:'2x30sec', detail:'Passive hang from pull-up bar. Decompresses spine, activates lat and grip strength.'}
+      {name:'Band Pull-Aparts', sets:'3x20', detail:'Arms straight out front, pull band to chest. Activates rear delts and mid-back.'},
+      {name:'Dead Hang', sets:'2x30sec', detail:'Passive hang from pull-up bar. Decompresses spine, activates lats and grip.'},
+      {name:'Cat-Cow Thoracic Mobility', sets:'2x10', detail:'Opens thoracic spine for full range of motion in rows.'}
     ],
     exercises: [
-      // BACK
-      {name:'Lat Pulldown — Wide Grip', sets:'4x10-12', muscle:'Back', detail:'Full stretch at top — shoulder blades rise. Pull to upper chest, not behind neck. Lean back slightly. Squeeze lats hard at bottom. Primary swim muscle.', triNote:'Lat pulldown is the most swim-specific exercise in the gym. Every 1% improvement in lat strength translates directly to faster swim times.'},
-      {name:'Seated Cable Row — Close Grip', sets:'4x10-12', muscle:'Back', detail:'Pull handle to lower sternum. Drive elbows back and squeeze shoulder blades together hard. 2-second hold at contraction. Control the negative.', triNote:'Mid-back thickness. Holds aero cycling position for 2-3 hours without breakdown.'},
-      {name:'Single-Arm Dumbbell Row', sets:'3x10 each', muscle:'Back', detail:'Supported on bench. Drive elbow straight back — not out to the side. Full stretch at bottom. Pull to hip, not shoulder. Heavy — this is a mass builder.', triNote:'Unilateral rowing corrects left/right imbalances from asymmetric swim stroke.'},
-      {name:'Straight Arm Cable Pulldown', sets:'3x15', muscle:'Back', detail:'Arms straight throughout — no elbow bend. Pulls from overhead to hips. Pure lat isolation. The exact movement pattern of the swim catch and pull.', triNote:'Most swim-specific exercise in existence. Mimics exact lat engagement of freestyle stroke.', flag:'swim_specific'},
-      {name:'Hyperextensions', sets:'3x15', muscle:'Back', detail:'Lower back and glute focus. Controlled movement — do not hyperextend at top. Add weight plate to chest when bodyweight is easy.', triNote:'Lower back endurance is critical for maintaining aero position through hour 2 and 3 of the bike.'},
-      {name:'Face Pulls', sets:'4x20', muscle:'Back', detail:'Cable at forehead height. Rope attachment. Pull to face with external rotation. Rear delt and rotator cuff. Non-negotiable every session.', flag:'mandatory'},
-      // BICEPS
-      {name:'Barbell Curl', sets:'4x10-12', muscle:'Biceps', detail:'Full range of motion. No swinging. Squeeze hard at top. Slow 3-second negative. The fundamental bicep mass builder.', triNote:'Bicep strength improves swim pull power and cycling handlebar grip endurance.'},
-      {name:'Hammer Curl', sets:'3x12', muscle:'Biceps', detail:'Neutral grip — thumbs pointing up. Targets brachialis underneath bicep. Makes the arm look thicker from the side. Also builds forearm strength.', triNote:'Brachialis development improves aero bar grip strength during long bike legs.'},
-      {name:'Incline Dumbbell Curl', sets:'3x12', muscle:'Biceps', detail:'Seated on incline bench. Arms hang behind body — maximum long head stretch. Slow curl upward. Best exercise for bicep peak development.'},
-      {name:'Cable Curl', sets:'3x15', muscle:'Biceps', detail:'Constant tension throughout — unlike free weights. Finishing movement. Keep elbows pinned to sides. Squeeze at top.'}
+      {name:'Lat Pulldown — Wide Grip', sets:'4x12', muscle:'Back', detail:'CBum\'s first back exercise every time. Let the shoulder blades rise fully at the top — this is the stretch that builds width. Pull to upper chest, lean back slightly. Drive elbows down to lats at the bottom. Squeeze hard for 1 second.'},
+      {name:'Seated Cable Row — Close Grip', sets:'4x12', muscle:'Back', detail:'Pull handle to lower sternum. Drive elbows straight back and squeeze shoulder blades hard together — 2 second hold. Control the negative for 3 seconds. CBum says the contraction is more important than the weight.'},
+      {name:'Single-Arm Dumbbell Row', sets:'4x12', muscle:'Back', detail:'Knee and hand on bench for support. Drive elbow straight back — not out to the side. Full stretch at the bottom, pull to hip. Go heavier here than anywhere else on back day. Ronnie Coleman made this the definitive back builder.'},
+      {name:'Cable Row — High Pulley', sets:'4x12', muscle:'Back', detail:'Cable at head height. Pull to upper chest/chin. Hits upper back and rear delts differently than low rows. CBum uses this specifically for upper back detail and thickness across the traps.'},
+      {name:'Straight Arm Cable Pulldown', sets:'3x12', muscle:'Back', detail:'Arms straight throughout — no elbow bend allowed. Pull from overhead down to hips. Pure lat isolation. Maintains constant tension through the full arc. Great finishing movement before biceps.'},
+      {name:'Chest-Supported DB Row', sets:'3x12', muscle:'Back', detail:'Face down on incline bench. Both arms row simultaneously. Zero lower back involvement — pure back isolation. Good final compound before isolation work.'},
+      {name:'Barbell Curl', sets:'4x12', muscle:'Biceps', detail:'Full range — dead hang at the bottom, all the way to full contraction at top. No swinging. Slow 3-second negative. The fundamental bicep mass builder that CBum still uses every pull day.'},
+      {name:'Incline Dumbbell Curl', sets:'4x12', muscle:'Biceps', detail:'Seated on incline bench. Arms hang behind body — maximum long head stretch. Curl slowly. CBum\'s go-to for bicep peak development. The stretch position is everything.'},
+      {name:'Hammer Curl', sets:'3x12', muscle:'Biceps', detail:'Neutral grip — thumbs pointing up. Brachialis underneath the bicep. Makes the arm look thicker from every angle. CBum always finishes biceps with these.'},
+      {name:'Cable Curl — Single Arm', sets:'3x12 each', muscle:'Biceps', detail:'Constant tension throughout. Elbow pinned. Squeeze hard at top — 1 second hold. Finishing movement. The pump at the end of back day is the point.'},
     ],
     mandatory: [
-      {name:'Face Pulls', sets:'4x20', detail:'Already in main session — confirm done. Rear delt and rotator cuff health. Your shoulder specifically.', flag:'mandatory'},
-      {name:'Dead Bug', sets:'3x10', detail:'Core stability. Lower back pressed into floor the entire time. Opposite arm and leg extend slowly and controlled.', flag:'mandatory'},
-      {name:'Copenhagen Plank', sets:'3x30sec each', detail:'Side plank with top leg on bench. Hip adductor strength. Running injury prevention — protects IT band and groin.', flag:'mandatory'}
+      {name:'Face Pulls', sets:'4x20', detail:'Already done or do them here. Rear delt and rotator cuff. Non-negotiable.', flag:'mandatory'},
+      {name:'Dead Bug', sets:'3x10', detail:'Core stability. Lower back pressed into floor the entire time.', flag:'mandatory'},
+      {name:'Copenhagen Plank', sets:'3x30sec each', detail:'Side plank with top leg on bench. Hip adductor strength and injury prevention.', flag:'mandatory'}
     ]
   },
 
@@ -1083,29 +1253,26 @@ const GYM_SPLITS = {
     title: 'LEGS',
     tag: 'gym',
     tagColor: '#2D5A1B',
-    note: 'The most important session for cycling and running power. Squats build the engine. Single-leg work builds the stability and symmetry that endurance sports demand. Given your concurrent training load — legs are being worked on the bike and run every week — so gym leg sessions prioritize quality over maximum volume. The Nordic hamstring curl is the single most evidence-backed injury prevention exercise for runners. It is not optional.',
+    note: 'CBum\'s leg day is built around squats and hack squats for quad development, Romanian deadlifts for hamstrings and glutes, and finishing isolation. He is famous for his quad sweep and leg detail — it comes from heavy compound work first, then isolation for the pump. He squats every leg day, always. 4 sets of 12 on working sets. Full depth or you\'re wasting your time. Leg press is not a replacement for squats — it\'s an addition.',
     warmup: [
-      {name:'Glute Bridge', sets:'2x15', detail:'Activate glutes before loading. Drive hips up and squeeze hard at top. Hold 2 seconds. Dormant glute syndrome is the most common running injury cause.'},
-      {name:'Leg Swing Warmup', sets:'2x10 each direction', detail:'Forward/back and lateral leg swings. Hip mobility. Opens hip flexors before squatting.'},
-      {name:'Goblet Squat — Light', sets:'2x10', detail:'Warmup squat pattern with light dumbbell or kettlebell. Full depth. Elbows track inside knees at bottom.'}
+      {name:'Glute Bridge', sets:'2x20', detail:'Activate glutes before loading. Drive hips up, squeeze hard at top — 2 second hold.'},
+      {name:'Leg Swing', sets:'2x10 each', detail:'Forward/back and lateral swings. Hip mobility before squatting.'},
+      {name:'Goblet Squat — Light', sets:'2x10', detail:'Warmup squat pattern. Full depth. Elbows track inside knees at bottom.'}
     ],
     exercises: [
-      // COMPOUND
-      {name:'Back Squat', sets:'4x6-8', muscle:'Quads / Glutes', detail:'Controlled descent — 3 seconds down. Hit parallel or below. Drive knees out. Brace core hard. Given concurrent training load — work at 75-80% of max. Quality over ego.', triNote:'Back squat is the single best predictor of cycling power output. Every 10% improvement in squat strength correlates with measurable FTP gains.'},
-      {name:'Romanian Deadlift', sets:'4x8-10', muscle:'Hamstrings / Glutes', detail:'Hip hinge — not a squat. Push hips back. Slight knee bend throughout. Bar stays close to legs. Feel hamstring stretch at bottom. Drive hips forward to stand.', triNote:'Posterior chain strength prevents the quad-dominant cycling pattern that causes knee pain on long rides.'},
-      {name:'Bulgarian Split Squat', sets:'3x10 each', muscle:'Quads / Glutes', detail:'Rear foot elevated on bench. Front foot far enough forward that knee stays behind toes at bottom. This will be humbling — use less weight than you think. Single best exercise for cycling power asymmetry correction.', triNote:'Single-leg power is what actually drives the pedal stroke. Most cyclists have significant left/right imbalance — this fixes it.'},
-      {name:'Leg Press', sets:'3x12-15', muscle:'Quads', detail:'Feet shoulder-width, mid-platform. Full range of motion — do not lock out at top. High volume without spinal load. Use on heavy training weeks when squats take too much out of you.', triNote:'High rep leg press builds quad endurance that directly transfers to late-race cycling.'},
-      {name:'Step-Ups — Weighted', sets:'3x12 each', muscle:'Glutes / Quads', detail:'18 inch box minimum. Drive through heel of front foot. Do not push off back foot. Add dumbbells for load. Running-specific single-leg power.', triNote:'Running economy exercise. Builds the exact glute activation pattern needed for efficient running stride.'},
-      // SINGLE LEG AND STABILITY
-      {name:'Single-Leg Romanian Deadlift', sets:'3x10 each', muscle:'Hamstrings', detail:'Standing on one leg. Hinge at hip. Reach dumbbell toward floor. Back leg extends behind for balance. Slow and controlled. This will challenge your balance significantly at first.', triNote:'The most running-specific posterior chain exercise. Builds hamstring stability that prevents hamstring strains on long runs.'},
-      {name:'Nordic Hamstring Curl', sets:'3x8', muscle:'Hamstrings', detail:'Kneel on pad — partner holds ankles or hook under rack. Lower body toward floor as slowly as possible — use hamstrings to control descent. Pull yourself back up using hamstrings. One of the hardest exercises you will ever do.', triNote:'The most evidence-backed hamstring injury prevention exercise in endurance sports. Mandatory for any runner doing serious volume.', flag:'injury_prevention'},
-      {name:'Copenhagen Plank', sets:'3x30sec each', muscle:'Hip Adductors', detail:'Side plank with top leg on bench. Bottom leg can float or touch bench for support. Lateral hip and adductor strength.', triNote:'Prevents IT band syndrome and groin strains — the two most common running injuries at higher mileage.', flag:'mandatory'},
-      {name:'Single-Leg Calf Raise — Weighted', sets:'4x15 each', muscle:'Calves', detail:'Stand on edge of step. Full range — heel below step level to toes fully extended. Add weight via dumbbell when bodyweight is easy. Slow and controlled.', triNote:'Calf and Achilles resilience is critical at 20+ miles per week. Calf raises are the primary prevention tool for Achilles tendinopathy.'}
+      {name:'Back Squat', sets:'4x12', muscle:'Quads / Glutes', detail:'CBum squats every leg day, no exceptions. Controlled 3-second descent to parallel or below. Drive knees out. Brace core hard before every rep. He goes for the full range — half squats build nothing. Work hard but leave 1-2 reps in reserve.'},
+      {name:'Hack Squat', sets:'4x12', muscle:'Quads', detail:'CBum\'s signature quad builder. Feet slightly narrow on the platform. Full depth — let the knees track forward over toes. The quad sweep that makes his legs recognizable comes from hack squats. Do not half-rep these.'},
+      {name:'Romanian Deadlift', sets:'4x12', muscle:'Hamstrings / Glutes', detail:'Hip hinge — push hips back, not down. Bar stays close to legs the entire movement. Feel the hamstring stretch at the bottom. Drive hips forward to stand. CBum does these for hamstring length and glute separation.'},
+      {name:'Bulgarian Split Squat', sets:'4x12 each', muscle:'Quads / Glutes', detail:'Rear foot elevated on bench, front foot far enough forward that knee stays behind toes at bottom. Use less weight than you think. CBum includes these for single-leg development and quad detail that squats alone can\'t build.'},
+      {name:'Leg Press', sets:'4x12', muscle:'Quads', detail:'Feet shoulder-width, mid-platform. Full range of motion — bring knees close to chest at the bottom. Do not lock out at the top. CBum uses leg press as a volume builder after squats and hack squats.'},
+      {name:'Leg Extension', sets:'4x12', muscle:'Quads', detail:'Full extension at top — hold 1 second contraction. Slow 3-second negative. CBum uses these for quad isolation and the detail work that compounds can\'t target directly. The pump here is intense.'},
+      {name:'Lying Leg Curl', sets:'4x12', muscle:'Hamstrings', detail:'Full stretch at bottom. Curl to full contraction — hold 1 second. 2-second negative. Hamstring isolation paired with RDLs for complete posterior chain development.'},
+      {name:'Single-Leg Calf Raise', sets:'4x15 each', muscle:'Calves', detail:'Edge of step. Full range — heel below step at bottom to toes fully extended at top. Slow and controlled. CBum has notoriously well-developed calves and credits consistent weighted single-leg calf raises.'},
     ],
     mandatory: [
-      {name:'Face Pulls', sets:'3x20', detail:'Even on legs day. Shoulder health maintenance. 5 minutes at the end — no excuses.', flag:'mandatory'},
-      {name:'Copenhagen Plank', sets:'3x30sec each', detail:'Already in main session. Confirm done. Hip adductor strength. Running injury prevention.', flag:'mandatory'},
-      {name:'Dead Bug', sets:'3x10', detail:'Core stability. The aero position on the bike requires serious core endurance — this builds it.', flag:'mandatory'}
+      {name:'Nordic Hamstring Curl', sets:'3x8', detail:'Kneel — partner holds ankles. Lower body toward floor as slowly as possible using hamstrings. Most evidence-backed hamstring injury prevention exercise that exists.', flag:'injury_prevention'},
+      {name:'Copenhagen Plank', sets:'3x30sec each', detail:'Side plank with top leg on bench. Hip adductor strength. Non-negotiable.', flag:'mandatory'},
+      {name:'Face Pulls', sets:'3x20', detail:'Even on legs day. Shoulder health maintenance.', flag:'mandatory'}
     ]
   }
 };
@@ -1204,14 +1371,17 @@ function buildGymSegs(splitKey, isHeavy) {
 
 // ── GYM ROTATION SYSTEM ──
 const GYM_ROTATION_START = new Date('2026-05-07'); // May 7 = Back/Bi = Day 0
-const GYM_ROTATION = ['back_bi', 'legs', 'rest', 'chest_tri']; // 4-day cycle, rest after legs
+const GYM_ROTATION = ['back_bi', 'legs', 'rest', 'chest_tri']; // 4-day cycle for hybrid
+const GYM_ROTATION_PPL = ['chest_tri', 'back_bi', 'legs', 'chest_tri', 'back_bi', 'legs', 'rest']; // 7-day PPL for gym-only
 
 function getGymRotationDay(date) {
   const d = new Date(date); d.setHours(0,0,0,0);
   const diff = Math.floor((d - GYM_ROTATION_START) / (24*3600*1000));
   if (diff < 0) return null;
-  const idx = ((diff % GYM_ROTATION.length) + GYM_ROTATION.length) % GYM_ROTATION.length;
-  return GYM_ROTATION[idx]; // 'back_bi', 'legs', 'rest', or 'chest_tri'
+  const sport = (window.userProfile && userProfile.sport) || 'hybrid';
+  const rotation = sport === 'gym' ? GYM_ROTATION_PPL : GYM_ROTATION;
+  const idx = ((diff % rotation.length) + rotation.length) % rotation.length;
+  return rotation[idx];
 }
 
 function isGymRestDay(date) { return getGymRotationDay(date) === 'rest'; }
@@ -1555,7 +1725,405 @@ function getWorkoutForDate(date) {
   if (d < PROGRAM_START) return null;
   const wk = getWeekNumForDate(d);
   const ds = d.toISOString().split('T')[0];
-  return getWorkout(d.getDay(), wk, ds);
+  const sport = (window.userProfile && userProfile.sport) || 'hybrid';
+  const exp = (window.userProfile && userProfile.experience) || 'advanced';
+  const raceType = (window.userProfile && userProfile.raceType) || '';
+  const raceDate = (window.userProfile && userProfile.raceDate) || '';
+  let weeksOut = 99;
+  if (raceDate) {
+    const rd = new Date(raceDate); rd.setHours(0,0,0,0);
+    weeksOut = Math.max(0, Math.ceil((rd - d) / (7*24*3600*1000)));
+  }
+  if (sport === 'running') return getRunningWorkout(d.getDay(), wk, exp, raceType, weeksOut, ds);
+  if (sport === 'gym') return getBodybuildingCardio(d.getDay(), wk, exp);
+  if (sport === 'triathlon') return getTriathlonWorkout(d.getDay(), wk, exp, raceType, weeksOut, ds);
+  return getWorkout(d.getDay(), wk, ds); // hybrid — your program
+}
+
+// ══════════════════════════════════════════════════════════════
+// RUNNING PROGRAM — Beginner through Competitive
+// Based on: Hal Higdon, Jeff Galloway (beginner), Pfitzinger/Douglas
+// Advanced Marathoning, and Norwegian dual-threshold methodology
+// ══════════════════════════════════════════════════════════════
+function getRunningWorkout(dow, wk, exp, raceType, weeksOut, _dateStr) {
+  const rec = isRecovery(wk);
+  const isBeginner = exp === 'beginner';
+  const isIntermediate = exp === 'intermediate';
+  const isAdvanced = exp === 'advanced' || exp === 'competitive';
+
+  // Pace targets scale with experience
+  const paces = {
+    beginner:     { easy:'12:00-13:30/mi', tempo:'10:00-10:30/mi', long:'12:30-14:00/mi', interval:'9:00-9:30/mi' },
+    intermediate: { easy:'10:00-11:30/mi', tempo:'8:30-9:00/mi',  long:'10:30-11:30/mi', interval:'7:45-8:15/mi' },
+    advanced:     { easy:'9:00-10:30/mi',  tempo:'7:30-8:00/mi',  long:'9:30-10:30/mi',  interval:'6:45-7:15/mi' }
+  };
+  const p = isBeginner ? paces.beginner : isIntermediate ? paces.intermediate : paces.advanced;
+
+  // Long run distance scales with week and race target
+  function getLongDist() {
+    if (isBeginner) return rec ? 3 : Math.min(2 + Math.floor(wk/2), 10);
+    if (isIntermediate) return rec ? 6 : Math.min(5 + Math.floor(wk/3), 16);
+    return rec ? 8 : Math.min(7 + Math.floor(wk/2), 20);
+  }
+
+  // Beginner uses run/walk intervals — Galloway method
+  function walkRunDetail(runMin, walkMin) {
+    return `Run ${runMin} min, walk ${walkMin} min — repeat for full duration. No shame in the walk. This is how aerobic base is built safely.`;
+  }
+
+  if (dow === 0) { // Sunday — Long Run
+    const dist = getLongDist();
+    if (isBeginner) {
+      const totalMin = dist * 13; // rough time estimate
+      return { title:`LONG RUN/WALK — ${dist} MILES`, tag:'long',
+        note:`The most important session of the week. No pressure — run/walk the whole thing. Keep a conversation going the entire time. If you can\'t speak in full sentences, slow down or walk. This session builds your aerobic engine more than anything else.`,
+        segs:[
+          {n:1, name:'Run/Walk Intervals', detail:walkRunDetail(3,1), pace:p.long, hr:'Under 145'},
+          {n:2, name:'Rule', detail:'If anything hurts — stop. This is supposed to feel easy.', pace:'Conversational', hr:'Under 145'}
+        ]};
+    }
+    return { title:`LONG RUN — ${dist} MILES`, tag:'long',
+      note:`Zone 2 the entire way. Aerobic base is built here. If your HR climbs above the cap, walk until it comes down — no ego. ${isIntermediate ? 'Last 2 miles can push to marathon pace if legs feel good.' : 'Final 3 miles at marathon pace if feeling strong.'}`,
+      segs:[
+        {n:1, name:`Easy Miles — ${dist-2} Miles`, detail:'Zone 2, HR capped throughout', pace:p.long, hr:'Under 145'},
+        {n:2, name:`Finish Strong — 2 Miles`, detail:isAdvanced?'Marathon pace — negative split finish':'Uptempo — comfortably hard finish', pace:isAdvanced?p.tempo:p.interval, hr:'155-165'}
+      ]};
+  }
+
+  if (dow === 1) { // Monday — Full Rest
+    return { title:'REST', tag:'rest', note:'Full rest after Sunday long run. Non-negotiable. Your legs rebuild overnight — protect this.', segs:[] };
+  }
+
+  if (dow === 2) { // Tuesday — Quality Run
+    if (rec) return { title:'EASY RUN', tag:'easy',
+      note:'Recovery week. No quality. Just movement. Resist every urge to push.',
+      segs:[{n:1, name:'Easy Run', detail:isBeginner?'20 min easy walk/run':'4 miles easy — HR cap enforced', pace:p.easy, hr:'Under 135'}]};
+
+    if (isBeginner) {
+      const runMin = Math.min(5 + wk*2, 25);
+      return { title:`RUN/WALK — ${runMin} MIN RUNNING`, tag:'easy',
+        note:`Beginner key session. ${runMin} total minutes of running broken up with walk breaks. This week\'s target. Focus on breathing — you should be able to sing quietly. Seriously.`,
+        segs:[
+          {n:1, name:'Warmup Walk', detail:'5 min easy walk to get the blood moving', pace:'Walk', hr:'Under 120'},
+          {n:2, name:'Run/Walk Intervals', detail:walkRunDetail(3, runMin<=10?2:1), pace:p.easy, hr:'Under 148'},
+          {n:3, name:'Cooldown Walk', detail:'5 min easy walk — let HR come down fully', pace:'Walk', hr:'Under 120'}
+        ]};
+    }
+
+    // Intermediate/Advanced quality sessions
+    const reps = wk<=4?'5':wk<=8?'6':'8';
+    const tempoMins = Math.min(20 + Math.floor((wk-4)/4)*5, 40);
+    const qualityOptions = [
+      { title:`INTERVALS — ${reps}x800m`, tag:'quality',
+        note:`${reps} repeats at hard controlled effort. 90 sec jog recovery between. Last rep should be your hardest. This session raises your lactate threshold ceiling.`,
+        segs:[
+          {n:1,name:'Warmup',detail:'1.5 miles easy + 4x20sec strides',pace:p.easy,hr:'Under 133'},
+          {n:2,name:`${reps}x800m`,detail:'90 sec jog between each — restart sharp',pace:p.interval,hr:'165-175'},
+          {n:3,name:'Cooldown',detail:'1 mile easy',pace:p.easy,hr:'Under 135'}
+        ]},
+      { title:`TEMPO RUN — ${tempoMins} MIN`, tag:'quality',
+        note:`Lactate threshold work — comfortably hard. Single words, not sentences. This is your race pace training zone. Pfitzinger calls this the most productive run type for the time invested.`,
+        segs:[
+          {n:1,name:'Warmup',detail:'10 min easy',pace:p.easy,hr:'Under 133'},
+          {n:2,name:`${tempoMins} Min Tempo`,detail:'Sustained — controlled aggression. Do not fade.',pace:p.tempo,hr:'158-168'},
+          {n:3,name:'Cooldown',detail:'10 min easy',pace:p.easy,hr:'Under 135'}
+        ]},
+      { title:'NORWEGIAN 4x4', tag:'quality',
+        note:'The most researched VO2 max protocol in endurance sport. 4 min at 90-95% max HR, 3 min jog. Each interval identical — do not blow up the first one.',
+        segs:[
+          {n:1,name:'Warmup',detail:'10 min easy build',pace:p.easy,hr:'Under 133'},
+          {n:2,name:'4 x 4 Min Hard',detail:'4 min at 90-95% max HR then 3 min light jog — 4 rounds',pace:p.interval,hr:'168-178'},
+          {n:3,name:'Cooldown',detail:'10 min easy',pace:p.easy,hr:'Under 135'}
+        ]},
+    ];
+    const idx = (wk-1)%3;
+    const pickerKey = 'run_picker_'+(_dateStr||TODAY.toISOString().split('T')[0]);
+    const saved = parseInt(localStorage.getItem(pickerKey)||'-1');
+    const chosen = saved>=0&&saved<qualityOptions.length ? qualityOptions[saved] : qualityOptions[idx];
+    return {...chosen, _pickerOptions:qualityOptions, _pickerKey:pickerKey, _pickerCurrent:saved>=0?saved:idx};
+  }
+
+  if (dow === 3) { // Wednesday — Easy or Cross
+    if (isBeginner) return { title:'REST OR WALK', tag:'rest',
+      note:'Rest day. Optional: 20-30 min easy walk if you feel good. Nothing more. Your body is adapting right now.',
+      segs:[] };
+    const easyDist = isIntermediate ? 4 : 6;
+    return { title:`EASY RUN — ${easyDist} MILES`, tag:'easy',
+      note:'Mid-week easy run. Aerobic maintenance. If your legs feel beat up from Tuesday, cut this to 3 miles or skip. Never add intensity here.',
+      segs:[{n:1,name:`${easyDist} Miles Easy`,detail:'Zone 2 throughout — HR cap hard',pace:p.easy,hr:'Under 138'}]};
+  }
+
+  if (dow === 4) { // Thursday — Rest
+    return { title:'REST', tag:'rest', note:'Rest day. Sleep, eat well, hydrate. You train again tomorrow.', segs:[] };
+  }
+
+  if (dow === 5) { // Friday — Easy or Strides
+    if (isBeginner) {
+      const runMin2 = Math.min(8 + wk*2, 30);
+      return { title:`RUN/WALK — ${runMin2} MIN`, tag:'easy',
+        note:'Second run of the week. Same approach as Tuesday. Easy and controlled. You\'re building the habit.',
+        segs:[
+          {n:1,name:'Warmup Walk',detail:'5 min',pace:'Walk',hr:'Under 120'},
+          {n:2,name:'Run/Walk',detail:walkRunDetail(3,1),pace:p.easy,hr:'Under 148'},
+          {n:3,name:'Cooldown Walk',detail:'5 min',pace:'Walk',hr:'Under 120'}
+        ]};
+    }
+    return { title:'EASY RUN + STRIDES', tag:'easy',
+      note:`Easy day. The strides at the end are short accelerations — not sprints. They keep the legs sharp for ${weeksOut < 4 ? 'race week' : 'Sunday\'s long run'}.`,
+      segs:[
+        {n:1,name:`${isIntermediate?4:5} Miles Easy`,detail:'Zone 2 throughout',pace:p.easy,hr:'Under 138'},
+        {n:2,name:'4 x 20-Sec Strides',detail:'Accelerate to 85% for 20 sec, walk back — sharp but not sprinting',pace:'Controlled fast',hr:'Brief spikes'}
+      ]};
+  }
+
+  if (dow === 6) { // Saturday — Medium Long or Race Pace
+    if (isBeginner) return { title:'REST OR WALK', tag:'rest',
+      note:'Second rest day. Optional 20-30 min walk only. Legs need full recovery before Sunday.',
+      segs:[] };
+    const medDist = isIntermediate ? (rec?5:8) : (rec?7:11);
+    if (weeksOut <= 2) {
+      return { title:'RACE PACE TUNE-UP', tag:'quality',
+        note:'Race week sharpener. Short, sharp, done. Legs stay fresh. Trust your training.',
+        segs:[
+          {n:1,name:'Warmup',detail:'2 miles easy',pace:p.easy,hr:'Under 133'},
+          {n:2,name:'3 Miles Race Pace',detail:'Goal race pace — controlled, not a time trial',pace:p.tempo,hr:'158-168'},
+          {n:3,name:'Cooldown',detail:'1 mile easy',pace:p.easy,hr:'Under 135'}
+        ]};
+    }
+    return { title:`MEDIUM LONG — ${medDist} MILES`, tag:'long',
+      note:'Second long-ish run of the week. Easy pace throughout. Builds volume without the intensity of Sunday. Pfitzinger calls this the "medium-long run" — a cornerstone of marathon training.',
+      segs:[{n:1,name:`${medDist} Miles`,detail:'Zone 2 — easier than Sunday',pace:p.long,hr:'Under 145'}]};
+  }
+
+  return { title:'REST', tag:'rest', note:'Rest day.', segs:[] };
+}
+
+// ══════════════════════════════════════════════════════════════
+// BODYBUILDING CARDIO PROGRAM — Gym-Only Athletes
+// The gym work itself is handled by the existing GYM_SPLITS system.
+// This function handles any cardio prescribed for gym-only users
+// (most days will be rest from cardio — gym is the main session).
+// Programs based on: PHUL (Chad Wesley Smith), PHAT (Layne Norton),
+// PPL popularized by Jeff Nippard/CBum, and Brad Schoenfeld research.
+// ══════════════════════════════════════════════════════════════
+function getBodybuildingCardio(dow, wk, exp) {
+  // Gym-only users: cardio is optional conditioning, not structured sport.
+  // On gym days: just conditioning notes. On true rest days: show rest.
+  const gymDay = getGymRotationDay(TODAY);
+  if (gymDay && gymDay !== 'rest') {
+    // Gym day — no separate cardio session prescribed
+    return { title:'GYM DAY', tag:'gym', note:'Cardio prescribed through gym session. Focus on lifting.', segs:[] };
+  }
+  // Rest day — optional active recovery
+  const isAdvanced = exp === 'advanced' || exp === 'competitive';
+  if (isAdvanced && dow === 3) {
+    return { title:'CONDITIONING — OPTIONAL', tag:'easy',
+      note:'Optional cardio for advanced bodybuilders. Improves work capacity, cardiovascular health, and nutrient partitioning. 20-30 min moderate intensity only — never hard enough to impair recovery.',
+      segs:[
+        {n:1,name:'Incline Walk or Bike',detail:'20-30 min at moderate pace — HR 120-135. Zone 2. This is not a run.',pace:'Moderate',hr:'120-135'}
+      ]};
+  }
+  return { title:'REST', tag:'rest', note:'Full rest. Eat well, sleep 8 hours. Muscle is built at rest — protect it.', segs:[] };
+}
+
+// ══════════════════════════════════════════════════════════════
+// TRIATHLON PROGRAM — Sprint through Ironman
+// Methodology: Kristian Blummenfelt / NTG (Norwegian Triathlon Group)
+// Coach: Arild Tveiten. Adapted from Joe Friel's Triathlete's Training Bible.
+//
+// KEY CONCEPT: Threshold density over junk miles.
+// More time at lactate threshold per week than traditional plans.
+// Double-threshold days (two sessions at threshold in one day) introduced
+// ONLY for 70.3 and Ironman athletes with 8+ weeks to race — this is
+// the most demanding element of the Norwegian system and requires base fitness.
+// Everyone else gets single-session threshold work with Norwegian zone philosophy.
+// ══════════════════════════════════════════════════════════════
+function getTriathlonWorkout(dow, wk, exp, raceType, weeksOut, _dateStr) {
+  const rec = isRecovery(wk);
+  const ftp = getCurrentFTP();
+  const isBeginner = exp === 'beginner';
+  const isIntermediate = exp === 'intermediate';
+  const isAdvanced = exp === 'advanced' || exp === 'competitive';
+
+  const isSprint = raceType === 'Sprint Triathlon';
+  const isOlympic = raceType === 'Olympic Triathlon';
+  const isHalfIM = raceType === '70.3 Half Ironman' || raceType === 'Half Ironman';
+  const isFullIM = raceType === 'Full Ironman';
+  const isLongCourse = isHalfIM || isFullIM;
+
+  // Double-threshold: Blummenfelt's signature — only for long-course with time to build
+  const useDoubleThreshold = isLongCourse && !isBeginner && weeksOut >= 8 && wk >= 5;
+  const useRaceSpecificDT = isLongCourse && !isBeginner && weeksOut <= 8 && weeksOut > 2;
+
+  const ss = Math.round(ftp * 0.88);
+  const thresh = ftp;
+  const race83 = Math.round(ftp * 0.83);
+
+  function getLongBikeMins() {
+    if (isSprint)  return rec ? 40 : Math.min(40 + wk*5, 90);
+    if (isOlympic) return rec ? 50 : Math.min(60 + wk*5, 120);
+    if (isHalfIM)  return rec ? 60 : Math.min(75 + wk*5, 180);
+    return rec ? 75 : Math.min(90 + wk*8, 240);
+  }
+
+  function getLongRunDist() {
+    if (isSprint)  return rec ? 4 : Math.min(4 + Math.floor(wk/2), 8);
+    if (isOlympic) return rec ? 6 : Math.min(6 + Math.floor(wk/2), 12);
+    if (isHalfIM)  return rec ? 7 : Math.min(7 + Math.floor(wk/2), 14);
+    return rec ? 10 : Math.min(10 + Math.floor(wk/2), 20);
+  }
+
+  if (dow === 0) { // Sunday — Long Run
+    const dist = getLongRunDist();
+    return { title:`LONG RUN — ${dist} MILES`, tag:'long',
+      note:`Sunday long run. Zone 2 the entire way — Blummenfelt\'s coach Tveiten says most athletes run their easy days too hard and their hard days not hard enough. This is the easy day. ${isLongCourse ? 'Long-course athletes: this builds the aerobic base that lets you run a 1:20 half marathon off the bike.' : ''} HR cap non-negotiable.`,
+      segs:[
+        {n:1, name:`${dist} Miles Zone 2`, detail:'HR cap throughout. Walk before you blow up.', pace:'10:00-11:30/mi', hr:'Under 145'},
+        {n:2, name:'Norwegian Rule', detail:'If you cannot hold a conversation in full sentences — you are going too hard. Slow down.', pace:'Conversational', hr:'HARD CAP 145'}
+      ]};
+  }
+
+  if (dow === 1) { // Monday — Swim + Optional Easy Run
+    if (isBeginner) return { title:'REST', tag:'rest', note:'Rest day. Triathlon training accumulates fatigue fast — protect your Mondays after long run Sunday.', segs:[] };
+    if (rec) return { title:'SWIM — EASY', tag:'easy',
+      note:'Recovery week Monday. Easy swim only. Technique focus.',
+      segs:[{n:1,name:'Easy Swim — 1000m',detail:'Easy freestyle — feel each stroke. No drills.',pace:'Easy',hr:'Under 130'}]};
+    // Double-threshold Monday: morning easy swim + if advanced, optional short afternoon run
+    return { title:'SWIM — TECHNIQUE + DRILLS', tag:'easy',
+      note:`Monday swim is technique-first. Blummenfelt\'s NTG athletes do enormous swim volume but always with perfect technique. One sloppy lap reinforces sloppy mechanics. Slow down enough to feel every stroke.${useDoubleThreshold ? ' Advanced: optional 20 min Zone 2 run this afternoon if legs feel fresh — keeps aerobic momentum.' : ''}`,
+      segs:[
+        {n:1, name:'Warmup — 200m', detail:'Easy free. Long strokes. Feel the water.', pace:'Easy', hr:'Under 128'},
+        {n:2, name:'Drills — 400m', detail:'Catch-up drill 100m · Fingertip drag 100m · High elbow catch drill 100m · Fist drill 100m', pace:'Drill pace', hr:'Aerobic'},
+        {n:3, name:'Main Set — 800m', detail:'8×100m on 1:55 — controlled, consistent splits every rep. Not a time trial.', pace:'Steady', hr:'140-155'},
+        {n:4, name:'Cooldown — 200m', detail:'Easy backstroke or easy free', pace:'Easy', hr:'Under 125'}
+      ]};
+  }
+
+  if (dow === 2) { // Tuesday — THRESHOLD DAY (key session)
+    if (rec) return { title:'EASY BIKE', tag:'bike', note:'Recovery week. Zone 2 only.',
+      segs:[{n:1,name:'Easy Spin',detail:'45 min Zone 2',pace:'100-130w',hr:'Under 135'}]};
+
+    if (isBeginner || wk <= 3) return { title:'BIKE — AEROBIC BASE', tag:'bike',
+      note:'Building aerobic foundation. Zone 2 throughout. Cadence 85-92.',
+      segs:[{n:1,name:'Aerobic Ride',detail:`${isBeginner?40:55} min Zone 2`,pace:'110-140w',hr:'130-145'}]};
+
+    // DOUBLE THRESHOLD TUESDAY — Blummenfelt's signature session
+    // Morning: bike threshold. The evening run threshold is noted but shown as afternoon session.
+    if (useDoubleThreshold) {
+      return { title:'DOUBLE THRESHOLD — BIKE (AM)', tag:'bike',
+        note:`Blummenfelt\'s signature double-threshold day. This morning session is the bike threshold block. ${useRaceSpecificDT ? 'Race-specific power for your ' + raceType + '.' : 'Building threshold density.'} This evening: 40 min threshold run (shown below as separate note). The double-threshold concept: doing two sub-maximal threshold sessions in one day builds more lactate tolerance than one maximal session — with less damage and faster recovery. Blummenfelt does this twice a week at peak training.`,
+        segs:[
+          {n:1, name:'Warmup', detail:'15 min progressive build', pace:'80-120w', hr:'Under 130'},
+          {n:2, name:useRaceSpecificDT?`4 x 8 Min at Race Power`:`3 x 15 Min Sweet Spot`, detail:useRaceSpecificDT?`${race83}w (race power for ${raceType}) — 4 min easy recovery`:`${ss}w (88% FTP) — 5 min easy recovery`, pace:useRaceSpecificDT?`${race83}w`:`${ss}w`, hr:useRaceSpecificDT?'158-168':'145-158'},
+          {n:3, name:'Cooldown', detail:'10 min easy spin', pace:'Under 100w', hr:'Under 125'},
+          {n:4, name:'THIS EVENING — Threshold Run', detail:'40 min: 10 min easy + 4×5 min at threshold pace + 10 min easy. This is the second threshold session. Do not skip it — it\'s the point.', pace:'Threshold: 8:00-8:30/mi', hr:'158-168'}
+        ]};
+    }
+
+    // Standard threshold bike for sprint/olympic or early weeks
+    return { title:`BIKE — THRESHOLD`, tag:'bike',
+      note:`Norwegian-style threshold session. Quality, not junk. ${isSprint||isOlympic ? 'Sprint/Olympic athletes need a higher intensity ceiling — these intervals build it.' : 'Long-course base building.'}`,
+      segs:[
+        {n:1, name:'Warmup', detail:'10 min progressive', pace:'80-110w', hr:'Under 128'},
+        {n:2, name:wk<=6?`2 x 15 Min Sweet Spot`:`2 x 20 Min Threshold`, detail:wk<=6?`${ss}w — 5 min recovery`:`${thresh}w — 8 min recovery`, pace:wk<=6?`${ss}w`:`${thresh}w`, hr:wk<=6?'145-158':'158-170'},
+        {n:3, name:'Cooldown', detail:'10 min easy', pace:'Under 100w', hr:'Under 125'}
+      ]};
+  }
+
+  if (dow === 3) { // Wednesday — Run Quality (second threshold day for long-course)
+    if (rec) return { title:'EASY RUN', tag:'easy', note:'Recovery week — easy only.',
+      segs:[{n:1,name:'Easy Run',detail:'4 miles Zone 2',pace:'10:00-11:00/mi',hr:'Under 135'}]};
+
+    if (isBeginner) return { title:'EASY RUN OR REST', tag:'easy',
+      note:'Optional easy run. 3 miles maximum, Zone 2 only. Skip if legs are heavy.',
+      segs:[{n:1,name:'Optional Easy Run',detail:'3 miles Zone 2 if legs feel fresh',pace:'11:00-12:00/mi',hr:'Under 135'}]};
+
+    // DOUBLE THRESHOLD WEDNESDAY for long-course advanced athletes
+    if (useDoubleThreshold && isAdvanced) {
+      return { title:'DOUBLE THRESHOLD — RUN (AM) + SWIM (PM)', tag:'quality',
+        note:`Second double-threshold day of the week — Blummenfelt\'s approach. AM run is the primary session. PM swim is technique/aerobic, not threshold. This combination builds extraordinary lactate tolerance because the body adapts to clearing lactate while continuing to work — exactly what happens during an Ironman run.`,
+        segs:[
+          {n:1, name:'AM — Warmup Run', detail:'10 min easy build', pace:'Easy', hr:'Under 133'},
+          {n:2, name:'AM — Threshold Intervals', detail:useRaceSpecificDT?`5 x 5 min at ${raceType} run pace — 2 min jog recovery`:'6 x 4 min at threshold — 2 min jog recovery', pace:'8:00-8:30/mi', hr:'158-168'},
+          {n:3, name:'AM — Cooldown', detail:'10 min easy', pace:'Easy', hr:'Under 133'},
+          {n:4, name:'PM — Swim (optional)', detail:'1200m easy aerobic swim — technique focus, not hard. 2+ hours after the run.', pace:'Easy', hr:'Under 140'}
+        ]};
+    }
+
+    // Standard Wednesday quality run
+    const runOpts = [
+      { title:'RUN — THRESHOLD CRUISE INTERVALS', tag:'quality',
+        note:'Blummenfelt\'s crew does the bulk of their hard running at lactate threshold — not above it. This is the pace you hold for your half marathon or marathon in a triathlon. Controlled aggression.',
+        segs:[
+          {n:1,name:'Warmup',detail:'10 min easy',pace:'10:00-11:00/mi',hr:'Under 133'},
+          {n:2,name:'5 x 5 Min Threshold',detail:'5 min at threshold pace — 2 min jog recovery — 5 rounds',pace:'8:00-8:30/mi',hr:'158-168'},
+          {n:3,name:'Cooldown',detail:'10 min easy',pace:'Easy',hr:'Under 135'}
+        ]},
+      { title:'RUN — NORWEGIAN 4x4', tag:'quality',
+        note:'Blummenfelt\'s VO2 max intervals. 4 min at 90-95% max HR — the pace should feel unsustainable, but you sustain it. 3 min jog recovery. Each rep identical.',
+        segs:[
+          {n:1,name:'Warmup',detail:'10 min easy build',pace:'Easy',hr:'Under 133'},
+          {n:2,name:'4 x 4 Min Hard',detail:'4 min at 90-95% max HR — 3 min light jog — repeat 4 times',pace:'Hard',hr:'168-178'},
+          {n:3,name:'Cooldown',detail:'10 min easy',pace:'Easy',hr:'Under 135'}
+        ]},
+    ];
+    const idx = (wk-1)%2;
+    const pickerKey = 'tri_run_'+(_dateStr||TODAY.toISOString().split('T')[0]);
+    const saved = parseInt(localStorage.getItem(pickerKey)||'-1');
+    const chosen = saved>=0&&saved<runOpts.length?runOpts[saved]:runOpts[idx];
+    return {...chosen, _pickerOptions:runOpts, _pickerKey:pickerKey, _pickerCurrent:saved>=0?saved:idx};
+  }
+
+  if (dow === 4) { // Thursday — Swim + Easy Bike
+    if (isBeginner || rec) return { title:'REST', tag:'rest', note:'Rest day. Recovery is training.', segs:[] };
+    return { title:'SWIM — ENDURANCE + EASY BIKE', tag:'easy',
+      note:`Thursday is active recovery from Tuesday/Wednesday threshold work. Swim first, easy bike after if time allows. ${useDoubleThreshold ? 'After two double-threshold days, Thursday must be genuinely easy. NTG athletes do not compromise on this.' : 'Keep effort aerobic throughout.'}`,
+      segs:[
+        {n:1,name:'Warmup — 200m',detail:'Easy free',pace:'Easy',hr:'Under 128'},
+        {n:2,name:'Main Set — 1200m',detail:'12×100m on 1:50 — consistent pace. Not a time trial.',pace:'Aerobic',hr:'140-155'},
+        {n:3,name:'Cooldown — 200m',detail:'Easy',pace:'Easy',hr:'Under 125'},
+        {n:4,name:'Optional — Easy Spin 30 Min',detail:'Zone 2 only if time allows. Cadence 88-92. Keeps aerobic momentum.',pace:'100-130w',hr:'Under 135'}
+      ]};
+  }
+
+  if (dow === 5) { // Friday — Easy Run
+    if (rec || isBeginner) return { title:'REST', tag:'rest', note:'Rest day.', segs:[] };
+    return { title:'EASY RUN — 4 MILES', tag:'easy',
+      note:`Friday is a buffer day — legs recovery before Saturday\'s long bike/brick. ${useDoubleThreshold ? 'Blummenfelt\'s athletes run easy on Fridays without exception after a double-threshold week. Trust the process.' : 'Zone 2 only.'} If legs feel heavy from Wednesday — cut to 3 miles or skip.`,
+      segs:[{n:1,name:'4 Miles Easy',detail:'Zone 2. HR cap. Saturday brick prep.',pace:'10:00-11:00/mi',hr:'Under 138'}]};
+  }
+
+  if (dow === 6) { // Saturday — Long Bike or Brick
+    const bikeMins = getLongBikeMins();
+    if (rec) return { title:'EASY AEROBIC RIDE', tag:'bike',
+      note:'Recovery week ride. Zone 2 only.',
+      segs:[{n:1,name:'Easy Ride',detail:`${Math.round(bikeMins*0.6)} min Zone 2`,pace:'110-140w',hr:'Under 138'}]};
+
+    if (wk < 5 || isBeginner) return { title:`LONG BIKE — ${bikeMins} MIN`, tag:'bike',
+      note:'Saturday long ride. Zone 2 aerobic base. Cadence 85-92. Nutrition practice every 45 min.',
+      segs:[
+        {n:1,name:`${bikeMins} Min Zone 2`,detail:'Aerobic base. Cadence 85-92 rpm.',pace:'110-145w',hr:'130-148'},
+        {n:2,name:'Nutrition Practice',detail:'60-90g carbs per hour. Practice what you will race with.',pace:'',hr:''}
+      ]};
+
+    const runMin = Math.min(15+(wk-5)*5, isFullIM?45:30);
+    const brickBikeNote = useRaceSpecificDT
+      ? `Race-simulation brick. Bike at ${race83}w for the main set — this is your 70.3/IM race power. The run immediately after is the most race-specific training you will do. Blummenfelt's team does these weekly in the final 8 weeks.`
+      : `The most race-specific session in the program. Legs will feel heavy off the bike — that is the point. The more bricks you do, the faster that feeling disappears.`;
+
+    return { title:`BRICK — ${bikeMins} MIN BIKE + ${runMin} MIN RUN`, tag:'brick',
+      note:brickBikeNote,
+      segs:[
+        {n:1,name:`Bike — ${bikeMins} Min`,
+          detail:useRaceSpecificDT?`20 min warmup + ${Math.round(bikeMins*0.6)} min at ${race83}w (race power) + 10 min cooldown`:`Zone 2 with ${wk>=8?`3×10 min at ${ss}w`:'no intervals'} built in`,
+          pace:useRaceSpecificDT?`${race83}w main set`:wk>=8?`${ss}w intervals`:'Zone 2',
+          hr:useRaceSpecificDT?'155-168':wk>=8?'145-158':'130-148'},
+        {n:2,name:`Run — ${runMin} Min`,detail:'Immediately off bike. First 5 min will feel awful — that\'s normal. Find your rhythm.',pace:'Easy then build',hr:'Under 155'},
+        {n:3,name:'T2 Practice',detail:'Time your shoe swap. Transitions are free time on race day.',pace:'',hr:''}
+      ]};
+  }
+
+  return { title:'REST', tag:'rest', note:'Rest day. Let the adaptation happen.', segs:[] };
 }
 
 // ── HELPERS ──
@@ -1572,6 +2140,21 @@ function parseTime(t) {
   if (p.length===2) return +p[0]*60 + +p[1];
   return 6737;
 }
+
+function parseHMTime(t) {
+  // Parse a half marathon time specifically - handles H:MM and H:MM:SS and MM:SS
+  if (!t) return 6737;
+  const p = t.split(':');
+  if (p.length===3) return +p[0]*3600 + +p[1]*60 + +p[2];
+  if (p.length===2) {
+    const first = +p[0], second = +p[1];
+    // HM is always > 1 hour. If first number < 10, it's hours not minutes
+    if (first < 10) return first*3600 + second*60;
+    // Otherwise treat as MM:SS (unusual for HM but handle it)
+    return first*60 + second;
+  }
+  return 6737;
+}
 function G(id) { return document.getElementById(id); }
 
 // ── PROJECTIONS ──
@@ -1580,10 +2163,95 @@ function ftpToBikeSecs(ftp) {
   const mins = 182 - ((wkg - 2.33) / (3.33 - 2.33)) * 32;
   return Math.round(Math.max(150, Math.min(230, mins)) * 60);
 }
-function hmPaceToRunSecs(paceSecs) { return Math.round(paceSecs * 13.1 * 1.10); }
+function hmPaceToRunSecs(paceSecs) { return Math.round(paceSecs * 13.1 * 1.05); }
 function getHMEstSecs() {
+  // Priority: Garmin predicted HM > manual HM estimate > stored PR (which may be old)
+  const garmin = prHistory['Half Marathon (Garmin)'];
+  if (garmin) return parseHMTime(garmin);
+  const est = localStorage.getItem('tr_hm_estimate');
+  if (est) return parseHMTime(est);
   const pr = prHistory['Half Marathon'];
-  return pr ? parseTime(pr) : 6737;
+  // If PR looks like it was set during bodybuilding era (>2:00:00), use Garmin default instead
+  if (pr) {
+    const prSecs = parseHMTime(pr);
+    if (prSecs < 8400) return prSecs; // under 2:20 — trust it
+    // PR is old/slow, fall back to estimate
+  }
+  return 6737; // default 1:52:17
+}
+
+function setHMEstimate(val) {
+  const secs = parseHMTime(val);
+  if (!secs || secs < 3000 || secs > 18000) return;
+  localStorage.setItem('tr_hm_estimate', val);
+  updateAllProjections();
+}
+
+function initHMEstInput() {
+  const el = document.getElementById('hm-est-input');
+  if (!el) return;
+  const saved = localStorage.getItem('tr_hm_estimate');
+  if (saved) { el.value = saved; return; }
+  // Pre-populate from Garmin prediction (1:52:17)
+  el.value = '1:52:17';
+  localStorage.setItem('tr_hm_estimate', '1:52:17');
+}
+
+
+// ── RACE COUNTDOWN + PHASE ENGINE ──// ── RACE COUNTDOWN + PHASE ENGINE ──
+function getRacePhaseLabel(weeksOut) {
+  if (weeksOut > 16) return 'Base Building';
+  if (weeksOut > 8)  return 'Build Phase';
+  if (weeksOut > 4)  return 'Peak Phase';
+  if (weeksOut > 0)  return 'Taper';
+  return 'Race Week';
+}
+
+function getRacePhaseColor(weeksOut) {
+  if (weeksOut > 16) return 'var(--blue)';
+  if (weeksOut > 8)  return 'var(--green)';
+  if (weeksOut > 4)  return 'var(--amber)';
+  return 'var(--red)';
+}
+
+function renderRaceCountdown() {
+  const banner = G('race-countdown-banner');
+  if (!banner) return;
+  const p = window.userProfile || {};
+  if (!p.raceDate) { banner.style.display='none'; return; }
+
+  const raceD = new Date(p.raceDate); raceD.setHours(0,0,0,0);
+  const now = new Date(); now.setHours(0,0,0,0);
+  const diffMs = raceD - now;
+  const totalDays = Math.ceil(diffMs / (1000*60*60*24));
+
+  if (totalDays < 0) { banner.style.display='none'; return; }
+
+  const weeks = Math.floor(totalDays/7);
+  const days  = totalDays % 7;
+  const phase = getRacePhaseLabel(weeks);
+  const phaseColor = getRacePhaseColor(weeks);
+  const raceName = p.raceType ? p.raceType.toUpperCase() : 'TARGET RACE';
+  const raceDateStr = raceD.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+
+  banner.style.display = 'flex';
+  banner.innerHTML = `
+    <div class="rcd-left">
+      <div class="rcd-race-name">${raceName}</div>
+      <div class="rcd-race-date">${raceDateStr}</div>
+    </div>
+    <div class="rcd-nums">
+      ${weeks > 0 ? `<div class="rcd-unit"><div class="rcd-val">${weeks}</div><div class="rcd-unit-lbl">Weeks</div></div>` : ''}
+      <div class="rcd-unit"><div class="rcd-val">${days}</div><div class="rcd-unit-lbl">Days</div></div>
+    </div>
+    <div class="rcd-phase-badge" style="background:${phaseColor};">${phase}</div>
+  `;
+
+  // Update week banner phase label if race date set
+  const weekPhaseEl = G('week-phase-label');
+  if (weekPhaseEl && weeks >= 0) {
+    weekPhaseEl.textContent = phase;
+  }
 }
 
 function updateAllProjections() {
@@ -1597,9 +2265,9 @@ function updateAllProjections() {
 
   if(G('snap-ftp')) G('snap-ftp').textContent = ftp+'w';
   if(G('snap-wkg')) G('snap-wkg').textContent = wkg;
-  if(G('snap-bike')) G('snap-bike').textContent = secsToHM(bikeSecs);
-  if(G('snap-run')) G('snap-run').textContent = secsToHMS(hmSecs);
-  if(G('snap-703')) G('snap-703').textContent = secsToHM(totalSecs);
+  if(G('snap-bike')) G('snap-bike').textContent = secsToHMS(bikeSecs);
+  if(G('snap-run')) G('snap-run').textContent = secsToHMS(runSecs);
+  if(G('snap-703')) G('snap-703').textContent = secsToHMS(totalSecs);
 
   const last = ftpHistory[ftpHistory.length-1];
   if (last && G('snap-retest')) {
@@ -2111,9 +2779,20 @@ function renderRunningPRs() {
     const current=prHistory[dist]||data.pr;
     const isNew=prHistory[dist]&&prHistory[dist]!==data.pr;
     const tr=document.createElement('tr'); tr.className='pr-tr';
-    tr.innerHTML=`<td class="pr-td"><span class="pr-dist">${dist}</span></td><td class="pr-td"><span class="pr-val current">${current}${isNew?'<span class="pr-badge">NEW</span>':''}</span></td><td class="pr-td"><span class="pr-val garmin">${data.garmin||'<span class="empty">—</span>'}</span></td><td class="pr-td"><span class="pr-val proj">${data.proj}</span></td>`;
+    tr.innerHTML=`<td class="pr-td"><span class="pr-dist">${dist}</span></td><td class="pr-td"><span class="pr-val current">${current}${isNew?'<span class="pr-badge">NEW</span>':''}</span><button onclick="editPR('${dist}')" style="font-family:DM Mono,monospace;font-size:9px;color:var(--ink4);background:none;border:none;cursor:pointer;margin-left:6px;text-decoration:underline;">edit</button></td><td class="pr-td"><span class="pr-val garmin">${data.garmin||'<span class="empty">—</span>'}</span></td><td class="pr-td"><span class="pr-val proj">${data.proj}</span></td>`;
     body.appendChild(tr);
   });
+}
+
+function editPR(dist) {
+  const current = prHistory[dist] || RUNNING_PRS_BASE[dist]?.pr || '';
+  const newVal = prompt(`Edit ${dist} PR (current: ${current}):`, current);
+  if (!newVal || !newVal.trim()) return;
+  const old = prHistory[dist] || RUNNING_PRS_BASE[dist]?.pr || null;
+  prHistory[dist] = newVal.trim();
+  localStorage.setItem('tr_prs', JSON.stringify(prHistory));
+  renderRunningPRs();
+  updateAllProjections();
 }
 
 function logNewPR() {
@@ -2136,7 +2815,7 @@ function renderFTPHistory() {
   ftpHistory.forEach((e,i)=>{
     const wkg=(e.watts/BODY_KG).toFixed(2), pct=Math.round((e.watts/maxW)*100);
     const div=document.createElement('div'); div.className='ftp-hist-row';
-    div.innerHTML=`<div class="ftp-hist-date">${e.date}</div><div class="ftp-hist-val">${e.watts}w</div><div class="ftp-hist-bar-w"><div class="ftp-hist-bar-f" style="width:${pct}%;"></div></div><div class="ftp-hist-wkg">${wkg} w/kg</div><button class="log-del-btn" onclick="deleteFTP(${i})">x</button>`;
+    div.innerHTML=`<div class="ftp-hist-date">${e.date}</div><div class="ftp-hist-val">${e.watts}w</div><div class="ftp-hist-bar-w"><div class="ftp-hist-bar-f" style="width:${pct}%;"></div></div><div class="ftp-hist-wkg">${wkg} w/kg</div><button class="log-del-btn" style="font-size:11px;color:var(--ink4);" onclick="editFTP(${i})">Edit</button><button class="log-del-btn" onclick="deleteFTP(${i})">x</button>`;
     list.appendChild(div);
   });
 }
@@ -2191,6 +2870,21 @@ function deleteFTP(i) {
   if(ftpHistory.length<=1) return alert('Keep at least one entry');
   ftpHistory.splice(i,1); localStorage.setItem('tr_ftp',JSON.stringify(ftpHistory));
   renderFTPHistory(); updateAllProjections();
+}
+
+function editFTP(i) {
+  const entry = ftpHistory[i];
+  const newWatts = prompt(`Edit FTP (current: ${entry.watts}w):`, entry.watts);
+  if (!newWatts) return;
+  const watts = parseInt(newWatts);
+  if (!watts || watts < 50 || watts > 600) return alert('Enter valid FTP (50-600w)');
+  const newDate = prompt('Edit date (current: ' + entry.date + '):', entry.date);
+  if (!newDate) return;
+  ftpHistory[i] = {date: newDate, watts};
+  ftpHistory.sort((a,b) => new Date(a.date) - new Date(b.date));
+  localStorage.setItem('tr_ftp', JSON.stringify(ftpHistory));
+  renderFTPHistory();
+  updateAllProjections();
 }
 
 // ── LOG PAGE ──
@@ -2254,12 +2948,10 @@ function renderLogEntries() {
 
 // ── SUPPLEMENTS ──
 const SUPPS = [
-  {id:'brazil',name:'Brazil Nuts',dose:'2-3 nuts'},
-  {id:'pumpkin',name:'Pumpkin Seeds',dose:'Daily handful'},
-  {id:'aloe',name:'Aloe Vera',dose:'Morning'},
-  {id:'mag',name:'Magnesium Glycinate',dose:'300-400mg before bed'},
-  {id:'creatine',name:'Creatine',dose:'5g'},
-  {id:'gluten',name:'Gluten-Free All Day',dose:'Non-negotiable'},
+  {id:'aloe',name:'Aloe Vera',dose:'Morning — empty stomach'},
+  {id:'brazil',name:'Brazil Nuts',dose:'2-3 with breakfast'},
+  {id:'mag',name:'Magnesium',dose:'Before bed'},
+  {id:'creatine',name:'Creatine',dose:'5g — anytime'},
 ];
 
 function checkSuppDate() {
@@ -2292,9 +2984,10 @@ function resetSupplements() {
 
 function updateSuppIndicator() {
   checkSuppDate();
-  const done=Object.values(suppChecks).filter(Boolean).length, total=SUPPS.length;
+  const total = window.DYNAMIC_SUPPS ? window.DYNAMIC_SUPPS.length : SUPPS.length;
+  const done=Object.values(suppChecks).filter(Boolean).length;
   const el=G('home-supp-score');
-  if(el){el.textContent=`${done}/${total}`;el.style.color=done===total?'var(--green)':done>=3?'var(--amber)':'var(--red)';}
+  if(el){el.textContent=`${done}/${total}`;el.style.color=done===total?'var(--green)':done>=Math.floor(total/2)?'var(--amber)':'var(--red)';}
 }
 
 // ── SCHEDULE / CALENDAR ──
@@ -2656,21 +3349,34 @@ function showPage(name,btn) {
   document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
   const page=G('page-'+name); if(page) page.classList.add('active');
   if(btn) btn.classList.add('active');
-  if(name==='schedule'){renderWeekStrip();renderCalendar();}
-  if(name==='race') updateAllProjections();
+  if(name==='schedule'){renderCalendar();}
+  if(name==='race') { updateAllProjections(); initHMEstInput(); }
   if(name==='records'){renderRunningPRs();renderFTPHistory();updateAllProjections();}
-  if(name==='supplements') renderSupplements();
+  if(name==='supplements'){ renderDynamicSupplements(); }
   if(name==='log') renderLogEntries();
 }
 
 // ── INIT ──
 document.addEventListener('DOMContentLoaded',()=>{
+  // Load user profile first
+  userProfile = JSON.parse(localStorage.getItem('tr_profile') || '{}');
+
   updateMasthead();
   initHome();
   renderLogEntries();
   const today=TODAY.toISOString().split('T')[0];
   ['pr-date-inp','new-ftp-date','m-date'].forEach(id=>{const el=G(id);if(el) el.value=today;});
   setInterval(updateMasthead,60000);
+
+  // Apply profile if exists
+  if (Object.keys(userProfile).length) applyUserProfile();
+
+  // Init VDOT pacing and race countdown
+  initHMEstInput();
+  renderRaceCountdown();
+
+  // Check if onboarding needed
+  checkOnboarding();
 });
 
 // ── WORKOUT PICKER ──
@@ -2715,7 +3421,7 @@ function confirmPicker() {
   closePicker();
   initHome();
   const schedPage=G('page-schedule');
-  if(schedPage&&schedPage.classList.contains('active')){renderWeekStrip();renderCalendar();}
+  if(schedPage&&schedPage.classList.contains('active')){renderCalendar();}
 }
 
 function closePicker() { G('picker-overlay').classList.remove('open'); }
@@ -2745,6 +3451,622 @@ function initHomeWithPicker() {
 }
 
 
+
+// ═══════════════════════════════════════════════════════════
+// ONBOARDING + SETTINGS SYSTEM
+// ═══════════════════════════════════════════════════════════
+
+let userProfile = JSON.parse(localStorage.getItem('tr_profile') || '{}');
+function saveProfile() { localStorage.setItem('tr_profile', JSON.stringify(userProfile)); }
+
+let obCurrentScreen = 1;
+const OB_TOTAL = 10;
+let obSelectedSport = 'hybrid';
+let obHealthFlags = [];
+let obRaceChoice = 'no';
+let obSessionLen = '90';
+let obExperience = 'advanced';
+
+function checkOnboarding() {
+  const onboarded = localStorage.getItem('tr_onboarded');
+  const hasData = localStorage.getItem('tr_ftp') || localStorage.getItem('tr_log');
+  if (onboarded || hasData) return;
+  document.getElementById('ob-overlay').classList.remove('hidden');
+  buildNavDots();
+}
+
+function buildNavDots() {
+  const nav = G('ob-nav'); if (!nav) return;
+  nav.innerHTML = '';
+  for (let i = 1; i <= OB_TOTAL; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'ob-dot' + (i === 1 ? ' active' : '');
+    dot.id = 'ob-dot-' + i;
+    nav.appendChild(dot);
+  }
+}
+
+function updateNavDots(n) {
+  for (let i = 1; i <= OB_TOTAL; i++) {
+    const dot = G('ob-dot-' + i);
+    if (dot) dot.className = 'ob-dot' + (i === n ? ' active' : '');
+  }
+}
+
+function obNext(screen) {
+  if (screen === 2) { const name = G('ob-name')?.value?.trim(); if (name) { userProfile.name = name; obUpdateGreetings(name); } }
+  if (screen === 3) { userProfile.age = +G('ob-age')?.value||null; userProfile.weight = +G('ob-weight')?.value||null; userProfile.height = G('ob-height')?.value||null; if(userProfile.age) userProfile.maxHR = userProfile.maxHR||(220-userProfile.age); }
+  if (screen === 4) { userProfile.sport = obSelectedSport; }
+  if (screen === 5) { userProfile.experience = obExperience; }
+  if (screen === 6) { userProfile.gymDays = +G('ob-gym-days')?.value; userProfile.cardioDays = +G('ob-cardio-days')?.value; userProfile.sessionLen = obSessionLen; }
+  if (screen === 7) { userProfile.raceChoice = obRaceChoice; if(obRaceChoice==='yes'){userProfile.raceType=G('ob-race-type')?.value; userProfile.raceDate=G('ob-race-date')?.value;} }
+  if (screen === 8) {
+    const ftp=+G('ob-ftp')?.value, maxhr=+G('ob-maxhr')?.value, vo2=+G('ob-vo2')?.value;
+    const fiveK=G('ob-5k')?.value?.trim(), hm=G('ob-hm')?.value?.trim();
+    if(ftp){userProfile.ftp=ftp; ftpHistory=[{date:TODAY.toISOString().split('T')[0],watts:ftp}]; localStorage.setItem('tr_ftp',JSON.stringify(ftpHistory));}
+    if(maxhr) userProfile.maxHR=maxhr; if(vo2) userProfile.vo2=vo2;
+    if(fiveK){prHistory['5k']=fiveK; localStorage.setItem('tr_prs',JSON.stringify(prHistory));}
+    if(hm){prHistory['Half Marathon']=hm; localStorage.setItem('tr_prs',JSON.stringify(prHistory));}
+  }
+  if (screen === 9) { userProfile.healthFlags = obHealthFlags; }
+  obGoTo(screen + 1);
+}
+
+function obSkip(screen) { obGoTo(screen + 1); }
+
+function obGoTo(n) {
+  if (n > OB_TOTAL) { obFinish(); return; }
+  const current = G('ob-s' + obCurrentScreen);
+  const next = G('ob-s' + n);
+  if (!next) return;
+  if (current) { current.classList.remove('active'); current.classList.add('exit-left'); setTimeout(()=>{if(current)current.classList.remove('exit-left');},350); }
+  setTimeout(() => {
+    next.classList.add('active');
+    obCurrentScreen = n;
+    const pct = Math.round(((n-1)/(OB_TOTAL-1))*100);
+    const fill = G('ob-progress-fill'); if(fill) fill.style.width = pct+'%';
+    updateNavDots(n);
+    if (n === OB_TOTAL) obBuildSummary();
+    if (n === 2) setTimeout(()=>G('ob-name')?.focus(), 400);
+  }, 150);
+}
+
+function obUpdateGreetings(name) {
+  const qs = {'ob-q4':`What are you training for, ${name}?`,'ob-q5':`${name}, how long have you been at it?`,'ob-q6':`How many days can you train, ${name}?`,'ob-q9':`Any health considerations, ${name}?`};
+  Object.entries(qs).forEach(([id,text])=>{const el=G(id);if(el)el.textContent=text;});
+}
+
+function obSelectSport(sport, el) {
+  obSelectedSport = sport;
+  document.querySelectorAll('#ob-s4 .ob-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function obSelectOne(el, group, value) {
+  const screen = el.closest('.ob-screen');
+  if (screen) {
+    screen.querySelectorAll('.ob-check').forEach(c => {
+      if (c.dataset.group === group || !c.dataset.group) {
+        const b = c.querySelector('.ob-check-box'); if(b) b.innerHTML='';
+        c.classList.remove('selected');
+      }
+    });
+  }
+  el.classList.add('selected'); el.dataset.group=group; el.dataset.val=value;
+  const box=el.querySelector('.ob-check-box'); if(box) box.innerHTML='&#10003;';
+  if(group==='exp') obExperience=value;
+  if(group==='slen') obSessionLen=value;
+}
+
+function obSelectRace(choice, el) {
+  obRaceChoice=choice;
+  document.querySelectorAll('#ob-s7 .ob-check').forEach(c=>{c.classList.remove('selected');const b=c.querySelector('.ob-check-box');if(b)b.innerHTML='';});
+  el.classList.add('selected'); const b=el.querySelector('.ob-check-box'); if(b)b.innerHTML='&#10003;';
+  const det=G('ob-race-details'); if(det) det.style.display=choice==='yes'?'block':'none';
+}
+
+function obToggleHealth(el, flag) {
+  if (flag==='none') {
+    obHealthFlags=[];
+    document.querySelectorAll('#ob-s9 .ob-check').forEach(c=>{c.classList.remove('selected');const b=c.querySelector('.ob-check-box');if(b)b.innerHTML='';});
+    el.classList.add('selected'); const b=el.querySelector('.ob-check-box'); if(b)b.innerHTML='&#10003;';
+    return;
+  }
+  const idx=obHealthFlags.indexOf(flag);
+  if(idx!==-1){obHealthFlags.splice(idx,1);el.classList.remove('selected');const b=el.querySelector('.ob-check-box');if(b)b.innerHTML='';}
+  else{obHealthFlags.push(flag);el.classList.add('selected');const b=el.querySelector('.ob-check-box');if(b)b.innerHTML='&#10003;';}
+}
+
+function obBuildSummary() {
+  const name=userProfile.name||'Athlete';
+  const sportLabels={hybrid:'Hybrid Athlete',gym:'Gym & Lifting',running:'Runner',triathlon:'Triathlete'};
+  const el=G('ob-final-name'); if(el) el.textContent=name;
+  const sp=G('ob-final-sport'); if(sp) sp.textContent=sportLabels[userProfile.sport||'hybrid'];
+  const rows=[];
+  if(userProfile.gymDays) rows.push(['Gym',userProfile.gymDays+' days/week']);
+  if(userProfile.cardioDays) rows.push(['Cardio',userProfile.cardioDays+' days/week']);
+  if(userProfile.raceType&&userProfile.raceDate) rows.push(['Race',userProfile.raceType+' · '+userProfile.raceDate]);
+  if(userProfile.ftp) rows.push(['FTP',userProfile.ftp+'w']);
+  if(userProfile.experience) rows.push(['Level',userProfile.experience]);
+  if(userProfile.healthFlags?.length) rows.push(['Health',userProfile.healthFlags.join(', ')]);
+  const det=G('ob-final-details');
+  if(det) det.innerHTML=rows.map(([k,v])=>`<div class="ob-sum-row"><span class="ob-sum-key">${k}</span><span class="ob-sum-val">${v}</span></div>`).join('');
+  // Set today's date in header
+  const dateEl=G('ob-sum-date');
+  if(dateEl){const now=new Date();dateEl.textContent=now.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
+  spawnConfetti();
+}
+
+function spawnConfetti() {
+  const c=G('ob-confetti'); if(!c) return;
+  c.innerHTML='';
+  const colors=['#C41230','#1A1A1A','#C17B2A','#2D7A4F','#1B4F8A'];
+  for(let i=0;i<30;i++){
+    const p=document.createElement('div'); p.className='ob-confetti-piece';
+    p.style.cssText=`left:${Math.random()*100}%;top:-10px;width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${Math.random()>0.5?'50%':'2px'};animation:obConfettiFall ${1.5+Math.random()*2}s ease ${Math.random()*0.8}s forwards;`;
+    c.appendChild(p);
+  }
+  setTimeout(()=>{if(c)c.innerHTML='';},4000);
+}
+
+function obFinish() {
+  saveProfile();
+  localStorage.setItem('tr_onboarded','true');
+  G('ob-overlay').classList.add('hidden');
+  applyUserProfile();
+  initHome();
+  updateMasthead();
+}
+
+function applyUserProfile() {
+  if(!userProfile||!Object.keys(userProfile).length) return;
+  updateAllProjections();
+  updateSupplementsPage();
+}
+
+function updateSupplementsPage() {
+  // Daily checklist — only things that need an active decision or have timing that matters.
+  // Protein is ongoing. Gluten-free is a lifestyle rule. Pumpkin seeds are a snack.
+  // This list stays at 4. Easy to complete. Worth checking.
+  window.DYNAMIC_SUPPS = [
+    {id:'aloe',    name:'Aloe Vera',    dose:'Morning',        timing:'Empty stomach — before anything else'},
+    {id:'brazil',  name:'Brazil Nuts',  dose:'2-3 nuts',       timing:'With breakfast — selenium for thyroid'},
+    {id:'mag',     name:'Magnesium',    dose:'300-400mg',      timing:'Before bed — non-negotiable'},
+    {id:'creatine',name:'Creatine',     dose:'5g',             timing:'Anytime — consistency over timing'},
+  ];
+  const list = G('supp-checklist');
+  if (list) renderDynamicSupplements();
+}
+
+function openSettings() {
+  const p=userProfile;
+  const sv=id=>G(id);
+  if(sv('s-name')) sv('s-name').value=p.name||'';
+  if(sv('s-age')) sv('s-age').value=p.age||'';
+  if(sv('s-weight')) sv('s-weight').value=p.weight||'';
+  if(sv('s-height')) sv('s-height').value=p.height||'';
+  if(sv('s-sport')) sv('s-sport').value=p.sport||'hybrid';
+  if(sv('s-exp')) sv('s-exp').value=p.experience||'advanced';
+  if(sv('s-race-type')) sv('s-race-type').value=p.raceType||'';
+  if(sv('s-race-date')) sv('s-race-date').value=p.raceDate||'';
+  if(sv('s-race-goal')) sv('s-race-goal').value=p.raceGoal||'compete';
+  if(sv('s-ftp')) sv('s-ftp').value=getCurrentFTP()||'';
+  if(sv('s-maxhr')) sv('s-maxhr').value=p.maxHR||'';
+  if(sv('s-vo2')) sv('s-vo2').value=p.vo2||'';
+  if(sv('s-5k')) sv('s-5k').value=prHistory['5k']||'';
+  if(sv('s-hm')) sv('s-hm').value=prHistory['Half Marathon']||'';
+  const hc=G('s-health-checks');
+  if(hc){
+    const flags=[{id:'thyroid',label:"Thyroid / Hashimoto's"},{id:'joint',label:'Joint / Knee pain'},{id:'shoulder',label:'Shoulder injury'},{id:'diabetes',label:'Diabetes / Blood sugar'},{id:'heart',label:'Heart condition'}];
+    hc.innerHTML=flags.map(f=>{
+      const checked=(p.healthFlags||[]).includes(f.id);
+      return `<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--rule);cursor:pointer;" onclick="toggleSettingsFlag('${f.id}',this)"><div style="width:18px;height:18px;border:2px solid ${checked?'var(--red)':'var(--rule2)'};border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:12px;background:${checked?'var(--red)':'transparent'};color:var(--cream);flex-shrink:0;" id="sf-${f.id}">${checked?'&#10003;':''}</div><span style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">${f.label}</span></div>`;
+    }).join('');
+  }
+  G('settings-overlay').classList.add('open');
+  G('settings-panel').classList.add('open');
+}
+
+function toggleSettingsFlag(flag,el){
+  if(!userProfile.healthFlags) userProfile.healthFlags=[];
+  const idx=userProfile.healthFlags.indexOf(flag);
+  const box=G('sf-'+flag);
+  if(idx!==-1){userProfile.healthFlags.splice(idx,1);if(box){box.style.background='transparent';box.style.borderColor='var(--rule2)';box.innerHTML='';}}
+  else{userProfile.healthFlags.push(flag);if(box){box.style.background='var(--red)';box.style.borderColor='var(--red)';box.innerHTML='&#10003;';}}
+}
+
+function saveSettings(){
+  const sv=id=>G(id)?.value;
+  userProfile.name=sv('s-name')||userProfile.name;
+  userProfile.age=+sv('s-age')||userProfile.age;
+  userProfile.weight=+sv('s-weight')||userProfile.weight;
+  userProfile.height=sv('s-height')||userProfile.height;
+  userProfile.sport=sv('s-sport')||userProfile.sport;
+  userProfile.experience=sv('s-exp')||userProfile.experience;
+  userProfile.raceType=sv('s-race-type')||'';
+  userProfile.raceDate=sv('s-race-date')||'';
+  userProfile.raceGoal=sv('s-race-goal')||'compete';
+  userProfile.maxHR=+sv('s-maxhr')||userProfile.maxHR;
+  userProfile.vo2=+sv('s-vo2')||userProfile.vo2;
+  const fiveK=sv('s-5k'); if(fiveK){prHistory['5k']=fiveK;localStorage.setItem('tr_prs',JSON.stringify(prHistory));}
+  const hm=sv('s-hm'); if(hm){prHistory['Half Marathon']=hm;localStorage.setItem('tr_prs',JSON.stringify(prHistory));}
+  saveProfile(); closeSettings(); applyUserProfile(); initHome(); updateAllProjections(); renderRaceCountdown();
+}
+
+function closeSettings(){G('settings-overlay').classList.remove('open');G('settings-panel').classList.remove('open');}
+
+function resetOnboarding(){
+  if(!confirm("Reset onboarding? Your workout log and PRs will be kept.")) return;
+  localStorage.removeItem('tr_onboarded'); localStorage.removeItem('tr_profile');
+  userProfile={}; closeSettings(); location.reload();
+}
+
+
+
+// ── SUPPLEMENT RENDERING ──
+function refreshSuppList() {
+  const list = document.getElementById('supp-checklist');
+  if (!list || !window.DYNAMIC_SUPPS) { renderSupplements(); return; }
+  renderDynamicSupplements();
+}
+
+function renderDynamicSupplements() {
+  checkSuppDate();
+  const list = G('supp-checklist');
+  if (!list) return;
+  const supps = window.DYNAMIC_SUPPS || SUPPS;
+  list.innerHTML = '';
+  supps.forEach(s => {
+    if (!s.id || !s.name) return;
+    const checked = !!suppChecks[s.id];
+    const div = document.createElement('div');
+    div.className = `supp-check-item${checked ? ' checked' : ''}`;
+    const sid = s.id;
+    div.onclick = () => {
+      checkSuppDate();
+      suppChecks[sid] = !suppChecks[sid];
+      localStorage.setItem('tr_supps', JSON.stringify(suppChecks));
+      updateSuppIndicator();
+      refreshSuppList();
+    };
+    div.innerHTML = `<div class="supp-check-box">${checked ? '&#10003;' : ''}</div><div style="flex:1;"><div class="supp-check-name">${s.name}</div><div class="supp-check-dose" style="font-size:10px;color:var(--ink4);margin-top:2px;">${s.timing || ''}</div></div><div class="supp-check-dose">${s.dose || ''}</div>`;
+    list.appendChild(div);
+  });
+  updateSuppIndicator();
+}
 </script>
+
+<!-- ═══ ONBOARDING OVERLAY ═══ -->
+<div class="ob-overlay hidden" id="ob-overlay">
+  <div class="ob-progress"><div class="ob-progress-fill" id="ob-progress-fill" style="width:0%"></div></div>
+
+  <!-- Animated background lines -->
+  <div class="ob-bg">
+    <div class="ob-bg-line"></div>
+    <div class="ob-bg-line"></div>
+    <div class="ob-bg-line"></div>
+    <div class="ob-bg-line"></div>
+  </div>
+
+  <!-- Nav dots -->
+  <div class="ob-nav" id="ob-nav"></div>
+
+  <div class="ob-screens">
+
+    <!-- S1: Welcome -->
+    <div class="ob-screen active" id="ob-s1">
+      <div class="ob-welcome-logo">THE <span>RETURN</span></div>
+      <div class="ob-welcome-rule"></div>
+      <div class="ob-welcome-tag">A chronicle of watts, miles, and will</div>
+      <div class="ob-welcome-headline">Built for athletes who refuse to specialize.</div>
+      <div class="ob-welcome-sub">Two minutes. Your program, built around you.</div>
+      <button class="ob-btn ob-welcome-btn" onclick="obNext(1)"><span>Build My Program &rarr;</span></button>
+    </div>
+
+    <!-- S2: Name -->
+    <div class="ob-screen" id="ob-s2">
+      <button class="ob-back" onclick="obGoTo(1)">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        Back
+      </button>
+      <div class="ob-question">What do we call you?</div>
+      <div class="ob-sub">We'll use your name throughout the app</div>
+      <div class="ob-name-wrap">
+        <input type="text" class="ob-input-big" id="ob-name" placeholder="Your name" maxlength="30" autocomplete="given-name" onkeydown="if(event.key==='Enter') obNext(2)">
+      </div>
+      <button class="ob-btn" onclick="obNext(2)"><span>Continue &rarr;</span></button>
+      <button class="ob-btn-out" onclick="obSkip(2)">skip</button>
+    </div>
+
+    <!-- S3: Age + Stats -->
+    <div class="ob-screen" id="ob-s3">
+      <button class="ob-back" onclick="obGoTo(2)">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        Back
+      </button>
+      <div class="ob-question" id="ob-q3">A few quick stats</div>
+      <div class="ob-sub">Used to calculate your zones, projections, and max HR</div>
+      <div class="ob-input-row">
+        <div class="ob-stat-field"><label class="ob-input-label">Age</label><input type="number" class="ob-input-sm" id="ob-age" placeholder="28" min="14" max="80"></div>
+        <div class="ob-stat-field"><label class="ob-input-label">Weight lbs</label><input type="number" class="ob-input-sm" id="ob-weight" placeholder="165" min="80" max="400"></div>
+        <div class="ob-stat-field"><label class="ob-input-label">Height</label><input type="text" class="ob-input-sm" id="ob-height" placeholder="5'8&quot;" style="width:90px;font-size:20px;"></div>
+      </div>
+      <button class="ob-btn" onclick="obNext(3)" style="margin-top:28px;"><span>Continue &rarr;</span></button>
+      <button class="ob-btn-out" onclick="obSkip(3)">skip — I'll add this later</button>
+    </div>
+
+    <!-- S4: Sport -->
+    <div class="ob-screen" id="ob-s4">
+      <button class="ob-back" onclick="obGoTo(3)">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        Back
+      </button>
+      <div class="ob-question" id="ob-q4">What are you training for?</div>
+      <div class="ob-sub">This shapes your entire program from day one</div>
+      <div class="ob-cards">
+        <div class="ob-card" onclick="obSelectSport('gym',this)" data-sport="gym">
+          <div class="ob-card-inner">
+            <span class="ob-card-icon">🏋️</span>
+            <div class="ob-card-title">Gym & Lifting</div>
+            <div class="ob-card-desc">Strength, muscle, physique. The iron is the only goal.</div>
+          </div>
+        </div>
+        <div class="ob-card" onclick="obSelectSport('running',this)" data-sport="running">
+          <div class="ob-card-inner">
+            <span class="ob-card-icon">🏃</span>
+            <div class="ob-card-title">Running</div>
+            <div class="ob-card-desc">5k to marathon. Speed, endurance, race performance.</div>
+          </div>
+        </div>
+        <div class="ob-card" onclick="obSelectSport('triathlon',this)" data-sport="triathlon">
+          <div class="ob-card-inner">
+            <span class="ob-card-icon">🏊</span>
+            <div class="ob-card-title">Triathlon</div>
+            <div class="ob-card-desc">Swim, bike, run. Sprint through Ironman distance.</div>
+          </div>
+        </div>
+        <div class="ob-card" onclick="obSelectSport('hybrid',this)" data-sport="hybrid">
+          <div class="ob-card-inner">
+            <span class="ob-card-icon">⚡</span>
+            <div class="ob-card-title">Hybrid</div>
+            <div class="ob-card-desc">Strength meets endurance. The hardest path. The best result.</div>
+          </div>
+        </div>
+      </div>
+      <button class="ob-btn" onclick="obNext(4)" style="margin-top:16px;"><span>Continue &rarr;</span></button>
+    </div>
+
+    <!-- S5: Experience -->
+    <div class="ob-screen" id="ob-s5">
+      <button class="ob-back" onclick="obGoTo(4)">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        Back
+      </button>
+      <div class="ob-question" id="ob-q5">How long have you been at it?</div>
+      <div class="ob-sub">Honest answer — this sets your program intensity</div>
+      <div class="ob-checks">
+        <div class="ob-check" onclick="obSelectOne(this,'exp','beginner')">
+          <div class="ob-check-box"></div>
+          <div><div class="ob-check-text">Just Starting Out</div><div class="ob-check-sub">Under 1 year of consistent training</div></div>
+        </div>
+        <div class="ob-check" onclick="obSelectOne(this,'exp','intermediate')">
+          <div class="ob-check-box"></div>
+          <div><div class="ob-check-text">Getting Serious</div><div class="ob-check-sub">1–3 years, solid foundation built</div></div>
+        </div>
+        <div class="ob-check" onclick="obSelectOne(this,'exp','advanced')">
+          <div class="ob-check-box"></div>
+          <div><div class="ob-check-text">Experienced Athlete</div><div class="ob-check-sub">3+ years, training with purpose</div></div>
+        </div>
+        <div class="ob-check" onclick="obSelectOne(this,'exp','competitive')">
+          <div class="ob-check-box"></div>
+          <div><div class="ob-check-text">Competitive Level</div><div class="ob-check-sub">Racing, competing, always pushing limits</div></div>
+        </div>
+      </div>
+      <button class="ob-btn" onclick="obNext(5)"><span>Continue &rarr;</span></button>
+      <button class="ob-btn-out" onclick="obSkip(5)">skip</button>
+    </div>
+
+    <!-- S6: Availability -->
+    <div class="ob-screen" id="ob-s6">
+      <button class="ob-back" onclick="obGoTo(5)">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        Back
+      </button>
+      <div class="ob-question" id="ob-q6">How many days can you train?</div>
+      <div class="ob-sub">We build around your real schedule, not an ideal one</div>
+      <div class="ob-slider-block">
+        <div class="ob-slider-head">
+          <span class="ob-slider-label">Gym days / week</span>
+          <div><span class="ob-slider-val" id="ob-gym-val">4</span><span class="ob-slider-unit">days</span></div>
+        </div>
+        <input type="range" class="ob-slider" id="ob-gym-days" min="0" max="6" value="4" oninput="G('ob-gym-val').textContent=this.value">
+        <div class="ob-slider-range"><span>0</span><span>6</span></div>
+      </div>
+      <div class="ob-slider-block">
+        <div class="ob-slider-head">
+          <span class="ob-slider-label">Cardio days / week</span>
+          <div><span class="ob-slider-val" id="ob-cardio-val">3</span><span class="ob-slider-unit">days</span></div>
+        </div>
+        <input type="range" class="ob-slider" id="ob-cardio-days" min="0" max="7" value="3" oninput="G('ob-cardio-val').textContent=this.value">
+        <div class="ob-slider-range"><span>0</span><span>7</span></div>
+      </div>
+      <div style="width:100%;max-width:400px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Typical session length</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div class="ob-check" onclick="obSelectOne(this,'slen','45')"><div class="ob-check-box"></div><div class="ob-check-text">45 min</div></div>
+          <div class="ob-check" onclick="obSelectOne(this,'slen','60')"><div class="ob-check-box"></div><div class="ob-check-text">60 min</div></div>
+          <div class="ob-check selected" onclick="obSelectOne(this,'slen','90')" data-group="slen" data-val="90"><div class="ob-check-box">&#10003;</div><div class="ob-check-text">90 min</div></div>
+          <div class="ob-check" onclick="obSelectOne(this,'slen','120')"><div class="ob-check-box"></div><div class="ob-check-text">90 min+</div></div>
+        </div>
+      </div>
+      <button class="ob-btn" onclick="obNext(6)" style="margin-top:20px;"><span>Continue &rarr;</span></button>
+    </div>
+
+    <!-- S7: Race -->
+    <div class="ob-screen" id="ob-s7">
+      <button class="ob-back" onclick="obGoTo(6)">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        Back
+      </button>
+      <div class="ob-question" id="ob-q7">Do you have a race coming up?</div>
+      <div class="ob-sub">If yes, your entire program builds toward it and tapers perfectly</div>
+      <div class="ob-checks" style="max-width:380px;">
+        <div class="ob-check" onclick="obSelectRace('yes',this)"><div class="ob-check-box"></div><div><div class="ob-check-text">Yes — I have a race date</div><div class="ob-check-sub">Program builds toward it, then tapers</div></div></div>
+        <div class="ob-check" onclick="obSelectRace('soon',this)"><div class="ob-check-box"></div><div><div class="ob-check-text">Not yet — planning one soon</div><div class="ob-check-sub">Build base fitness now, add race when ready</div></div></div>
+        <div class="ob-check" onclick="obSelectRace('no',this)"><div class="ob-check-box"></div><div><div class="ob-check-text">No race — just getting faster</div><div class="ob-check-sub">Continuous development, no end date</div></div></div>
+      </div>
+      <div id="ob-race-details" style="display:none;width:100%;max-width:380px;margin-top:16px;">
+        <select class="settings-input" id="ob-race-type" style="margin-bottom:10px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;padding:10px 12px;">
+          <option value="">Select race distance...</option>
+          <option>5k</option><option>10k</option><option>Half Marathon</option><option>Marathon</option>
+          <option>Sprint Triathlon</option><option>Olympic Triathlon</option>
+          <option>70.3 Half Ironman</option><option>Full Ironman</option>
+        </select>
+        <input type="date" class="settings-input" id="ob-race-date" style="padding:10px 12px;">
+      </div>
+      <button class="ob-btn" onclick="obNext(7)" style="margin-top:24px;"><span>Continue &rarr;</span></button>
+      <button class="ob-btn-out" onclick="obSkip(7)">skip</button>
+    </div>
+
+    <!-- S8: Fitness -->
+    <div class="ob-screen" id="ob-s8">
+      <button class="ob-back" onclick="obGoTo(7)">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        Back
+      </button>
+      <div class="ob-question" id="ob-q8">Current fitness numbers</div>
+      <div class="ob-sub">All optional — skip anything you don't know yet. You can add these later.</div>
+      <div class="ob-fitness-grid">
+        <div class="ob-stat-field"><label class="ob-input-label">FTP watts</label><input type="number" class="ob-input-sm" id="ob-ftp" placeholder="175" min="50" max="600"></div>
+        <div class="ob-stat-field"><label class="ob-input-label">Best 5k</label><input type="text" class="ob-input-sm" id="ob-5k" placeholder="24:00" style="font-size:18px;"></div>
+        <div class="ob-stat-field"><label class="ob-input-label">Half Marathon</label><input type="text" class="ob-input-sm" id="ob-hm" placeholder="1:52" style="font-size:18px;"></div>
+        <div class="ob-stat-field"><label class="ob-input-label">Resting HR</label><input type="number" class="ob-input-sm" id="ob-rhr" placeholder="45" min="30" max="90"></div>
+        <div class="ob-stat-field"><label class="ob-input-label">Max HR</label><input type="number" class="ob-input-sm" id="ob-maxhr" placeholder="193" min="140" max="220"></div>
+        <div class="ob-stat-field"><label class="ob-input-label">VO2 Max</label><input type="number" class="ob-input-sm" id="ob-vo2" placeholder="52" min="20" max="90"></div>
+      </div>
+      <button class="ob-btn" onclick="obNext(8)"><span>Continue &rarr;</span></button>
+      <button class="ob-btn-out" onclick="obSkip(8)">skip all — I'll add these in Records</button>
+    </div>
+
+    <!-- S9: Health -->
+    <div class="ob-screen" id="ob-s9">
+      <button class="ob-back" onclick="obGoTo(8)">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        Back
+      </button>
+      <div class="ob-question" id="ob-q9">Any health considerations?</div>
+      <div class="ob-sub">Shapes your supplement stack and program modifications. Select all that apply.</div>
+      <div class="ob-checks">
+        <div class="ob-check" onclick="obToggleHealth(this,'none')"><div class="ob-check-box"></div><div class="ob-check-text">All clear — no health flags</div></div>
+        <div class="ob-check" onclick="obToggleHealth(this,'thyroid')"><div class="ob-check-box"></div><div class="ob-check-text">Thyroid / Hashimoto's</div></div>
+        <div class="ob-check" onclick="obToggleHealth(this,'joint')"><div class="ob-check-box"></div><div class="ob-check-text">Joint / Knee pain</div></div>
+        <div class="ob-check" onclick="obToggleHealth(this,'shoulder')"><div class="ob-check-box"></div><div class="ob-check-text">Shoulder injury</div></div>
+        <div class="ob-check" onclick="obToggleHealth(this,'diabetes')"><div class="ob-check-box"></div><div class="ob-check-text">Diabetes / Blood sugar</div></div>
+        <div class="ob-check" onclick="obToggleHealth(this,'heart')"><div class="ob-check-box"></div><div class="ob-check-text">Heart condition</div></div>
+      </div>
+      <button class="ob-btn" onclick="obNext(9)"><span>Continue &rarr;</span></button>
+      <button class="ob-btn-out" onclick="obSkip(9)">skip</button>
+    </div>
+
+    <!-- S10: Ready -->
+    <div class="ob-screen" id="ob-s10">
+      <button class="ob-back" onclick="obGoTo(9)">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        Back
+      </button>
+      <div class="ob-confetti" id="ob-confetti"></div>
+      <div class="ob-summary-card" id="ob-summary-card">
+        <div class="ob-summary-card-head">
+          <span class="ob-sum-label">THE RETURN &nbsp;&middot;&nbsp; Program Ready</span>
+          <span class="ob-sum-issue" id="ob-sum-date"></span>
+        </div>
+        <div class="ob-summary-card-body">
+          <div class="ob-sum-name" id="ob-final-name">Athlete</div>
+          <div class="ob-sum-sport" id="ob-final-sport">Hybrid Athlete</div>
+          <div id="ob-final-details"></div>
+          <div class="ob-sum-tagline">A chronicle of watts, miles, and will &nbsp;&middot;&nbsp; California</div>
+        </div>
+      </div>
+      <button class="ob-btn" onclick="obFinish()"><span>Enter The Return &rarr;</span></button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ SETTINGS PANEL ═══ -->
+<div class="settings-overlay" id="settings-overlay" onclick="closeSettings()"></div>
+<div class="settings-panel" id="settings-panel">
+  <div class="settings-head">
+    <div class="settings-head-title">Settings</div>
+    <button class="settings-close" onclick="closeSettings()">&times;</button>
+  </div>
+
+  <div class="settings-section">
+    <div class="settings-section-title">Profile</div>
+    <div class="settings-field"><label class="settings-label">Name</label><input type="text" class="settings-input" id="s-name" placeholder="Your name"></div>
+    <div class="settings-field"><label class="settings-label">Age</label><input type="number" class="settings-input" id="s-age" placeholder="28"></div>
+    <div class="settings-field"><label class="settings-label">Weight (lbs)</label><input type="number" class="settings-input" id="s-weight" placeholder="165"></div>
+    <div class="settings-field"><label class="settings-label">Height</label><input type="text" class="settings-input" id="s-height" placeholder="5'8&quot;"></div>
+  </div>
+
+  <div class="settings-section">
+    <div class="settings-section-title">Sport & Goal</div>
+    <div class="settings-field"><label class="settings-label">Primary Sport</label>
+      <select class="settings-input" id="s-sport">
+        <option value="hybrid">Hybrid (Strength + Endurance)</option>
+        <option value="triathlon">Triathlon</option>
+        <option value="running">Running</option>
+        <option value="gym">Gym / Lifting</option>
+      </select>
+    </div>
+    <div class="settings-field"><label class="settings-label">Experience Level</label>
+      <select class="settings-input" id="s-exp">
+        <option value="beginner">Just Starting Out</option>
+        <option value="intermediate">Getting Serious</option>
+        <option value="advanced">Experienced Athlete</option>
+        <option value="competitive">Competitive Level</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="settings-section">
+    <div class="settings-section-title">Race Setup</div>
+    <div class="settings-field"><label class="settings-label">Race Distance</label>
+      <select class="settings-input" id="s-race-type">
+        <option value="">No race planned</option>
+        <option>5k</option><option>10k</option><option>Half Marathon</option><option>Marathon</option>
+        <option>Sprint Triathlon</option><option>Olympic Triathlon</option>
+        <option>70.3 Half Ironman</option><option>Full Ironman</option>
+      </select>
+    </div>
+    <div class="settings-field"><label class="settings-label">Race Date</label><input type="date" class="settings-input" id="s-race-date"></div>
+    <div class="settings-field"><label class="settings-label">Race Goal</label>
+      <select class="settings-input" id="s-race-goal">
+        <option value="finish">Just Finish</option>
+        <option value="compete">Compete</option>
+        <option value="pr">Personal Record</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="settings-section">
+    <div class="settings-section-title">Current Fitness</div>
+    <div class="settings-field"><label class="settings-label">FTP (watts)</label><input type="number" class="settings-input" id="s-ftp" placeholder="175"></div>
+    <div class="settings-field"><label class="settings-label">Max HR (bpm)</label><input type="number" class="settings-input" id="s-maxhr" placeholder="193"></div>
+    <div class="settings-field"><label class="settings-label">VO2 Max</label><input type="number" class="settings-input" id="s-vo2" placeholder="52"></div>
+    <div class="settings-field"><label class="settings-label">Best 5k</label><input type="text" class="settings-input" id="s-5k" placeholder="24:23"></div>
+    <div class="settings-field"><label class="settings-label">Best Half Marathon</label><input type="text" class="settings-input" id="s-hm" placeholder="1:52"></div>
+  </div>
+
+  <div class="settings-section">
+    <div class="settings-section-title">Health Flags</div>
+    <div id="s-health-checks"></div>
+  </div>
+
+  <div class="settings-section">
+    <button class="settings-save-btn" onclick="saveSettings()">Save Changes</button>
+    <button class="settings-danger-btn" onclick="resetOnboarding()">Reset &amp; Redo Onboarding</button>
+  </div>
+</div>
 </body>
 </html>
