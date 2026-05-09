@@ -33,8 +33,16 @@ body::before{content:"";position:fixed;inset:0;background-image:url("data:image/
 .nav-link:hover{background:rgba(255,255,255,0.08);}
 .nav-link.active{background:var(--red);}
 main{max-width:1120px;margin:0 auto;}
-.page{display:none;}
-.page.active{display:block;animation:fadeIn 0.2s ease;}
+.page{display:none;position:relative;}
+.page.active{display:block;}
+.page.slide-in-right{animation:slideInRight 0.28s cubic-bezier(0.4,0,0.2,1) both;}
+.page.slide-in-left{animation:slideInLeft 0.28s cubic-bezier(0.4,0,0.2,1) both;}
+.page.slide-out-left{animation:slideOutLeft 0.22s cubic-bezier(0.4,0,0.2,1) both;}
+.page.slide-out-right{animation:slideOutRight 0.22s cubic-bezier(0.4,0,0.2,1) both;}
+@keyframes slideInRight{from{opacity:0;transform:translateX(32px);}to{opacity:1;transform:translateX(0);}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-32px);}to{opacity:1;transform:translateX(0);}}
+@keyframes slideOutLeft{from{opacity:1;transform:translateX(0);}to{opacity:0;transform:translateX(-32px);}}
+@keyframes slideOutRight{from{opacity:1;transform:translateX(0);}to{opacity:0;transform:translateX(32px);}}
 @keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
 .home-layout{display:grid;grid-template-columns:200px 1fr;min-height:calc(100vh - 185px);border-left:1px solid var(--rule);border-right:1px solid var(--rule);}
 .side-col{border-right:2px solid var(--ink);display:flex;flex-direction:column;overflow:hidden;}
@@ -382,6 +390,29 @@ main{max-width:1120px;margin:0 auto;}
 ::-webkit-scrollbar-track{background:var(--cream2);}
 ::-webkit-scrollbar-thumb{background:var(--rule2);border-radius:3px;}
 ::-webkit-scrollbar-thumb:hover{background:var(--ink4);}
+
+/* ── BOTTOM TAB BAR (mobile) ── */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--ink);border-top:2px solid var(--red);padding-bottom:env(safe-area-inset-bottom,0px);}
+.bottom-nav-inner{display:flex;align-items:stretch;}
+.bnav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:10px 4px 8px;background:none;border:none;cursor:pointer;color:rgba(245,240,232,0.45);transition:color 0.15s,background 0.15s;min-height:56px;-webkit-tap-highlight-color:transparent;border-right:1px solid rgba(255,255,255,0.07);}
+.bnav-btn:last-child{border-right:none;}
+.bnav-btn.active{color:var(--yellow);}
+.bnav-btn.active .bnav-icon{opacity:1;}
+.bnav-icon{font-size:20px;opacity:0.45;transition:opacity 0.15s;}
+.bnav-btn.active .bnav-icon{opacity:1;}
+.bnav-label{font-family:"DM Mono",monospace;font-size:8px;letter-spacing:0.08em;text-transform:uppercase;line-height:1;}
+/* push main content above bottom nav on mobile */
+@media(max-width:768px){
+  .bottom-nav{display:block;}
+  main{padding-bottom:72px;}
+  .masthead .nav-links{display:none;}
+  .mast-center{padding:5px 12px 4px;}
+  .mast-title{font-size:26px;letter-spacing:0.03em;}
+  .mast-tagline{display:none;}
+  .mast-sponsors{display:none;}
+  .mast-top{padding:3px 12px;font-size:8px;}
+}
+
 @media(max-width:768px){
   /* ── MASTHEAD ── */
   .mast-title{font-size:34px;letter-spacing:0.04em;}
@@ -392,12 +423,17 @@ main{max-width:1120px;margin:0 auto;}
   .sponsor-name{font-size:9px;padding:0 6px;letter-spacing:0.1em;}
   .nav-links{flex-wrap:wrap;}
   .nav-link{font-size:9px;padding:6px 8px;letter-spacing:0.06em;flex:1 1 30%;text-align:center;min-width:0;border-bottom:1px solid rgba(255,255,255,0.08);}
+  /* bottom nav handles mobile navigation */
+  .settings-gear{padding:8px 14px;min-height:44px;min-width:44px;}
 
   /* ── LAYOUT ── */
   .home-layout{grid-template-columns:1fr;}
   .side-col{display:none;}
   .main-col{padding:12px 14px;}
   .sched-page,.log-page,.ri-page,.rec-page,.supp-page{padding:12px 14px;}
+  .workout-card,.fit-card,.edition-card{border-radius:14px;}
+  .segment{border-radius:10px;}
+  .ob-screen{padding:32px 20px;}
 
   /* ── WEEK BANNER ── */
   .week-banner{padding:8px 12px;margin-bottom:12px;flex-direction:column;gap:2px;}
@@ -3344,16 +3380,53 @@ function updateMasthead() {
 }
 
 // ── NAVIGATION ──
-function showPage(name,btn) {
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
-  const page=G('page-'+name); if(page) page.classList.add('active');
-  if(btn) btn.classList.add('active');
-  if(name==='schedule'){renderCalendar();}
-  if(name==='race') { updateAllProjections(); initHMEstInput(); }
-  if(name==='records'){renderRunningPRs();renderFTPHistory();updateAllProjections();}
-  if(name==='supplements'){ renderDynamicSupplements(); }
-  if(name==='log') renderLogEntries();
+const PAGE_ORDER = ['home','schedule','log','race','records','supplements'];
+let currentPageName = 'home';
+
+function showPage(name, btn) {
+  if (name === currentPageName) return;
+
+  const oldPage = G('page-' + currentPageName);
+  const newPage = G('page-' + name);
+  if (!newPage) return;
+
+  // Determine direction
+  const oldIdx = PAGE_ORDER.indexOf(currentPageName);
+  const newIdx = PAGE_ORDER.indexOf(name);
+  const goingRight = newIdx > oldIdx;
+
+  // Animate out old page
+  if (oldPage) {
+    oldPage.classList.remove('active');
+    oldPage.classList.add(goingRight ? 'slide-out-left' : 'slide-out-right');
+    setTimeout(() => {
+      oldPage.classList.remove('slide-out-left', 'slide-out-right');
+    }, 250);
+  }
+
+  // Animate in new page
+  newPage.classList.add('active', goingRight ? 'slide-in-right' : 'slide-in-left');
+  setTimeout(() => {
+    newPage.classList.remove('slide-in-right', 'slide-in-left');
+  }, 320);
+
+  currentPageName = name;
+
+  // Sync desktop nav
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  if (btn && btn.classList.contains('nav-link')) btn.classList.add('active');
+
+  // Sync bottom nav
+  document.querySelectorAll('.bnav-btn').forEach(b => b.classList.remove('active'));
+  const bnavBtn = G('bnav-' + name);
+  if (bnavBtn) bnavBtn.classList.add('active');
+
+  // Page-specific init
+  if (name === 'schedule') renderCalendar();
+  if (name === 'race') { updateAllProjections(); initHMEstInput(); }
+  if (name === 'records') { renderRunningPRs(); renderFTPHistory(); updateAllProjections(); }
+  if (name === 'supplements') renderDynamicSupplements();
+  if (name === 'log') renderLogEntries();
 }
 
 // ── INIT ──
@@ -3377,6 +3450,27 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   // Check if onboarding needed
   checkOnboarding();
+
+  // ── SWIPE NAVIGATION ──
+  let swipeStartX = 0, swipeStartY = 0;
+  const swipeThreshold = 48;
+  document.addEventListener('touchstart', e => {
+    swipeStartX = e.touches[0].clientX;
+    swipeStartY = e.touches[0].clientY;
+  }, {passive: true});
+  document.addEventListener('touchend', e => {
+    // Don't swipe inside modals, onboarding, settings, pickers
+    if (e.target.closest('.ob-overlay,.settings-panel,.modal-box,.picker-overlay')) return;
+    const dx = e.changedTouches[0].clientX - swipeStartX;
+    const dy = e.changedTouches[0].clientY - swipeStartY;
+    if (Math.abs(dx) < swipeThreshold || Math.abs(dy) > Math.abs(dx) * 0.7) return;
+    const idx = PAGE_ORDER.indexOf(currentPageName);
+    if (dx < 0 && idx < PAGE_ORDER.length - 1) {
+      showPage(PAGE_ORDER[idx + 1], null);
+    } else if (dx > 0 && idx > 0) {
+      showPage(PAGE_ORDER[idx - 1], null);
+    }
+  }, {passive: true});
 });
 
 // ── WORKOUT PICKER ──
@@ -3498,15 +3592,43 @@ function obNext(screen) {
   if (screen === 3) { userProfile.age = +G('ob-age')?.value||null; userProfile.weight = +G('ob-weight')?.value||null; userProfile.height = G('ob-height')?.value||null; if(userProfile.age) userProfile.maxHR = userProfile.maxHR||(220-userProfile.age); }
   if (screen === 4) { userProfile.sport = obSelectedSport; }
   if (screen === 5) { userProfile.experience = obExperience; }
-  if (screen === 6) { userProfile.gymDays = +G('ob-gym-days')?.value; userProfile.cardioDays = +G('ob-cardio-days')?.value; userProfile.sessionLen = obSessionLen; }
+  if (screen === 6) {
+    const s = obSelectedSport;
+    if (s === 'running') {
+      userProfile.runDays = +G('ob-run-days')?.value || 4;
+      userProfile.weeklyMiles = +G('ob-weekly-miles')?.value || null;
+      userProfile.longestRun = +G('ob-longest-run')?.value || null;
+    } else if (s === 'gym') {
+      userProfile.gymDays = +G('ob-gym-days')?.value || 4;
+      userProfile.sessionLen = obSessionLen;
+    } else if (s === 'triathlon') {
+      userProfile.triDays = +G('ob-tri-days')?.value || 5;
+      const weakEl = document.querySelector('#ob-s6-content .ob-check.selected[data-group="weak"]');
+      if (weakEl) userProfile.weakDiscipline = weakEl.dataset.val;
+    } else {
+      // hybrid
+      userProfile.gymDays = +G('ob-gym-days')?.value || 5;
+      userProfile.cardioDays = +G('ob-cardio-days')?.value || 4;
+    }
+  }
   if (screen === 7) { userProfile.raceChoice = obRaceChoice; if(obRaceChoice==='yes'){userProfile.raceType=G('ob-race-type')?.value; userProfile.raceDate=G('ob-race-date')?.value;} }
   if (screen === 8) {
+    const s = obSelectedSport;
     const ftp=+G('ob-ftp')?.value, maxhr=+G('ob-maxhr')?.value, vo2=+G('ob-vo2')?.value;
+    const rhr=+G('ob-rhr')?.value;
     const fiveK=G('ob-5k')?.value?.trim(), hm=G('ob-hm')?.value?.trim();
     if(ftp){userProfile.ftp=ftp; ftpHistory=[{date:TODAY.toISOString().split('T')[0],watts:ftp}]; localStorage.setItem('tr_ftp',JSON.stringify(ftpHistory));}
-    if(maxhr) userProfile.maxHR=maxhr; if(vo2) userProfile.vo2=vo2;
+    if(maxhr) userProfile.maxHR=maxhr; if(vo2) userProfile.vo2=vo2; if(rhr) userProfile.rhr=rhr;
     if(fiveK){prHistory['5k']=fiveK; localStorage.setItem('tr_prs',JSON.stringify(prHistory));}
     if(hm){prHistory['Half Marathon']=hm; localStorage.setItem('tr_prs',JSON.stringify(prHistory));}
+    if(s==='gym'){
+      const bench=+G('ob-bench')?.value, squat=+G('ob-squat')?.value, bw=+G('ob-bodyweight')?.value;
+      if(bench) userProfile.bench1rm=bench; if(squat) userProfile.squat1rm=squat; if(bw) userProfile.weight=bw;
+    }
+    if(s==='triathlon'){
+      const swim=G('ob-swim')?.value?.trim();
+      if(swim){prHistory['400m Swim']=swim; localStorage.setItem('tr_prs',JSON.stringify(prHistory));}
+    }
   }
   if (screen === 9) { userProfile.healthFlags = obHealthFlags; }
   obGoTo(screen + 1);
@@ -3528,6 +3650,9 @@ function obGoTo(n) {
     updateNavDots(n);
     if (n === OB_TOTAL) obBuildSummary();
     if (n === 2) setTimeout(()=>G('ob-name')?.focus(), 400);
+    if (n === 6) obRenderS6();
+    if (n === 7) obRenderS7();
+    if (n === 8) obRenderS8();
   }, 150);
 }
 
@@ -3540,6 +3665,172 @@ function obSelectSport(sport, el) {
   obSelectedSport = sport;
   document.querySelectorAll('#ob-s4 .ob-card').forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
+}
+
+// ── SPORT-AWARE SCREEN RENDERERS ──
+
+function obRenderS6() {
+  const s = obSelectedSport;
+  const el = G('ob-s6-content');
+  if (!el) return;
+
+  if (s === 'running') {
+    // Running: days running + beginner gets longest continuous distance, others get weekly mileage
+    const isBeg = obExperience === 'beginner';
+    el.innerHTML = `
+      <div class="ob-slider-block">
+        <div class="ob-slider-head">
+          <span class="ob-slider-label">Run days / week</span>
+          <div><span class="ob-slider-val" id="ob-run-days-val">4</span><span class="ob-slider-unit">days</span></div>
+        </div>
+        <input type="range" class="ob-slider" id="ob-run-days" min="2" max="7" value="4" oninput="G('ob-run-days-val').textContent=this.value">
+        <div class="ob-slider-range"><span>2</span><span>7</span></div>
+      </div>
+      ${isBeg ? `
+      <div class="ob-slider-block" style="margin-top:8px;">
+        <div class="ob-slider-head">
+          <span class="ob-slider-label">Longest run without stopping</span>
+          <div><span class="ob-slider-val" id="ob-longest-val">1</span><span class="ob-slider-unit">miles</span></div>
+        </div>
+        <input type="range" class="ob-slider" id="ob-longest-run" min="0" max="10" step="0.5" value="1" oninput="G('ob-longest-val').textContent=this.value">
+        <div class="ob-slider-range"><span>0</span><span>10+</span></div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink4);margin-top:6px;">This tells us exactly where to start your run/walk intervals</div>
+      </div>` : `
+      <div class="ob-slider-block" style="margin-top:8px;">
+        <div class="ob-slider-head">
+          <span class="ob-slider-label">Weekly mileage (current)</span>
+          <div><span class="ob-slider-val" id="ob-weekly-miles-val">20</span><span class="ob-slider-unit">mi/wk</span></div>
+        </div>
+        <input type="range" class="ob-slider" id="ob-weekly-miles" min="5" max="70" step="5" value="20" oninput="G('ob-weekly-miles-val').textContent=this.value">
+        <div class="ob-slider-range"><span>5</span><span>70</span></div>
+      </div>`}`;
+    G('ob-s6-sub').textContent = isBeg ? "Don't worry about the numbers — we start where you are" : "Your mileage base shapes how we build your plan";
+
+  } else if (s === 'gym') {
+    el.innerHTML = `
+      <div class="ob-slider-block">
+        <div class="ob-slider-head">
+          <span class="ob-slider-label">Gym days / week</span>
+          <div><span class="ob-slider-val" id="ob-gym-val">4</span><span class="ob-slider-unit">days</span></div>
+        </div>
+        <input type="range" class="ob-slider" id="ob-gym-days" min="2" max="6" value="4" oninput="G('ob-gym-val').textContent=this.value">
+        <div class="ob-slider-range"><span>2</span><span>6</span></div>
+      </div>
+      <div style="margin-top:12px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Typical session length</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div class="ob-check" onclick="obSelectOne(this,'slen','60')"><div class="ob-check-box"></div><div class="ob-check-text">60 min</div></div>
+          <div class="ob-check selected" data-group="slen" data-val="90" onclick="obSelectOne(this,'slen','90')"><div class="ob-check-box">&#10003;</div><div class="ob-check-text">90 min</div></div>
+          <div class="ob-check" onclick="obSelectOne(this,'slen','120')"><div class="ob-check-box"></div><div class="ob-check-text">2 hours</div></div>
+          <div class="ob-check" onclick="obSelectOne(this,'slen','150')"><div class="ob-check-box"></div><div class="ob-check-text">2+ hours</div></div>
+        </div>
+      </div>`;
+    G('ob-s6-sub').textContent = 'Your split is built around your available days';
+
+  } else if (s === 'triathlon') {
+    el.innerHTML = `
+      <div class="ob-slider-block">
+        <div class="ob-slider-head">
+          <span class="ob-slider-label">Training days / week</span>
+          <div><span class="ob-slider-val" id="ob-tri-days-val">5</span><span class="ob-slider-unit">days</span></div>
+        </div>
+        <input type="range" class="ob-slider" id="ob-tri-days" min="3" max="7" value="5" oninput="G('ob-tri-days-val').textContent=this.value">
+        <div class="ob-slider-range"><span>3</span><span>7</span></div>
+      </div>
+      <div style="margin-top:12px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">Weakest discipline</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+          <div class="ob-check" onclick="obSelectOne(this,'weak','swim')"><div class="ob-check-box"></div><div class="ob-check-text">Swim</div></div>
+          <div class="ob-check" onclick="obSelectOne(this,'weak','bike')"><div class="ob-check-box"></div><div class="ob-check-text">Bike</div></div>
+          <div class="ob-check" onclick="obSelectOne(this,'weak','run')"><div class="ob-check-box"></div><div class="ob-check-text">Run</div></div>
+        </div>
+      </div>`;
+    G('ob-s6-sub').textContent = 'Triathlon training needs at minimum 3 days — more is better';
+
+  } else {
+    // Hybrid (default — your program)
+    el.innerHTML = `
+      <div class="ob-slider-block">
+        <div class="ob-slider-head">
+          <span class="ob-slider-label">Gym days / week</span>
+          <div><span class="ob-slider-val" id="ob-gym-val">5</span><span class="ob-slider-unit">days</span></div>
+        </div>
+        <input type="range" class="ob-slider" id="ob-gym-days" min="2" max="6" value="5" oninput="G('ob-gym-val').textContent=this.value">
+        <div class="ob-slider-range"><span>2</span><span>6</span></div>
+      </div>
+      <div class="ob-slider-block" style="margin-top:8px;">
+        <div class="ob-slider-head">
+          <span class="ob-slider-label">Cardio / endurance days</span>
+          <div><span class="ob-slider-val" id="ob-cardio-val">4</span><span class="ob-slider-unit">days</span></div>
+        </div>
+        <input type="range" class="ob-slider" id="ob-cardio-days" min="1" max="7" value="4" oninput="G('ob-cardio-val').textContent=this.value">
+        <div class="ob-slider-range"><span>1</span><span>7</span></div>
+      </div>`;
+    G('ob-s6-sub').textContent = 'Hybrid athletes balance both — we program them in parallel';
+  }
+}
+
+function obRenderS7() {
+  const s = obSelectedSport;
+  const sel = G('ob-race-type');
+  if (!sel) return;
+
+  const runRaces = ['5k','10k','Half Marathon','Marathon','Ultra Marathon'];
+  const triRaces = ['Sprint Triathlon','Olympic Triathlon','70.3 Half Ironman','Full Ironman'];
+  const hybridRaces = [...runRaces, ...triRaces];
+
+  const options = s === 'running' ? runRaces : s === 'triathlon' ? triRaces : hybridRaces;
+
+  // Update question text
+  const q7 = G('ob-q7');
+  if (q7) {
+    if (s === 'gym') { q7.textContent = 'Any competitions or goals?'; }
+    else if (s === 'running') { q7.textContent = 'Do you have a race in mind?'; }
+    else if (s === 'triathlon') { q7.textContent = 'Which triathlon are you targeting?'; }
+    else { q7.textContent = 'Do you have a race or competition coming up?'; }
+  }
+
+  sel.innerHTML = '<option value="">Select distance...</option>' +
+    options.map(o => `<option>${o}</option>`).join('');
+}
+
+function obRenderS8() {
+  const s = obSelectedSport;
+  const el = G('ob-s8-fields');
+  if (!el) return;
+
+  const field = (id, label, type, placeholder, extra='') =>
+    `<div class="ob-stat-field"><label class="ob-input-label">${label}</label><input type="${type}" class="ob-input-sm" id="${id}" placeholder="${placeholder}" ${extra}></div>`;
+
+  const hrFields = field('ob-rhr','Resting HR','number','52','min="30" max="90"') +
+                   field('ob-maxhr','Max HR','number','193','min="140" max="220"') +
+                   field('ob-vo2','VO2 Max','number','52','min="20" max="90"');
+
+  if (s === 'running') {
+    el.innerHTML =
+      field('ob-5k','Best 5k time','text','24:00','') +
+      field('ob-hm','Half Marathon','text','1:52:00','') +
+      hrFields;
+  } else if (s === 'gym') {
+    el.innerHTML =
+      field('ob-bench','Bench Press (1RM)','number','185','min="45" max="800"') +
+      field('ob-squat','Back Squat (1RM)','number','225','min="45" max="1000"') +
+      field('ob-bodyweight','Body Weight (lbs)','number','175','min="80" max="400"') +
+      hrFields;
+  } else if (s === 'triathlon') {
+    el.innerHTML =
+      field('ob-ftp','FTP watts','number','200','min="50" max="600"') +
+      field('ob-5k','Best 5k','text','24:00','') +
+      field('ob-swim','Best 400m swim','text','8:00','') +
+      hrFields;
+  } else {
+    // Hybrid
+    el.innerHTML =
+      field('ob-ftp','FTP watts','number','175','min="50" max="600"') +
+      field('ob-5k','Best 5k','text','24:00','') +
+      field('ob-hm','Half Marathon','text','1:52:00','') +
+      hrFields;
+  }
 }
 
 function obSelectOne(el, group, value) {
@@ -3610,6 +3901,9 @@ function spawnConfetti() {
 }
 
 function obFinish() {
+  // Explicitly write sport from selection — this is the root fix for "wrong program" bug
+  userProfile.sport = obSelectedSport;
+  userProfile.experience = userProfile.experience || obExperience;
   saveProfile();
   localStorage.setItem('tr_onboarded','true');
   G('ob-overlay').classList.add('hidden');
@@ -3866,39 +4160,15 @@ function renderDynamicSupplements() {
       <button class="ob-btn-out" onclick="obSkip(5)">skip</button>
     </div>
 
-    <!-- S6: Availability -->
+    <!-- S6: Availability — sport-aware, rendered dynamically -->
     <div class="ob-screen" id="ob-s6">
       <button class="ob-back" onclick="obGoTo(5)">
         <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
         Back
       </button>
       <div class="ob-question" id="ob-q6">How many days can you train?</div>
-      <div class="ob-sub">We build around your real schedule, not an ideal one</div>
-      <div class="ob-slider-block">
-        <div class="ob-slider-head">
-          <span class="ob-slider-label">Gym days / week</span>
-          <div><span class="ob-slider-val" id="ob-gym-val">4</span><span class="ob-slider-unit">days</span></div>
-        </div>
-        <input type="range" class="ob-slider" id="ob-gym-days" min="0" max="6" value="4" oninput="G('ob-gym-val').textContent=this.value">
-        <div class="ob-slider-range"><span>0</span><span>6</span></div>
-      </div>
-      <div class="ob-slider-block">
-        <div class="ob-slider-head">
-          <span class="ob-slider-label">Cardio days / week</span>
-          <div><span class="ob-slider-val" id="ob-cardio-val">3</span><span class="ob-slider-unit">days</span></div>
-        </div>
-        <input type="range" class="ob-slider" id="ob-cardio-days" min="0" max="7" value="3" oninput="G('ob-cardio-val').textContent=this.value">
-        <div class="ob-slider-range"><span>0</span><span>7</span></div>
-      </div>
-      <div style="width:100%;max-width:400px;">
-        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Typical session length</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-          <div class="ob-check" onclick="obSelectOne(this,'slen','45')"><div class="ob-check-box"></div><div class="ob-check-text">45 min</div></div>
-          <div class="ob-check" onclick="obSelectOne(this,'slen','60')"><div class="ob-check-box"></div><div class="ob-check-text">60 min</div></div>
-          <div class="ob-check selected" onclick="obSelectOne(this,'slen','90')" data-group="slen" data-val="90"><div class="ob-check-box">&#10003;</div><div class="ob-check-text">90 min</div></div>
-          <div class="ob-check" onclick="obSelectOne(this,'slen','120')"><div class="ob-check-box"></div><div class="ob-check-text">90 min+</div></div>
-        </div>
-      </div>
+      <div class="ob-sub" id="ob-s6-sub">We build around your real schedule, not an ideal one</div>
+      <div id="ob-s6-content" style="width:100%;max-width:400px;"></div>
       <button class="ob-btn" onclick="obNext(6)" style="margin-top:20px;"><span>Continue &rarr;</span></button>
     </div>
 
@@ -3918,9 +4188,6 @@ function renderDynamicSupplements() {
       <div id="ob-race-details" style="display:none;width:100%;max-width:380px;margin-top:16px;">
         <select class="settings-input" id="ob-race-type" style="margin-bottom:10px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;padding:10px 12px;">
           <option value="">Select race distance...</option>
-          <option>5k</option><option>10k</option><option>Half Marathon</option><option>Marathon</option>
-          <option>Sprint Triathlon</option><option>Olympic Triathlon</option>
-          <option>70.3 Half Ironman</option><option>Full Ironman</option>
         </select>
         <input type="date" class="settings-input" id="ob-race-date" style="padding:10px 12px;">
       </div>
@@ -3936,14 +4203,7 @@ function renderDynamicSupplements() {
       </button>
       <div class="ob-question" id="ob-q8">Current fitness numbers</div>
       <div class="ob-sub">All optional — skip anything you don't know yet. You can add these later.</div>
-      <div class="ob-fitness-grid">
-        <div class="ob-stat-field"><label class="ob-input-label">FTP watts</label><input type="number" class="ob-input-sm" id="ob-ftp" placeholder="175" min="50" max="600"></div>
-        <div class="ob-stat-field"><label class="ob-input-label">Best 5k</label><input type="text" class="ob-input-sm" id="ob-5k" placeholder="24:00" style="font-size:18px;"></div>
-        <div class="ob-stat-field"><label class="ob-input-label">Half Marathon</label><input type="text" class="ob-input-sm" id="ob-hm" placeholder="1:52" style="font-size:18px;"></div>
-        <div class="ob-stat-field"><label class="ob-input-label">Resting HR</label><input type="number" class="ob-input-sm" id="ob-rhr" placeholder="45" min="30" max="90"></div>
-        <div class="ob-stat-field"><label class="ob-input-label">Max HR</label><input type="number" class="ob-input-sm" id="ob-maxhr" placeholder="193" min="140" max="220"></div>
-        <div class="ob-stat-field"><label class="ob-input-label">VO2 Max</label><input type="number" class="ob-input-sm" id="ob-vo2" placeholder="52" min="20" max="90"></div>
-      </div>
+      <div class="ob-fitness-grid" id="ob-s8-fields"></div>
       <button class="ob-btn" onclick="obNext(8)"><span>Continue &rarr;</span></button>
       <button class="ob-btn-out" onclick="obSkip(8)">skip all — I'll add these in Records</button>
     </div>
@@ -3992,6 +4252,33 @@ function renderDynamicSupplements() {
 
   </div>
 </div>
+
+
+<!-- ── BOTTOM TAB BAR ── -->
+<nav class="bottom-nav" id="bottom-nav" aria-label="Main navigation">
+  <div class="bottom-nav-inner">
+    <button class="bnav-btn active" id="bnav-home" onclick="showPage('home',this)" aria-label="Today">
+      <i class="ti ti-home bnav-icon" aria-hidden="true"></i>
+      <span class="bnav-label">Today</span>
+    </button>
+    <button class="bnav-btn" id="bnav-schedule" onclick="showPage('schedule',this)" aria-label="Schedule">
+      <i class="ti ti-calendar bnav-icon" aria-hidden="true"></i>
+      <span class="bnav-label">Schedule</span>
+    </button>
+    <button class="bnav-btn" id="bnav-log" onclick="showPage('log',this)" aria-label="Log">
+      <i class="ti ti-pencil bnav-icon" aria-hidden="true"></i>
+      <span class="bnav-label">Log</span>
+    </button>
+    <button class="bnav-btn" id="bnav-race" onclick="showPage('race',this)" aria-label="Race">
+      <i class="ti ti-flag bnav-icon" aria-hidden="true"></i>
+      <span class="bnav-label">Race</span>
+    </button>
+    <button class="bnav-btn" id="bnav-records" onclick="showPage('records',this)" aria-label="Records">
+      <i class="ti ti-trophy bnav-icon" aria-hidden="true"></i>
+      <span class="bnav-label">Records</span>
+    </button>
+  </div>
+</nav>
 
 <!-- ═══ SETTINGS PANEL ═══ -->
 <div class="settings-overlay" id="settings-overlay" onclick="closeSettings()"></div>
