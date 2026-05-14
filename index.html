@@ -31,7 +31,8 @@ body::before{content:"";position:fixed;inset:0;background-image:url("data:image/
 .mast-sponsors{display:flex;align-items:center;justify-content:center;padding:5px 28px;border-bottom:2px solid var(--ink);background:var(--cream2);}
 .sponsor-name{font-family:"Barlow Condensed",sans-serif;font-size:11px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink3);padding:0 14px;}
 .sponsor-div{font-family:"DM Mono",monospace;font-size:10px;color:var(--rule2);}
-.nav-links{display:flex;align-items:center;justify-content:center;background:var(--ink);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:0;}
+.nav-links{display:flex;align-items:center;justify-content:center;background:var(--ink);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:0;flex:1;min-width:0;}
+.nav-row{display:flex;align-items:stretch;background:var(--ink);}
 .nav-links::-webkit-scrollbar{display:none;}
 .nav-link{font-family:"Barlow Condensed",sans-serif;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:8px 20px;cursor:pointer;color:var(--cream);border:none;background:none;border-right:1px solid rgba(255,255,255,0.12);transition:all 0.15s;white-space:nowrap;display:flex;align-items:center;gap:6px;}
 .nav-link:last-child{border-right:none;}
@@ -760,6 +761,7 @@ main{max-width:1120px;margin:0 auto;}
     <span class="sponsor-name">Adidas</span><span class="sponsor-div">&middot;</span>
     <span class="sponsor-name">The Effect Athletics</span>
   </div>
+  <div class="nav-row">
   <div class="nav-links" style="position:relative;">
     <button class="nav-link active" onclick="showPage('home',this)"><i class="ti ti-home" aria-hidden="true"></i>Today</button>
     <button class="nav-link" onclick="showPage('schedule',this)"><i class="ti ti-calendar" aria-hidden="true"></i>Schedule</button>
@@ -767,7 +769,8 @@ main{max-width:1120px;margin:0 auto;}
     <button class="nav-link" onclick="showPage('race',this)"><i class="ti ti-flag" aria-hidden="true"></i>Race</button>
     <button class="nav-link" onclick="showPage('records',this)"><i class="ti ti-trophy" aria-hidden="true"></i>Records</button>
     <button class="nav-link" onclick="showPage('supplements',this)"><i class="ti ti-leaf" aria-hidden="true"></i>Supplements</button>
-    <button class="nav-link" onclick="openSettings()" title="Settings" aria-label="Settings" style="border-left:1px solid rgba(255,255,255,0.12);margin-left:auto;padding:8px 16px;"><i class="ti ti-settings" style="font-size:16px;" aria-hidden="true"></i></button>
+  </div>
+  <button onclick="openSettings()" title="Settings" aria-label="Settings" style="flex-shrink:0;background:var(--ink);border:none;border-left:1px solid rgba(255,255,255,0.15);color:var(--cream);opacity:0.8;cursor:pointer;padding:0 18px;font-size:18px;-webkit-tap-highlight-color:transparent;"><i class="ti ti-settings" aria-hidden="true"></i></button>
   </div>
 </div>
 
@@ -5473,15 +5476,18 @@ document.addEventListener('DOMContentLoaded',()=>{
   checkOnboarding();
 
   // ── SWIPE NAVIGATION ──
-  let swipeStartX = 0, swipeStartY = 0;
+  let swipeStartX = 0, swipeStartY = 0, swipeOnRange = false;
   const swipeThreshold = 48;
   document.addEventListener('touchstart', e => {
     swipeStartX = e.touches[0].clientX;
     swipeStartY = e.touches[0].clientY;
+    swipeOnRange = e.target.tagName === 'INPUT' && e.target.type === 'range';
   }, {passive: true});
   document.addEventListener('touchend', e => {
-    // Don't swipe inside modals, onboarding, settings, pickers
-    if (e.target.closest('.ob-overlay,.settings-panel,.modal-box,.picker-overlay')) return;
+    // Don't swipe inside modals, onboarding, settings, pickers, sliders, or simulator
+    if (e.target.closest('.ob-overlay,.settings-panel,.modal-box,.picker-overlay,.simulator')) return;
+    if (e.target.tagName === 'INPUT' && e.target.type === 'range') return;
+    if (swipeOnRange) return;
     const dx = e.changedTouches[0].clientX - swipeStartX;
     const dy = e.changedTouches[0].clientY - swipeStartY;
     if (Math.abs(dx) < swipeThreshold || Math.abs(dy) > Math.abs(dx) * 0.7) return;
@@ -5657,8 +5663,22 @@ function obNext(screen) {
     const fiveK=G('ob-5k')?.value?.trim(), hm=G('ob-hm')?.value?.trim();
     if(ftp){userProfile.ftp=ftp; ftpHistory=[{date:todayLocalStr(),watts:ftp}]; localStorage.setItem('tr_ftp',JSON.stringify(ftpHistory));}
     if(maxhr) userProfile.maxHR=maxhr; if(vo2) userProfile.vo2=vo2; if(rhr) userProfile.rhr=rhr;
-    if(fiveK){prHistory['5k']=fiveK; localStorage.setItem('tr_prs',JSON.stringify(prHistory));}
-    if(hm){prHistory['Half Marathon']=hm; localStorage.setItem('tr_prs',JSON.stringify(prHistory));}
+    const today = todayLocalStr();
+    const prLog = JSON.parse(localStorage.getItem('tr_pr_log')||'{}');
+    if(fiveK){
+      prHistory['5k']=fiveK;
+      if(!prLog['5k']) prLog['5k']=[];
+      prLog['5k'].unshift({time:fiveK, date:today});
+      localStorage.setItem('tr_prs',JSON.stringify(prHistory));
+      localStorage.setItem('tr_pr_log',JSON.stringify(prLog));
+    }
+    if(hm){
+      prHistory['Half Marathon']=hm;
+      if(!prLog['Half Marathon']) prLog['Half Marathon']=[];
+      prLog['Half Marathon'].unshift({time:hm, date:today});
+      localStorage.setItem('tr_prs',JSON.stringify(prHistory));
+      localStorage.setItem('tr_pr_log',JSON.stringify(prLog));
+    }
     if(s==='gym'){
       const bench=+G('ob-bench')?.value, squat=+G('ob-squat')?.value, deadlift=+G('ob-deadlift')?.value;
       if(bench){ strengthPRs['Bench Press']=bench; }
@@ -6252,17 +6272,16 @@ function secsToTimeStr(secs) {
 
 function timeStrToSecs(str) {
   if (!str) return null;
+  str = str.trim();
   const parts = str.split(':').map(Number);
+  if (parts.some(isNaN)) return null;
+  // H:MM:SS — always 3 parts
   if (parts.length === 3) return parts[0]*3600 + parts[1]*60 + parts[2];
   if (parts.length === 2) {
-    // Ambiguous: could be mm:ss or h:mm
-    // If first part >= 60 it must be minutes (e.g. 24:23 = 24min 23sec)
-    // If first part < 60 and second part <= 59 and result would be < 600sec, likely h:mm (e.g. 1:52 = 1hr 52min)
-    // Heuristic: if first part < 10 and second part > 10, treat as h:mm (race time format)
-    if (parts[0] < 10 && parts[1] > 10) {
-      return parts[0]*3600 + parts[1]*60; // h:mm format (e.g. 1:52 = 1hr 52min)
-    }
-    return parts[0]*60 + parts[1]; // mm:ss format (e.g. 24:23 = 24min 23sec)
+    // If first part is 0 or 1 digit and second >= 30 — likely H:MM (e.g. 1:52 = 1hr 52min)
+    // If first part >= 10 — definitely MM:SS (e.g. 24:23 = 24min 23sec)
+    if (parts[0] < 10 && parts[1] >= 30) return parts[0]*3600 + parts[1]*60;
+    return parts[0]*60 + parts[1]; // MM:SS
   }
   return null;
 }
@@ -6271,12 +6290,13 @@ const DIST_METERS = { '400m':400, '800m':800, '1 Mile':1609, '5k':5000, '10k':10
 
 function getBestRunPR() {
   // Find the best PR to use as Riegel anchor — prefer longer distances for accuracy
+  // Only use real logged PRs — never fall back to hardcoded defaults
   const order = ['Half Marathon','10k','5k','1 Mile','800m','400m'];
   for (const dist of order) {
-    const val = prHistory[dist] || RUNNING_PRS_BASE[dist]?.pr;
+    const val = prHistory[dist];
     if (val) {
       const secs = timeStrToSecs(val);
-      if (secs) return { dist, secs, meters: DIST_METERS[dist] };
+      if (secs && secs > 0) return { dist, secs, meters: DIST_METERS[dist] };
     }
   }
   return null;
